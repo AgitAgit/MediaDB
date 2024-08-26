@@ -1,5 +1,0 @@
-mongodb
-
-google books api
-
-spotify api
