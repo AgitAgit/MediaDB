@@ -6,18 +6,18 @@ const connectDB = require('./config/dbConn');
 const port = 3500;
 
 
-const songSchema = new mongoose.Schema({
-    data: 'mixed'
-});
-const song = mongoose.model('song', songSchema);
+// const songSchema = new mongoose.Schema({
+//     data: 'mixed'
+// });
+// const song = mongoose.model('song', songSchema);
 
-song.find()
-.then(songs => {
-    console.log('All songs:', songs);
-})
-.catch(err => {
-    console.error('Error fetching songs:', err);
-});
+// song.find()
+// .then(songs => {
+//     console.log('All songs:', songs);
+// })
+// .catch(err => {
+//     console.error('Error fetching songs:', err);
+// });
 
 async function getToken(){
     axios.post('https://accounts.spotify.com/api/token', {
@@ -42,4 +42,6 @@ async function getData(){
     .catch();
 }
 
-connectDB();
+// connectDB();
+
+getToken();
