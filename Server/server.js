@@ -42,5 +42,4 @@ async function getData(){
     .catch();
 }
 
-
 connectDB();
