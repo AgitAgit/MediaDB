@@ -3,6 +3,7 @@ const app = express();
 const axios = require('axios');
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
+const client_credentials = require('./config/spotifyClientCred');
 const port = 3500;
 
 
@@ -22,11 +23,7 @@ const port = 3500;
 async function getToken(){
     let token = '';
 
-    await axios.post('https://accounts.spotify.com/api/token', {
-        grant_type: 'client_credentials',
-        client_id: "dfa2522400934fe6b7005ca8ddc3add9",
-        client_secret: "d00c517b014443bdadb77e74b626415a",
-    },
+    await axios.post('https://accounts.spotify.com/api/token', client_credentials,
     {
         headers:{
             "Content-Type" : "application/x-www-form-urlencoded"
