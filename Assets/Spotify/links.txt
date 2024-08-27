@@ -1,0 +1,6 @@
+//sdk for java development with the spotify api
+https://developer.spotify.com/blog/2023-07-03-typescript-sdk
+https://www.npmjs.com/package/@spotify/web-api-ts-sdk
+
+//spotify nodejs app example
+https://github.com/spotify/spotify-web-api-ts-sdk/tree/main

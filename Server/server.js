@@ -37,20 +37,38 @@ async function getToken(){
 
     return token;
 }
-async function getData(accessToken){
-    axios.get('https://api.spotify.com/v1/artists/4Z8W4fKeB5YxbusRsdQVPb',{
+
+async function getData(accessToken,route){
+    axios.get(`https://api.spotify.com/v1${route}`,{
         headers:{
             'Authorization': `Bearer ${accessToken}`
         }
     })
     .then(data => {
-        console.log(data);
+        console.log(data.data);
+    })
+    .catch();
+}
+
+async function searchData(accessToken){
+    axios.get(`https://api.spotify.com/v1/search`,{
+        params:{
+            q: "album%3ACity%2520of%2520evil%2520artist%3AAvenged%2520Sevenfold",
+            type:"track"
+        },
+        headers:{
+            'Authorization': `Bearer ${accessToken}`
+        }
+    })
+    .then(data => {
+        console.log(data.data.tracks.items);
     })
     .catch();
 }
 
 // connectDB();
 getToken()
-    .then(token => {
-        getData(token)
-    });
+.then(token => {
+    //getData(token, '/artists/4Z8W4fKeB5YxbusRsdQVPb');
+    searchData(token);
+});
