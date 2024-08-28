@@ -20,9 +20,5 @@ const bkHandle = require('./booksHandler');
 // connectDB();
 
 
-// const data = spHandle.searchData();
-// console.log(data);
-//data.then(() => console.log(data));
-
-const data = bkHandle.searchData();
-data.then(()=> console.log(data));
+const data = spHandle.searchData();
+data.then(result => console.log(result));

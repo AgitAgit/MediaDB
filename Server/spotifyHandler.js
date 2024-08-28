@@ -1,30 +1,27 @@
 const axios = require('axios');
 const { client_credentials } = require('./config/apiKeys');
 
-async function getToken(){
-    let token = '';
-
-    await axios.post('https://accounts.spotify.com/api/token', client_credentials,
-    {
-        headers:{
-            "Content-Type" : "application/x-www-form-urlencoded"
-        }
-    })
-    .then(response => {
-        token = response.data.access_token;
-    })
-    .catch(error => {
-        console.log("error in  spotifyHandler:", error)
-    });
-
-    return token;
-}
-
-let token = getToken();
 
 spHandle = {
+    token: '',
+
+    getToken: function(){
+        this.token = axios.post('https://accounts.spotify.com/api/token', client_credentials,
+        {
+            headers:{
+                "Content-Type" : "application/x-www-form-urlencoded"
+            }
+        })
+        .then(response => {
+            token = response.data.access_token;
+        })
+        .catch(error => {
+            console.log("error in  spotifyHandler:", error)
+        });
+    },
+
     restartToken: function(){
-        token = getToken();
+        getToken();
     },
 
     buildQuery: function(track, album, artist){
@@ -33,25 +30,18 @@ spHandle = {
     },
     
     searchData: async function(type="track", query="album%3ACity%2520of%2520evil%2520artist%3AAvenged%2520Sevenfold"){
-        
-        await token;
-        return axios.get(`https://api.spotify.com/v1/search`,{
+        if(this.token === '') this.getToken();
+        await this.token;
+        const data = await axios.get(`https://api.spotify.com/v1/search`,{
             params:{
                 q: query,
-                type: type
+                type: "track"
             },
             headers:{
                 'Authorization': `Bearer ${token}`
             }
         })
-        .then(data => data.data.tracks.items[0].name)
-        .then(data => {
-            console.log(data);
-            return data;
-        })
-        .catch(error => {
-            console.log("error in  spotifyHandler:", error)
-        });        
+        return data.data.tracks.items[0].name;
     }
 }
 
