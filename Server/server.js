@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
-// const spHandle = require('./spotifyHandler');
+const spHandle = require('./spotifyHandler');
 const bkHandle = require('./booksHandler');
 
 // const songSchema = new mongoose.Schema({
@@ -17,10 +17,12 @@ const bkHandle = require('./booksHandler');
 // .catch(err => {
 //     console.error('Error fetching songs:', err);
 // });
-
 // connectDB();
-// spHandle.searchData();
-bkHandle.searchData();
 
-const data = spHandle.searchData();
-data.then(() => console.log(data));
+
+// const data = spHandle.searchData();
+// console.log(data);
+//data.then(() => console.log(data));
+
+const data = bkHandle.searchData();
+data.then(()=> console.log(data));

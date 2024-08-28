@@ -1,5 +1,5 @@
 const axios = require('axios');
-const client_credentials = require('./config/spotifyClientCred');
+const { client_credentials } = require('./config/apiKeys');
 
 async function getToken(){
     let token = '';
@@ -31,26 +31,27 @@ spHandle = {
         let query = '';
         //album%3ACity%2520of%2520evil%2520artist%3AAvenged%2520Sevenfold
     },
-
+    
     searchData: async function(type="track", query="album%3ACity%2520of%2520evil%2520artist%3AAvenged%2520Sevenfold"){
-        token
-        .then(token =>{
-            axios.get(`https://api.spotify.com/v1/search`,{
-                params:{
-                    q: "album%3ACity%2520of%2520evil%2520artist%3AAvenged%2520Sevenfold",
-                    type: type
-                },
-                headers:{
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-            .then(data => {
-                return data.data.tracks.items;
-            })
-            .catch(error => {
-                console.log("error in  spotifyHandler:", error)
-            });
-        });
+        
+        await token;
+        return axios.get(`https://api.spotify.com/v1/search`,{
+            params:{
+                q: query,
+                type: type
+            },
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(data => data.data.tracks.items[0].name)
+        .then(data => {
+            console.log(data);
+            return data;
+        })
+        .catch(error => {
+            console.log("error in  spotifyHandler:", error)
+        });        
     }
 }
 
@@ -58,8 +59,8 @@ module.exports = spHandle;
 
 // getData: async function(route){
 //     axios.get(`https://api.spotify.com/v1${route}`,{
-//         headers:{
-//             'Authorization': `Bearer ${token}`
+    //         headers:{
+        //             'Authorization': `Bearer ${token}`
 //         }
 //     })
 //     .then(data => {

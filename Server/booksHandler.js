@@ -7,12 +7,9 @@ const baseUrl = `https://www.googleapis.com/books/v1/volumes`;
 const { googleBooksApi } = require('./config/apiKeys');
 
 function searchData() {
-    axios.get(baseUrl + `?q=${query}&${googleBooksApi}`)
+    return axios.get(baseUrl + `?q=${query}&${googleBooksApi}`)
         .then(response => {
-            console.log('Books:', response.data.items[0]);
-            // response.data.items.forEach(book => {
-            //     console.log(book.volumeInfo.title);
-            // })
+            return response.data.items[0];
         })
         .catch(error => {
             console.error('Error fetching data:', error);
