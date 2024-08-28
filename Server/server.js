@@ -2,20 +2,21 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
+const spHandle = require('./spotifyHandler');
 
-connectDB();
 
+// const songSchema = new mongoose.Schema({
+//     data: 'mixed'
+// });
+// const song = mongoose.model('song', songSchema);
 
-const songSchema = new mongoose.Schema({
-    data: 'mixed'
-});
-const song = mongoose.model('song', songSchema);
+// song.find()
+// .then(songs => {
+//     console.log('All songs:', songs);
+// })
+// .catch(err => {
+//     console.error('Error fetching songs:', err);
+// });
 
-song.find()
-    .then(songs => {
-        console.log('All songs:', songs);
-    })
-    .catch(err => {
-        console.error('Error fetching songs:', err);
-    });
-
+// connectDB();
+spHandle.searchData();
