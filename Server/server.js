@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
-const spHandle = require('./spotifyHandler');
-
+// const spHandle = require('./spotifyHandler');
+const bkHandle = require('./booksHandler');
 
 // const songSchema = new mongoose.Schema({
 //     data: 'mixed'
@@ -19,4 +19,5 @@ const spHandle = require('./spotifyHandler');
 // });
 
 // connectDB();
-spHandle.searchData();
+// spHandle.searchData();
+bkHandle.searchData();
