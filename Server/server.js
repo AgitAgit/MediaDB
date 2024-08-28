@@ -5,10 +5,11 @@ const connectDB = require('./config/dbConn');
 const spHandle = require('./spotifyHandler');
 const bkHandle = require('./booksHandler');
 
-// const songSchema = new mongoose.Schema({
-//     data: 'mixed'
-// });
-// const song = mongoose.model('song', songSchema);
+const songSchema = new mongoose.Schema({
+    name:'string',
+    album:'string',
+    artist:'string'
+});
 
 // song.find()
 // .then(songs => {
@@ -17,8 +18,22 @@ const bkHandle = require('./booksHandler');
 // .catch(err => {
 //     console.error('Error fetching songs:', err);
 // });
-// connectDB();
+
+const Song = mongoose.model('Song', songSchema);
+connectDB();
+const songs = spHandle.searchData();
 
 
-const data = spHandle.searchData();
-data.then(result => console.log(result));
+function insertSong(song){
+    const newSong = new Song({
+        name: song.name,
+        album: song.album.name,
+        artist: song.artists[0].name
+    });
+    newSong.save();
+}
+songs.then(songs=> {
+    songs.forEach(song =>{
+        insertSong(song);
+    })
+});
