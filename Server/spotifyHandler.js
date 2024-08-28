@@ -45,7 +45,7 @@ spHandle = {
                 }
             })
             .then(data => {
-                console.log(data.data.tracks.items);
+                return data.data.tracks.items;
             })
             .catch(error => {
                 console.log("error in  spotifyHandler:", error)

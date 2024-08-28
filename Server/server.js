@@ -19,4 +19,5 @@ const spHandle = require('./spotifyHandler');
 // });
 
 // connectDB();
-spHandle.searchData();
+const data = spHandle.searchData();
+data.then(() => console.log(data));
