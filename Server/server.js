@@ -1,16 +1,11 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-<<<<<<< HEAD
-const connectDB = require('./config/dbConn');
 const spHandle = require('./spotifyHandler');
-=======
 const { connectDB } = require('./config/dbConn');
-// const spHandle = require('./spotifyHandler');
->>>>>>> Yaniv
 const bkHandle = require('./booksHandler');
-
 const { insertDB, findDB} = require('./cloudConn')
+
 // const songSchema = new mongoose.Schema({
 //     data: 'mixed'
 // });
