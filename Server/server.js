@@ -1,10 +1,16 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+<<<<<<< HEAD
 const connectDB = require('./config/dbConn');
 const spHandle = require('./spotifyHandler');
+=======
+const { connectDB } = require('./config/dbConn');
+// const spHandle = require('./spotifyHandler');
+>>>>>>> Yaniv
 const bkHandle = require('./booksHandler');
 
+const { insertDB, findDB} = require('./cloudConn')
 // const songSchema = new mongoose.Schema({
 //     data: 'mixed'
 // });
@@ -18,19 +24,27 @@ const bkHandle = require('./booksHandler');
 //     console.error('Error fetching songs:', err);
 // });
 
-connectDB();
+// connectDB();
+
+
+
+
+// const bookSchema = new mongoose.Schema({
+//     title: String,
+//     authors: [String],
+//     categories: [String],
+//     language: String,
+//     publishedDate: Date,
+//     img: String,
+//     link: String
+// }); //pushed to default books collection
 
 const bookSchema = new mongoose.Schema({
-    title: String,
-    authors: [String],
-    categories: [String],
-    language: String,
-    publishedDate: Date,
-    img: String,
-    link: String
-}); //pushed to default books collection
+    data: 'mixed'
+})
 const Book = mongoose.model('Book', bookSchema);
 
+/*
 const data = bkHandle.searchData();
 data.then(data => {
     console.log("------------------------------------------------------------------------------------");
@@ -67,7 +81,18 @@ data.then(data => {
 
 });
 
-
-
 // const data = spHandle.searchData();
 // data.then(result => console.log(result));
+*/
+
+// connectDB();
+// Book.find()
+// .then(books => {
+//     console.log('All books:', books);
+// })
+// .catch(err => {
+//     console.error('Error fetching songs:', err);
+// });
+
+findDB();
+
