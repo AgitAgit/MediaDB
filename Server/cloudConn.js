@@ -1,6 +1,6 @@
 
-const { mongoApi } = require('../config/apiKeys');
-let url = 'https://data.mongodb-api.com/app/data-jxtnbij/endpoint/data/v1';
+const { mongoApi } = require('./config/apiKeys');
+let url = 'https://data.mongodb-api.com/app/data-jxtnbij/endpoint/data/v1/action';
 
 function findDB() {
     url += '/findOne';
