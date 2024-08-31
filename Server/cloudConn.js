@@ -1,9 +1,10 @@
 
-const { mongoApi } = require('./config/apiKeys');
-let url = 'https://data.mongodb-api.com/app/data-jxtnbij/endpoint/data/v1/action';
+require('dotenv').config();
+const mongoApi = process.env.MONGO_KEY;
+let url = 'https://data.mongodb-api.com/app/data-jxtnbij/endpoint/data/v1';
 
 function findDB() {
-    url += '/findOne';
+    url += '/action/findOne';
     const requestBody = {
         dataSource: 'MediaDB',
         database: 'media',
