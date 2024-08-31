@@ -1,5 +1,6 @@
 
-const { mongoApi } = require('./config/apiKeys');
+require('dotenv').config();
+const mongoApi = process.env.MONGO_KEY;
 let url = 'https://data.mongodb-api.com/app/data-jxtnbij/endpoint/data/v1';
 
 function findDB() {

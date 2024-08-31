@@ -1,12 +1,13 @@
+require('dotenv').config();
 const axios = require('axios');
-const { client_credentials } = require('./config/apiKeys');
+const spotify_client_credentials = process.env.spotify_client_credentials;
 
 
 spHandle = {
     token: '',
 
     getToken: function(){
-        axios.post('https://accounts.spotify.com/api/token', client_credentials,
+        axios.post('https://accounts.spotify.com/api/token', spotify_client_credentials,
         {
             headers:{
                 "Content-Type" : "application/x-www-form-urlencoded"
