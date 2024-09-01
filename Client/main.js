@@ -1,10 +1,9 @@
 
 function testFunc(){
-    fetch('http://localhost:3000/api/data')
+    fetch('https://mediadb-88v1.onrender.com/api/data')
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        
     })
     .catch(error => {
         console.log(error);
