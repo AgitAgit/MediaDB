@@ -9,6 +9,10 @@ require('dotenv').config();
 
 app.use(cors());
 
+app.get('/api/ping', (req,res) =>{
+    res.json({message:"Pong!"});
+})
+
 app.get('/api/data',(req, res)=>{
     const data = findDB();
     data
