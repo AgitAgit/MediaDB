@@ -10,11 +10,18 @@ require('dotenv').config();
 app.use(cors());
 
 app.get('/api/data',(req, res)=>{
-    res.json({message:"hello from the server"});
+    const data = findDB();
+    data
+    .then(data => {
+        res.json(data);
+    })
+    .catch(error=>{
+        console.log(error);
+        res.json(error);
+    });
 });
 
 app.listen(port,()=>{
     console.log(`the server is listening on port ${port}`);
 });
-//findDB();
 
