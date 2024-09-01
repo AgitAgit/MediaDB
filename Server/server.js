@@ -17,6 +17,7 @@ app.get('/api/data',(req, res)=>{
     const data = findDB();
     data
     .then(data => {
+        console.log(data);
         res.json(data);
     })
     .catch(error=>{

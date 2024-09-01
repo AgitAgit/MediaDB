@@ -4,7 +4,7 @@ const mongoApi = process.env.MONGO_KEY;
 let url = 'https://data.mongodb-api.com/app/data-jxtnbij/endpoint/data/v1';
 
 function findDB() {
-    url += '/action/findOne';
+let url = 'https://data.mongodb-api.com/app/data-jxtnbij/endpoint/data/v1/action/findOne';
     const requestBody = {
         dataSource: 'MediaDB',
         database: 'media',
@@ -32,7 +32,7 @@ function findDB() {
 }
 
 function insertDB() {
-    url += '/insertOne';
+    url = 'https://data.mongodb-api.com/app/data-jxtnbij/endpoint/data/v1/insertOne';
     const requestBody = {
         dataSource: 'MediaDB',
         database: 'media',
