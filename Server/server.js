@@ -4,7 +4,7 @@ const app = express();
 // const bkHandle = require('./booksHandler');
 const { insertDB, findDB} = require('./cloudConn')
 const cors = require('cors');
-const port = 3000;
+const port = process.env.PORT || 3000;
 require('dotenv').config();
 
 app.use(cors());
