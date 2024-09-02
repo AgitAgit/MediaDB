@@ -13,7 +13,7 @@ let url = 'https://data.mongodb-api.com/app/data-jxtnbij/endpoint/data/v1/action
             "title": "harry potter"
         }
     };
-    fetch(url, {
+    return fetch(url, {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
@@ -24,7 +24,8 @@ let url = 'https://data.mongodb-api.com/app/data-jxtnbij/endpoint/data/v1/action
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Success:', data);
+        //console.log('Success:', data);
+        return data.document;
     })
     .catch(error => {
         console.error('Error:', error);

@@ -14,11 +14,10 @@ app.get('/api/ping', (req,res) =>{
 })
 
 app.get('/api/data',(req, res)=>{
-    const data = findDB();
-    data
+    findDB()
     .then(data => {
         console.log(data);
-        res.json(data);
+        res.send(data);
     })
     .catch(error=>{
         console.log(error);
