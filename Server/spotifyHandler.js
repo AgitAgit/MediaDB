@@ -26,7 +26,7 @@ spHandle = {
         //album%3ACity%2520of%2520evil%2520artist%3AAvenged%2520Sevenfold
     },
     
-    searchData: async function(type="track", query="album%3ACity%2520of%2520evil%2520artist%3AAvenged%2520Sevenfold"){
+    searchData: async function(type="track", query="track%3Bat%2520country"){
         if(this.token === '') this.getToken();
         await this.token;
         const data = await axios.get(`https://api.spotify.com/v1/search`,{

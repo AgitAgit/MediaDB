@@ -1,12 +1,14 @@
 const express = require('express');
 const app = express();
-// const spHandle = require('./spotifyHandler');
+const spHandle = require('./spotifyHandler');
 // const bkHandle = require('./booksHandler');
 const { insertDB, findDB} = require('./cloudConn')
 const cors = require('cors');
 const port = process.env.PORT || 3000;
 require('dotenv').config();
 
+const data = spHandle.searchData();
+data.then(data=>console.log(data));
 app.use(cors());
 
 app.get('/api/ping', (req,res) =>{
@@ -25,13 +27,6 @@ app.get('/api/data',(req, res)=>{
     });
 });
 
-app.get('/api/pokemon',(req,res)=>{
-    fetch(`https://pokeapi.co/api/v2/pokemon/pikachu`)
-    .then(data => {
-        console.log(data);
-        res.json(data);
-    });
-});
 
 app.listen(port,()=>{
     console.log(`the server is listening on port ${port}`);

@@ -62,4 +62,33 @@ function insertDB() {
 }
 
 
+function insertSong(track, album, artist){
+    url = 'https://data.mongodb-api.com/app/data-jxtnbij/endpoint/data/v1/insertOne';
+    const requestBody = {
+        dataSource: 'MediaDB',
+        database: 'media',
+        collection: 'songs',
+        document: {
+            track: track,
+            album: album,
+            artist: artist        
+        }
+    };
+    fetch(url, {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'apiKey': mongoApi
+        },
+        body: JSON.stringify(requestBody)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
 module.exports = { insertDB, findDB };
