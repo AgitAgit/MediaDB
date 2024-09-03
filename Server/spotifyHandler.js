@@ -1,20 +1,15 @@
 require('dotenv').config();
 const axios = require('axios');
-const spotify_client_credentials = process.env.spotify_client_credentials;
+const spotify_client_credentials = JSON.parse(process.env.spotify_client_credentials);
 
 
 spHandle = {
-    token: '',
-
     getToken: function(){
         axios.post('https://accounts.spotify.com/api/token', spotify_client_credentials,
         {
             headers:{
                 "Content-Type" : "application/x-www-form-urlencoded"
             }
-        })
-        .then(response => {
-            this.token = response.data.access_token;
         })
         .catch(error => {
             console.log("error in  spotifyHandler:", error)
@@ -27,8 +22,7 @@ spHandle = {
     },
     
     searchData: async function(type="track", query="track%3Bat%2520country"){
-        if(this.token === '') this.getToken();
-        await this.token;
+                
         const data = await axios.get(`https://api.spotify.com/v1/search`,{
             params:{
                 q: query,
