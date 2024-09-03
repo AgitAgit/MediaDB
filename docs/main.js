@@ -5,7 +5,7 @@ const _dataPath = '/api/data';
 const _pokemonPath = '/api/pokemon';
 
 function testFunc(){
-    fetch(`${_cloudServerAdress}${_dataPath}`)
+    fetch(`${_localServerAdress}${_dataPath}`)
     .then(response => response.json())
     .then(data => {
         console.log(data);
@@ -16,7 +16,7 @@ function testFunc(){
 }
 
 function pokemonFetch(){
-    fetch(`${_cloudServerAdress}${_pokemonPath}`)
+    fetch(`${_localServerAdress}${_pokemonPath}`)
     .then(response => response.json())
     .then(data => {
         console.log(data);
