@@ -5,7 +5,7 @@ const spotify_client_credentials = JSON.parse(process.env.spotify_client_credent
 
 spHandle = {
     getToken: function(){
-        axios.post('https://accounts.spotify.com/api/token', spotify_client_credentials,
+        return axios.post('https://accounts.spotify.com/api/token', spotify_client_credentials,
         {
             headers:{
                 "Content-Type" : "application/x-www-form-urlencoded"
@@ -21,8 +21,13 @@ spHandle = {
         //album%3ACity%2520of%2520evil%2520artist%3AAvenged%2520Sevenfold
     },
     
-    searchData: async function(type="track", query="track%3Bat%2520country"){
-                
+    searchData: async function(type="track", query="City%2520of%2520evil"){
+        let token;
+        const ob = this.getToken();
+        ob.then(response => {
+            token = response.data.access_token;
+        });
+        await ob;
         const data = await axios.get(`https://api.spotify.com/v1/search`,{
             params:{
                 q: query,
