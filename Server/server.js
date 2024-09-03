@@ -1,14 +1,12 @@
 const express = require('express');
 const app = express();
-const spHandle = require('./spotifyHandler');
+//const spHandle = require('./spotifyHandler');
 // const bkHandle = require('./booksHandler');
 const { insertDB, findDB} = require('./cloudConn')
 const cors = require('cors');
 const port = process.env.PORT || 3000;
 require('dotenv').config();
 
-const data = spHandle.searchData();
-data.then(data=>console.log(data));
 app.use(cors());
 
 app.get('/api/ping', (req,res) =>{
