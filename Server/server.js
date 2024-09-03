@@ -25,6 +25,14 @@ app.get('/api/data',(req, res)=>{
     });
 });
 
+app.get('/api/pokemon',(req,res)=>{
+    fetch(`https://pokeapi.co/api/v2/pokemon/pikachu`)
+    .then(data => {
+        console.log(data);
+        res.json(data);
+    });
+});
+
 app.listen(port,()=>{
     console.log(`the server is listening on port ${port}`);
 });
