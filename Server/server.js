@@ -17,7 +17,7 @@ app.get('/api/data',(req, res)=>{
     findDB()
     .then(data => {
         console.log('data:',data);
-        res.send(data);
+        res.json(data);
     })
     .catch(error=>{
         console.log(error);
