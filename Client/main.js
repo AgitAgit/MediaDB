@@ -5,7 +5,7 @@ const _dataPath = '/api/data';
 
 function testFunc(){
     fetch(`${_cloudServerAdress}${_dataPath}`)
-    //.then(response => response.json())
+    .then(response => response.json())
     .then(data => {
         console.log(data);
     })
