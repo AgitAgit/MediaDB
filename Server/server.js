@@ -16,7 +16,7 @@ app.get('/api/ping', (req,res) =>{
 app.get('/api/data',(req, res)=>{
     findDB()
     .then(data => {
-        console.log(data);
+        console.log('data:',data);
         res.send(data);
     })
     .catch(error=>{
