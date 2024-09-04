@@ -1,4 +1,4 @@
-const { insertDB, findOne} = require('./mongoActions')
+const { insertOne, findOne} = require('./mongoActions')
 
 exports.getData = (req, res)=> {
     findOne()

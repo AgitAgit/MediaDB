@@ -62,4 +62,4 @@ function insertOne() {
 }
 
 
-module.exports = { insertDB: insertOne, findOne };
+module.exports = { insertOne, findOne };
