@@ -22,9 +22,4 @@ app.listen(port,()=>{
     console.log(`the server is listening on port ${port}`);
 });
 
-// spHandle.searchData("track","Bat+country+by+Avenged+sevenfold&limit:1").then(result => {
-//     console.log(result[0]);
-//     console.log(spHandle.refineTrackData(result[0]));
-// });
-
 //bkHandle.activate();
