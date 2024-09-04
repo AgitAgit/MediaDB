@@ -1,0 +1,47 @@
+{
+    album: {
+      album_type: 'album',
+      artists: [Array],
+      available_markets: [Array],
+      external_urls: [Object],
+      href: 'https://api.spotify.com/v1/albums/1a9Eg0cdrl2WYb4WQXbO6w',
+      id: '1a9Eg0cdrl2WYb4WQXbO6w',
+      images: [Array],
+      name: 'Best for Musicians No. 926 (Karaoke Version)',
+      release_date: '2014-11-27',
+      release_date_precision: 'day',
+      total_tracks: 17,
+      type: 'album',
+      uri: 'spotify:album:1a9Eg0cdrl2WYb4WQXbO6w'
+    },
+    artists: [ [Object] ],
+    available_markets: [
+      'AR', 'AU', 'AT', 'BE', 'BO', 'BR', 'BG', 'CA', 'CL', 'CO',
+      'CR', 'CY', 'CZ', 'DK', 'DO', 'DE', 'EC', 'EE', 'SV', 'FI',
+      'FR', 'GR', 'GT', 'HN', 'HK', 'HU', 'IS', 'IE', 'IT', 'LV',
+      'LT', 'LU', 'MY', 'MT', 'MX', 'NL', 'NZ', 'NI', 'NO', 'PA',
+      'PY', 'PE', 'PH', 'PL', 'PT', 'SG', 'SK', 'ES', 'SE', 'CH',
+      'TW', 'TR', 'UY', 'US', 'GB', 'AD', 'LI', 'MC', 'ID', 'JP',
+      'TH', 'VN', 'RO', 'IL', 'ZA', 'SA', 'AE', 'BH', 'QA', 'OM',
+      'KW', 'EG', 'MA', 'DZ', 'TN', 'LB', 'JO', 'PS', 'IN', 'BY',
+      'KZ', 'MD', 'UA', 'AL', 'BA', 'HR', 'ME', 'MK', 'RS', 'SI',
+      'KR', 'BD', 'PK', 'LK', 'GH', 'KE', 'NG', 'TZ', 'UG', 'AG',
+      ... 85 more items
+    ],
+    disc_number: 1,
+    duration_ms: 316534,
+    explicit: false,
+    external_ids: { isrc: 'DESN31324918' },
+    external_urls: {
+      spotify: 'https://open.spotify.com/track/0vqMm55rT1psvIZIS05T51'
+    },
+    href: 'https://api.spotify.com/v1/tracks/0vqMm55rT1psvIZIS05T51',
+    id: '0vqMm55rT1psvIZIS05T51',
+    is_local: false,
+    name: 'Bat Country (Originally Performed By Avenged Sevenfold) - Karaoke Version',
+    popularity: 0,
+    preview_url: 'https://p.scdn.co/mp3-preview/1feb845f4d9af7f0fa0374a08e7cd27a134e04d1?cid=dfa2522400934fe6b7005ca8ddc3add9',
+    track_number: 1,
+    type: 'track',
+    uri: 'spotify:track:0vqMm55rT1psvIZIS05T51'
+  }
