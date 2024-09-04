@@ -21,7 +21,7 @@ spHandle = {
         //album%3ACity%2520of%2520evil%2520artist%3AAvenged%2520Sevenfold
     },
     
-    searchData: async function(type="track", query="City%2520of%2520evil"){
+    searchData: async function(type="track", query="album%3ACity%2520of%2520evil%2520artist%3AAvenged%2520Sevenfold"){
         let token;
         const ob = this.getToken();
         ob.then(response => {
@@ -38,6 +38,15 @@ spHandle = {
             }
         })
         return data.data.tracks.items;
+    },
+
+    refineTrackData: function(track){
+        return {
+            spotifyId:track.id,
+            track:track.name,
+            album:track.album.name,
+            artist:track.artists[0].name
+        }
     }
 }
 
