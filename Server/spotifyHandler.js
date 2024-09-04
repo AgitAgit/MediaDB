@@ -21,7 +21,7 @@ spHandle = {
         //album%3ACity%2520of%2520evil%2520artist%3AAvenged%2520Sevenfold
     },
     
-    searchData: async function(type="track", query="album%3ACity%2520of%2520evil%2520artist%3AAvenged%2520Sevenfold"){
+    searchData: async function(type="track", query="album%3ACity%2520of%2520evil%2520artist%3AAvenged%2520Sevenfold", limit="50"){
         let token;
         const ob = this.getToken();
         ob.then(response => {
@@ -31,7 +31,8 @@ spHandle = {
         const data = await axios.get(`https://api.spotify.com/v1/search`,{
             params:{
                 q: query,
-                type: type
+                type: type,
+                limit: limit
             },
             headers:{
                 'Authorization': `Bearer ${token}`
@@ -42,6 +43,7 @@ spHandle = {
 
     refineTrackData: function(track){
         return {
+            link:track.external_urls.spotify,
             spotifyId:track.id,
             track:track.name,
             album:track.album.name,

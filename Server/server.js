@@ -9,6 +9,7 @@ require('dotenv').config();
 
 const itemController = require('./controllers/itemController');
 const userController = require('./controllers/userController');
+const mongoActions = require('./controllers/mongoActions');
 
 app.use(cors());
 
