@@ -43,6 +43,7 @@ spHandle = {
 
     refineTrackData: function(track){
         return {
+            link:track.external_urls.spotify,
             spotifyId:track.id,
             track:track.name,
             album:track.album.name,
