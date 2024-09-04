@@ -9,6 +9,7 @@ require('dotenv').config();
 
 const itemController = require('./controllers/itemController');
 const userController = require('./controllers/userController');
+const mongoActions = require('./controllers/mongoActions');
 
 app.use(cors());
 
@@ -22,9 +23,14 @@ app.listen(port,()=>{
     console.log(`the server is listening on port ${port}`);
 });
 
-// spHandle.searchData("track","Bat+country+by+Avenged+sevenfold&limit:1").then(result => {
-//     console.log(result[0]);
-//     console.log(spHandle.refineTrackData(result[0]));
-// });
+spHandle.searchData("track","Johnny+Cash").then(result => {
+    let i = 0;
+    result.forEach(track => {
+        i++;
+        const refined = spHandle.refineTrackData(track);
+        mongoActions.insertOne("songs",refined);
+    });
+    console.log(i);
+});
 
 //bkHandle.activate();

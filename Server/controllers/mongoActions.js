@@ -32,16 +32,13 @@ let url = `${base_url}/action/findOne`;
     });
 }
 
-function insertOne() {
+function insertOne(collection, document) {
     const url = `${base_url}/action/insertOne`;
     const requestBody = {
         dataSource: 'MediaDB',
         database: 'media',
-        collection: 'books',
-        document: {
-            title: "harry potter2",
-            author: ['J.K Rolling2']
-        }
+        collection: collection,
+        document: document
     };
     fetch(url, {
         method: 'POST',
@@ -61,5 +58,30 @@ function insertOne() {
     });
 }
 
+function insertMany(collection, documents) {
+    const url = `${base_url}/action/insertMany`;
+    const requestBody = {
+        dataSource: 'MediaDB',
+        database: 'media',
+        collection: collection,
+        documents: documents
+    };
+    fetch(url, {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'apiKey': mongoApi
+        },
+        body: JSON.stringify(requestBody)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
 
 module.exports = { insertOne, findOne };
