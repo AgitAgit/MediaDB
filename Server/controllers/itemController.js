@@ -1,7 +1,7 @@
-const { insertDB, findDB} = require('./../cloudConn')
+const { insertDB, findOne} = require('./mongoActions')
 
 exports.getData = (req, res)=> {
-    findDB()
+    findOne()
     .then(data => {
         console.log('data:',data);
         res.json(data);

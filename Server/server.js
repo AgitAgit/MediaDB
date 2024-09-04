@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 //const spHandle = require('./spotifyHandler');
-const bkHandle = require('./booksHandler');
+// const bkHandle = require('./booksHandler');
 const cors = require('cors');
 const port = process.env.PORT || 3000;
 require('dotenv').config();
@@ -22,4 +22,4 @@ app.listen(port,()=>{
 });
 
 
-bkHandle.connectDB();
+// bkHandle.connectDB();
