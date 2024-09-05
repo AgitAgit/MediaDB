@@ -21,4 +21,4 @@ app.listen(port,()=>{
     console.log(`the server is listening on port ${port}`);
 });
 
-bkHandle.activate();
+// bkHandle.activate();
