@@ -4,7 +4,7 @@ const app = express();
 const spHandle = require('./spotifyHandler');
 const bkHandle = require('./booksHandler');
 const cors = require('cors');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 require('dotenv').config();
 
 const itemController = require('./controllers/itemController');
