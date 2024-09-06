@@ -1,1 +1,2 @@
-https://dashboard.render.com/
+Style guide:
+https://github.com/SvitlanaSuslenkova/Practice-29-Flags-Next14
