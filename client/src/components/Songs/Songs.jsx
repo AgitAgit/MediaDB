@@ -1,8 +1,10 @@
 import './Songs.css';
+import Song from './Song';
 
 function Songs(){
+    //img, title, album, artist, songLink, albumLink, artistLink
     return(
-        <h1>You are in the songs section!</h1>
+        <Song img='../../../public/DefaultAlbumCover.png' />
     );
 }
 
