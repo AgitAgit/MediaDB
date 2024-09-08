@@ -1,2 +1,2 @@
 Style guide:
-https://github.com/SvitlanaSuslenkova/Practice-29-Flags-Next14
+https://www.frontendmentor.io/solutions/practice-29-flags-u2Vl1VqpuS

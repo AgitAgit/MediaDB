@@ -1,7 +1,0 @@
-TODO:
--Put the client app on render as well
--Populate the db using the spotify api. Each record should contain normal song data and also
-if it is liked.(next there should be a login option to distinguish between the liked songs of each user)
-------------------------------------------------
-The current problem is possibly an incompatible node version used in render.
-The version we originally use is:20.14.0
