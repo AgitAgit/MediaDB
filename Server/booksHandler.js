@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const mongoString = process.env.MONGO_CON_STRING;
 // search query
 const baseUrl = `https://www.googleapis.com/books/v1/volumes`;
+
 const famousBooks1 = [
     "The Great Gatsby",
     "Moby-Dick",
@@ -316,7 +317,6 @@ const famousBooks2 = [
     "The Adventure of the Reigate Squires",
     "The Adventure of the Solitary Cyclist"
 ];
-
 
 function searchData(curr) {
     const query = `intitle:${curr}`
