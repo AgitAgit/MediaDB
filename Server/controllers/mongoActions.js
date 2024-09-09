@@ -1,18 +1,17 @@
-
 require('dotenv').config();
+const axios = require('axios');
 const mongoApi = process.env.MONGO_KEY;
 let base_url = 'https://data.mongodb-api.com/app/data-jxtnbij/endpoint/data/v1';
 
-function findOne() {
+function findOne(collection, filter) {
 let url = `${base_url}/action/findOne`;
     const requestBody = {
         dataSource: 'MediaDB',
         database: 'media',
-        collection: 'books',
-        filter: {
-            "title": "harry potter"
-        }
+        collection,
+        filter
     };
+
     return fetch(url, {
         method: 'POST',
         headers: {
@@ -31,6 +30,33 @@ let url = `${base_url}/action/findOne`;
         console.error('Error:', error);
     });
 }
+
+function find(collection, filter) {
+    let url = `${base_url}/action/find`;
+        const requestBody = {
+            dataSource: 'MediaDB',
+            database: 'media',
+            collection,
+            filter
+        };
+        
+        return axios.post(url, {
+            headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'apiKey': mongoApi
+            },
+            data: JSON.stringify(requestBody)
+        })
+        .then(response => response.json())
+        .then(data => {
+            //console.log('Success:', data);
+            return data;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
 
 function insertOne(collection, document) {
     const url = `${base_url}/action/insertOne`;
@@ -84,4 +110,4 @@ function insertMany(collection, documents) {
     });
 }
 
-module.exports = { insertOne, findOne };
+module.exports = { findOne, find, insertOne, insertMany };
