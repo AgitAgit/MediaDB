@@ -1,3 +1,4 @@
+import LikeButton from "./LikeButton";
 
 function Card(props){
     const { title, authors, language, publishedDate, description, img, link } = props.data;
@@ -7,6 +8,7 @@ function Card(props){
             <h3 className='card-title'>{title}</h3>
             <p className='card-lang'>{language}</p>
             <p className="card-date">{publishedDate}</p>
+            <LikeButton />
         </div>
     );
 }

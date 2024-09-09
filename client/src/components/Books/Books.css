@@ -9,6 +9,7 @@
     --White: hsl(0, 0%, 100%);
     --lightGray: hsl(211, 12%, 48%);
     --Black: hsl(200, 15%, 8%);
+    --maxWidth: 1350px;
 }
 
 #books-container {
@@ -17,11 +18,12 @@
     header {
         box-shadow: 1px 1px 15px rgb(211, 209, 209);
         margin-bottom: 2rem;
+
         #header-container {
             display: grid;
             grid-template-columns: 60% 40%;
             height: 85px;
-            max-width: 1350px;
+            max-width: var(--maxWidth);
             min-width: 240px;
             margin: 0 auto;
             padding: 2rem;
@@ -49,7 +51,7 @@
     #search-row {
         display: grid;
         grid-template-columns: 60% 40%;
-        max-width: 1350px;
+        max-width: var(--maxWidth);
         min-width: 240px;
         margin: 0 auto 10px;
 
@@ -94,8 +96,13 @@
                 border: 1px solid #ddd;
                 border-radius: 10px;
                 margin-left: 7px;
+                cursor: pointer;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                background-color: #da828258;
             }
+            /* select:hover {
+                border: 5px solid #0a0351;
+            } */
         }
 
 
@@ -103,7 +110,7 @@
     }
 
     #cards-container{
-        max-width: 1350px;
+        max-width: var(--maxWidth);
         min-width: 240px;
         margin: 0 auto;
         display: grid;
@@ -112,6 +119,7 @@
         padding: 20px;
 
         .card {
+            position: relative;
             height: 300px;
             width: 250px;
             border: 1px solid rgb(201, 197, 197);
@@ -140,6 +148,26 @@
             cursor: pointer;
         }
     }
+
+    .heart-button {
+        position: absolute;
+        bottom: 5%;
+        right: 5%;
+        background: none;
+        border: none;
+        cursor: pointer;
+        height: 40px;
+        font-size: 35px;
+        transition: 0.2s ease;
+        color: rgb(181, 179, 179);
+    }
+    .heart-button:hover {
+        transform: scale(1.15);
+    }
+    .heart-button.liked {
+        color: red;
+    }
+
     
 }
 
@@ -154,5 +182,4 @@
             justify-self: center;
         }
     }
-
 }
