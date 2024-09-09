@@ -1,6 +1,7 @@
 import './Songs.css';
+import Header from './Header.jsx';
 import Song from './Song';
-import defaultImg from "C:/Users/User/Learning/Software/projects/MediaDB/client/src/assets/DefaultAlbumCover.png";
+import defaultImg from './assets/DefaultAlbumCover.png';
 
 
 //example data:
@@ -38,10 +39,14 @@ function Songs(){
     const songs=[songData,songData2,songData,songData2]
     return(
         <div>
+            <header></header>
+
             <Song data={songData}/>
             {songs.map((song, index)=>{
                 return(<Song data={song} key={index}/>);
             })}
+
+            <footer></footer>
         </div>
     );
 }
