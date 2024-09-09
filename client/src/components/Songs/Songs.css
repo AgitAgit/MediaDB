@@ -1,0 +1,8 @@
+#songsContainer{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    .Song{
+        height:300px;
+        width: 250px;
+    }
+}

@@ -2,7 +2,7 @@
 function Song(props){
     const {img, track, album, artist, link, albumLink, artistLink} = props.data;
     return(
-        <div id="Song">
+        <div class="Song">
             <img src={img} alt={img}></img>
             <a href={link}><h1>{track}</h1></a>
             <a href={albumLink}><h3>album:{album}</h3></a>

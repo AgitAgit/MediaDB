@@ -1,5 +1,6 @@
 import './Songs.css';
 import Header from './Header.jsx';
+import Footer from './Footer.jsx';
 import Song from './Song';
 import defaultImg from './assets/DefaultAlbumCover.png';
 
@@ -39,14 +40,14 @@ function Songs(){
     const songs=[songData,songData2,songData,songData2]
     return(
         <div>
-            <header></header>
-
-            <Song data={songData}/>
-            {songs.map((song, index)=>{
-                return(<Song data={song} key={index}/>);
-            })}
-
-            <footer></footer>
+            <Header />
+            <div id="songsContainer">
+                <Song data={songData}/>
+                {songs.map((song, index)=>{
+                    return(<Song data={song} key={index}/>);
+                })}
+            </div>
+            <Footer />
         </div>
     );
 }
