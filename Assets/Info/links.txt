@@ -1,2 +1,5 @@
 Style guide:
 https://www.frontendmentor.io/solutions/practice-29-flags-u2Vl1VqpuS
+
+Mongo api docs:
+https://www.mongodb.com/docs/manual/reference/method/db.collection.find/
