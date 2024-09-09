@@ -1,6 +1,6 @@
 
 require('dotenv').config();
-const mongoApi = process.env.MONGO_CON_STRING;
+const mongoApi = process.env.MONGO_KEY;
 let base_url = 'https://data.mongodb-api.com/app/data-jxtnbij/endpoint/data/v1';
 
 function findOne() {
@@ -10,7 +10,7 @@ let url = `${base_url}/action/findOne`;
         database: 'media',
         collection: 'books',
         filter: {
-            "title": "harry potter"
+            "title": "Harry Potter"
         }
     };
     return fetch(url, {

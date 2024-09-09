@@ -105,12 +105,12 @@ spHandle = {
         }
     },
 
-    populateDB: async function(start, end){
+    populateDB: async function(start, end, collection){
         for(let i = start; i<end; i++){
             this.searchData('track',`${musicians[i]}`)
             .then(songs => {
                 //console.log(songs[0], 'ONE OF THE SONGS INSERTED TO DB');
-                insertMany('songs2', songs);
+                insertMany(collection, songs);
             })
         }
     }
