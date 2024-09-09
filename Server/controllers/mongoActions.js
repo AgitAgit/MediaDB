@@ -37,22 +37,19 @@ function find(collection, filter) {
             dataSource: 'MediaDB',
             database: 'media',
             collection,
-            filter
+            filter,
+            // options: { 
+            // }
         };
         
-        return axios.post(url, {
+        return axios.post(url, requestBody, {
             headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'apiKey': mongoApi
-            },
-            data: JSON.stringify(requestBody)
-        })
-        .then(response => response.json())
-        .then(data => {
-            //console.log('Success:', data);
-            return data;
-        })
+            }}
+        )
+        .then(response => response.data.documents)
         .catch(error => {
             console.error('Error:', error);
         });
