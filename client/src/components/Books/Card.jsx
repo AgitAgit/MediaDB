@@ -1,7 +1,9 @@
 import LikeButton from "./LikeButton";
 
 function Card(props){
-    const { title, authors, language, publishedDate, description, img, link } = props.data;
+    let { title, authors, language, publishedDate, description, img, link } = props.data;
+    if(title.length > 30) title = title.slice(0,30) + '...';
+
     return (
         <div className="card">
             <img className="card-img" src={img} alt="profile picture"></img>

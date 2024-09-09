@@ -12,6 +12,18 @@
     --maxWidth: 1350px;
 }
 
+#loadingGif {
+    height: 300px;
+    width: auto;
+    display: block;
+    margin: 100px auto;
+}
+#books-not-found {
+    font-size: 1.5rem;
+    padding: 1rem;
+    grid-column: span 2; /* Takes 2 columns in the row*/
+}
+
 #books-container {
     font-family: Arial, sans-serif;
     color: var(--Black);

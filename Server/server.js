@@ -15,12 +15,14 @@ const userController = require('./controllers/userController');
 const mongoActions = require('./controllers/mongoActions');
 
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/api/ping', (req,res) =>{
     res.json({message:"Pong!"});
 })
 
-app.get('/api/data/book/get', bookHandler.getData);
+app.put('/api/data/book/get', bookHandler.getData);
 app.get('/api/data/song/get' )
 app.listen(port,()=>{
     console.log(`the server is listening on port ${port}`);
