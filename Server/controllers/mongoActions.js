@@ -1,6 +1,6 @@
 
 require('dotenv').config();
-const mongoApi = process.env.MONGO_KEY;
+const mongoApi = process.env.MONGO_CON_STRING;
 let base_url = 'https://data.mongodb-api.com/app/data-jxtnbij/endpoint/data/v1';
 
 function findOne() {
@@ -84,4 +84,4 @@ function insertMany(collection, documents) {
     });
 }
 
-module.exports = { insertOne, findOne };
+module.exports = { insertOne, findOne, insertMany };

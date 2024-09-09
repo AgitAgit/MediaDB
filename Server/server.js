@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
-const spHandle = require('./spotifyHandler');
+const spotifyHandler = require('./spotifyHandler');
 const bkHandle = require('./booksHandler');
 const cors = require('cors');
 const port = process.env.PORT || 8080;
@@ -19,8 +19,9 @@ app.get('/api/ping', (req,res) =>{
 
 app.get('/api/data', itemController.getData);
 
-app.listen(port,()=>{
-    console.log(`the server is listening on port ${port}`);
-});
+// app.listen(port,()=>{
+//     console.log(`the server is listening on port ${port}`);
+// });
 
 //bkHandle.activate();
+spotifyHandler.populateDB(0,10);
