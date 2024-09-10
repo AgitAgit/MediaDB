@@ -22,7 +22,8 @@ app.get('/api/ping', (req,res) =>{
     res.json({message:"Pong!"});
 })
 
-app.get('/api/data/book/get', bookHandler.getData);
+app.put('/api/data/book/get', bookHandler.getData);
+
 app.get('/api/data/song/get', songHandler.getSongs);
 
 app.listen(port,()=>{

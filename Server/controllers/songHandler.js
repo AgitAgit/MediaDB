@@ -1,7 +1,7 @@
 const { findOne, find, insertOne, insertMany } = require('./mongoActions')
 
 getSongs = (req, res)=> {
-    find("songsFull",{})
+    find("songsFull",{},10)
     .then(data => {
         console.log('data:',data);
         res.json(data);

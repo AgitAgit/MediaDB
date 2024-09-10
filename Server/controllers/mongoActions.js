@@ -31,14 +31,14 @@ let url = `${base_url}/action/findOne`;
     });
 }
 
-function find(collection, filter) {
+function find(collection, filter, limit = 40) {
     let url = `${base_url}/action/find`;
         const requestBody = {
             dataSource: 'MediaDB',
             database: 'media',
             collection,
             filter,
-            limit: 40
+            limit
         };
         
         return axios.post(url, requestBody, {
