@@ -38,8 +38,7 @@ function find(collection, filter) {
             database: 'media',
             collection,
             filter,
-            // options: { 
-            // }
+            limit: 40
         };
         
         return axios.post(url, requestBody, {

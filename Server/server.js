@@ -15,6 +15,8 @@ const userController = require('./controllers/userController');
 const mongoActions = require('./controllers/mongoActions');
 
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/api/ping', (req,res) =>{
     res.json({message:"Pong!"});
