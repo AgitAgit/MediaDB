@@ -11,7 +11,7 @@ function Songs(){
     //const songs = [{track:"name"},{track:"name2"}]
     useEffect(() => {
         async function fetchData(){
-            const data = await getSongs({},3);
+            const data = await getSongs({},100);
             console.log(data);
             setSongs(data);
         }
@@ -24,10 +24,9 @@ function Songs(){
         )
     }
     else return(
-        <div>
+        <div data-theme="light">
             <Header />
             <div id="songsContainer">
-                <Song data={songs[0]}/>
                 {songs.map((song, index)=>{
                     return(<Song data={song} key={index}/>);
                 })}
