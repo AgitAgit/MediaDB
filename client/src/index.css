@@ -20,8 +20,7 @@ img {
 
 [data-theme="light"] {
   --elements: hsl(0, 100%, 99%); /* white */
-  /* --background: 0, 0%, 98%; light light gray */
-  --background: hsl(0, 0%, 95%)
+  --background: hsl(0, 0%, 95%) /* light gray*/
   --text: 200, 15%, 8%; /* 90% black */
 }
 
