@@ -7,3 +7,25 @@
 img {
   display:block;
 }
+
+:root {
+  --light-mode-input: 0, 0%, 52%; /* average grey */
+}
+
+[data-theme="dark"] {
+  --elements: 209, 23%, 22%; /* 70% black+10%blue */
+  --background: 207, 26%, 17%; /* 85% black +10%blue */
+  --text: 0, 0%, 100%; /* white */
+}
+
+[data-theme="light"] {
+  --elements: hsl(0, 100%, 99%); /* white */
+  /* --background: 0, 0%, 98%; light light gray */
+  --background: hsl(0, 0%, 95%)
+  --text: 200, 15%, 8%; /* 90% black */
+}
+
+body {
+  font-family: "Open Sans", "Nunito Sans", sans-serif;
+  font-weight: 600; /* 300 600 800 */
+}
