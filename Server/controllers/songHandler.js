@@ -1,7 +1,13 @@
 const { findOne, find, insertOne, insertMany } = require('./mongoActions')
 
 getSongs = (req, res)=> {
-    find("songsFull",{},10)
+    let filter = {};
+    let limit = 10;
+    if(req.body){
+        filter = req.body.filter;
+        limit = req.body.limit;
+    }
+    find("songsFull",filter,limit)
     .then(data => {
         console.log('data:',data);
         res.json(data);

@@ -24,7 +24,7 @@ app.get('/api/ping', (req,res) =>{
 
 app.put('/api/data/book/get', bookHandler.getData);
 
-app.get('/api/data/song/get', songHandler.getSongs);
+app.post('/api/data/song/get', songHandler.getSongs);
 
 app.listen(port,()=>{
     console.log(`the server is listening on port ${port}`);

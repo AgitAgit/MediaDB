@@ -31,5 +31,15 @@ function getBooks(searchText, method){
     .catch(err => console.log("Client fetching error:",err));
 }
 
-// function getSongs(){}
-export default getBooks;
+function getSongs(filter = {}, limit = 1){
+    return axios.post(`${_CURRENT_ADDRESS}:${_SERVER_PORT}/api/data/song/get`,{
+        filter,
+        limit
+    })
+}
+
+function processSong(song){
+    
+}
+
+export default {getBooks, getSongs};
