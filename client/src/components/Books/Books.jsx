@@ -5,7 +5,7 @@ import Header from './Header';
 import SearchButton from './SearchButton'
 import FilterButton from './FilterButton';
 import Card from './Card'
-import getBooks from '../../dataCenter';
+import {getBooks} from '../../dataCenter';
 
 // RENDER RUNS COMPONENTS 2 TIMES INITIALLY DON'T BE WORRIED ABOUT LOTS OF LOGS
 

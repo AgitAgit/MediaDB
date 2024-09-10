@@ -1,8 +1,21 @@
+*{
+    /*add a color palette here...*/
+}
 #songsContainer{
     display:grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    .Song{
-        height:300px;
-        width: 250px;
+}
+
+.Song {
+    border: 1px solid green;
+    height:300px;
+    width: 250px;
+    img{
+        margin:auto;
+        height:50%;
+    }
+    a{
+        text-decoration: none;
+        color:black;
     }
 }
