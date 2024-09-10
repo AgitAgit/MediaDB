@@ -2,8 +2,8 @@ const express = require('express');
 const axios = require('axios');
 const app = express();
 const {findOne} = require('./controllers/mongoActions');
-const spotifyHandler = require('./spotifyAPI');
-const bkHandle = require('./googleBooksAPI');
+const spotifyHandler = require('./api/spotifyAPI');
+const bkHandle = require('./api/googleBooksAPI');
 const cors = require('cors');
 const port = process.env.PORT || 8080;
 require('dotenv').config();
@@ -21,10 +21,8 @@ app.get('/api/ping', (req,res) =>{
 })
 
 app.get('/api/data/book/get', bookHandler.getData);
-app.get('/api/data/song/get' )
+app.get('/api/data/song/get', songHandler.getSongs);
+
 app.listen(port,()=>{
     console.log(`the server is listening on port ${port}`);
 });
-
-//bkHandle.activate();
-//spotifyHandler.populateDB(0,50,songsFull);

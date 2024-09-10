@@ -1,7 +1,7 @@
-const { insertOne, findOne} = require('./mongoActions')
+const { findOne, find, insertOne, insertMany } = require('./mongoActions')
 
-exports.getData = (req, res)=> {
-    findOne()
+getSongs = (req, res)=> {
+    find("songsFull",{})
     .then(data => {
         console.log('data:',data);
         res.json(data);
@@ -11,3 +11,5 @@ exports.getData = (req, res)=> {
         res.json(error);
     })
 };
+
+module.exports = {getSongs};

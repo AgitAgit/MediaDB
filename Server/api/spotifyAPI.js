@@ -1,7 +1,7 @@
 require('dotenv').config();
 const axios = require('axios');
 const spotify_client_credentials = JSON.parse(process.env.spotify_client_credentials);
-const { insertMany } = require('./controllers/mongoActions');
+const { insertMany } = require('../controllers/mongoActions');
 
 const musicians = [
     "Beyoncé",

@@ -1,7 +1,7 @@
 require('dotenv').config();
 const axios = require('axios');
 const mongoApi = process.env.MONGO_KEY;
-let base_url = 'https://data.mongodb-api.com/app/data-jxtnbij/endpoint/data/v1';
+const base_url = 'https://data.mongodb-api.com/app/data-jxtnbij/endpoint/data/v1';
 
 function findOne(collection, filter) {
 let url = `${base_url}/action/findOne`;
