@@ -46,16 +46,23 @@ function getSongs(filter = {}, limit = 2){
     });
 }
 
+function searchSongs(field = 'artists.0.name',query = 'Led', limit = 10){
+    const filter = {
+        [field]:{ $regex: query}
+    }
+    return getSongs(filter,limit);
+}
+
 
 function processSong(song){
-    const img = song.album.images[0].url;
     const track = song.name;
     const album = song.album.name;
     const artist = song.artists[0].name;
+    const img = song.album.images[0].url;
     const trackLink = song.external_urls.spotify;
     const albumLink = song.album.external_urls.spotify;
     const artistLink = song.artists[0].external_urls.spotify;
     return {img, track, album, artist, trackLink, albumLink, artistLink}
 }
 
-export {getBooks, getSongs};
+export {getBooks, getSongs, searchSongs};

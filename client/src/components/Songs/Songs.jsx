@@ -4,14 +4,14 @@ import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 import Song from './Song';
 import defaultImg from './assets/DefaultAlbumCover.png';
-import {getSongs} from './../../dataCenter.js';
+import {getSongs, searchSongs} from './../../dataCenter.js';
     
 function Songs(){
     const [songs, setSongs] = useState(null);
     //const songs = [{track:"name"},{track:"name2"}]
     useEffect(() => {
-        async function fetchData(){
-            const data = await getSongs({},100);
+        async function fetchData(){// "artists.0.name": { $regex: new RegExp("Led")} 
+            const data = await searchSongs('artists.0.name','Bob Dylan',10);
             console.log(data);
             setSongs(data);
         }
