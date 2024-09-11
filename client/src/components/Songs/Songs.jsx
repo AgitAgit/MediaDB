@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import './Songs.css';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
-import Song from './Song';
+import { Song, Song2 } from './Song';
 import defaultImg from './assets/DefaultAlbumCover.png';
 import {getSongs, searchSongs} from './../../dataCenter.js';
     
