@@ -4,6 +4,22 @@
   box-sizing: border-box;
 }
 
+:root {
+  --light-mode-input: 0, 0%, 52%; /* average grey */
+}
+
+[data-theme="dark"] {
+  --elements: 209, 23%, 22%; /* 70% black+10%blue */
+  --background: 207, 26%, 17%; /* 85% black +10%blue */
+  --text: 0, 0%, 100%; /* white */
+}
+
+[data-theme="light"] {
+  --elements: hsl(0, 100%, 99%); /* white */
+  --background: hsl(0, 0%, 95%) /* light gray*/
+  --text: 200, 15%, 8%; /* 90% black */
+}
+
 img {
   display:block;
 }
