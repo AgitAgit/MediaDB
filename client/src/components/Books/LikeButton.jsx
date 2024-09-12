@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 const LikeButton = () => {
     const [liked, setLiked] = useState(false);
 
-    const toggleLike = () => {
+    const toggleLike = (event) => {
+        event.stopPropagation();
         setLiked(!liked);
     };
 

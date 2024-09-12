@@ -2,7 +2,7 @@ const { insertOne, findOne, find} = require('./mongoActions')
 
 exports.getData = (req, res)=> {
     const { filter } = req.body;
-    console.log("FILTER", filter);
+    // console.log("FILTER", filter);
     
     find("books", filter)
     .then(data => {

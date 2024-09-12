@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 
 function Header(props){
-    const { colorMod, setColorMod } = props;
+    const { theme, setTheme } = props;
     function toggleColor(){
-        setColorMod(c => c === 'light' ? "dark" : 'light');
+        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
     }
 
     return (
-        <header>
+        <header className="book-header">
             <div id="header-container">
                 <div id="brand-name">Let's Find Your&nbsp;Book?</div>
                 <div id="color-mode" onClick={toggleColor}>
-                    {colorMod === 'light' ? '☀️Light Mode' : '🌙Dark Mode'}</div>
+                    {theme === 'light' ? '☀️Light Mode' : '🌙Dark Mode'}</div>
             </div>
         </header>
     )

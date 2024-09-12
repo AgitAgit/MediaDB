@@ -10,6 +10,7 @@
     --lightGray: hsl(211, 12%, 48%);
     --Black: hsl(200, 15%, 8%);
     --maxWidth: 1350px;
+    --radius: 10px;
 }
 
 #loadingGif {
@@ -23,12 +24,18 @@
     padding: 1rem;
     grid-column: span 2; /* Takes 2 columns in the row*/
 }
-
+body { 
+    background-color: var(--background);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 #books-container {
     font-family: Arial, sans-serif;
-    color: var(--Black);
-    header {
-        box-shadow: 1px 1px 15px rgb(211, 209, 209);
+    color: var(--text);
+
+    header.book-header {
+        background-color: var(--elements);
+        box-shadow: var(--shadow);
+        transition: background-color 0.3s ease, color 0.3s ease;
         margin-bottom: 2rem;
 
         #header-container {
@@ -38,7 +45,7 @@
             max-width: var(--maxWidth);
             min-width: 240px;
             margin: 0 auto;
-            padding: 2rem;
+            padding-block: 2rem;
 
             #brand-name {
                 /* font-family: 'Arial Black'; */
@@ -73,15 +80,17 @@
             max-width: 400px;
             margin-left: 10%;
             margin-right: 10%;
-    
+            
             input {
                 width: 100%;
                 padding: 10px 20px 10px 40px;
                 font-size: 16px;
-                border: 1px solid #ddd;
-                border-radius: 10px;
+                border: none;
+                border-radius: var(--radius);
+                color: var(--text);
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                transition: blue 0.3s ease-in;
+                background-color: var(--input);
+                transition: background-color 0.3s ease, color 0.3s ease;
             }
             input::placeholder {
                 color: #aaa;
@@ -97,20 +106,22 @@
         }
 
         #filter-container {
-            justify-self: end;
             margin: auto 10%;
             max-width: 400px;
+            transition: color 0.3s ease;
 
             select {
                 width: 61%;
                 padding: 10px 20px 10px 10px;
                 font-size: 16px;
-                border: 1px solid #ddd;
-                border-radius: 10px;
+                border: none;
+                border-radius: var(--radius);
                 margin-left: 7px;
                 cursor: pointer;
+                color: var(--text);
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                background-color: #faedcd;
+                background-color: var(--input);
+                transition: background-color 0.3s ease, color 0.3s ease;
             }
         }
 
@@ -131,14 +142,15 @@
             position: relative;
             height: 300px;
             width: 250px;
-            border: 1px solid rgb(201, 197, 197);
-            border-radius: 10px;
-            box-shadow: 0 0 8px rgba(41,43,46,.2);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
             padding: 20px;
             margin: 10px;
             text-align: center;
             line-height: 1.5rem;
-            transition: transform 0.3s ease;
+            margin-inline: auto;
+            background-color: var(--elements);
+            transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
 
             .card-img {
                 max-width: 75%;
@@ -177,8 +189,6 @@
     .heart-button.liked {
         color: red;
     }
-
-    
 }
 #back-button {
     position: relative;
@@ -187,11 +197,12 @@
     padding: 1rem;
     margin: 1rem;
     /* width: fit-content; */
-    border: 1px solid rgb(201, 197, 197);
-    border-radius: 10px;
+    border-radius: var(--radius);
     box-shadow: 0 0 8px rgba(41,43,46,.2);
-    background-color: var(--White);
+    background-color: var(--elements);
+    transition: 0.3s ease;
     cursor: pointer;
+
     transition: 0.3s ease;
 }
 #back-button:hover {
@@ -212,10 +223,15 @@
     transform: translate(-50%,-50%);
     margin: auto;
 }
+
 #big-card-container {
     margin-inline: 2.5rem;
     padding: 1rem;
-    border: 1px solid green;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    background-color: var(--elements);
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
 }
 #big-card-container #data {
     display: grid;
@@ -235,6 +251,13 @@
         span{
             font-weight: bold;
         }
+        a {
+            text-decoration: none;
+            color: var(--link-color);
+        }
+        a:hover {
+            color: var(--link-hover);
+        }
     }
     .book-details {
         padding: 1rem;
@@ -243,7 +266,8 @@
     .book-description {
         grid-column: span 2;
         padding: 1rem;
-
+        max-height: 200px;
+        overflow-y: auto;
     }
 }
 
@@ -252,9 +276,10 @@
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
         gap:10px;
+    }
 
-        #filter-container {
-            justify-self: center;
-        }
+    #big-card-container #data {
+        display: flex;
+        flex-direction: column;
     }
 }
