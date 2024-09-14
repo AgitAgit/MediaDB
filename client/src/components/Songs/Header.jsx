@@ -1,10 +1,10 @@
 import SearchBar from './SearchBar';
 
-function Header(){
+function Header({onSearchClick}){
     return(
         <header class="songsHeader">
             <h1>this is the header</h1>
-            <SearchBar />
+            <SearchBar onSearchClick={onSearchClick} />
             <hr/>
         </header>
     );

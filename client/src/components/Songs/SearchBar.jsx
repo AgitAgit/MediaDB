@@ -1,8 +1,8 @@
-function SearchBar(){
+function SearchBar({onSearchClick}){
     return(
         <div>
-            <input></input>
-            <button></button>
+            <input id="searchInput"></input>
+            <button onClick={() => onSearchClick(document.getElementById('searchInput').value )}>search</button>
             <select>
                 <option>option 1</option>
                 <option>option 3000</option>

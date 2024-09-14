@@ -18,6 +18,12 @@ function Songs(){
         fetchData();
     },[]);
 
+    async function onSearchClick(str){
+        const data = await searchSongs('artists.0.name', str,10);
+        console.log(data);
+        setSongs(data);
+    }
+
     if(!songs){
         return(
             <div>oops...</div>
@@ -25,7 +31,7 @@ function Songs(){
     }
     else return(
         <div data-theme="light">
-            <Header />
+            <Header onSearchClick={onSearchClick}/>
             <div id="songsContainer">
                 {songs.map((song, index)=>{
                     return(<Song data={song} key={index}/>);
