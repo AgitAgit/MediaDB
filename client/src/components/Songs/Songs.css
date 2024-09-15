@@ -13,6 +13,10 @@
 .headerL1{
     
 }
+.logo{
+    margin-left:1rem;
+    margin-top:0.5rem;
+}
 .headerL2{
     display:flex;
     justify-content: center;
@@ -42,6 +46,12 @@
     box-shadow: 0 0 8px rgba(41, 43, 46, .2);
     height:30px;
     width:360px;
+}
+#searchSelect{
+    border-radius: 0.5rem;
+    border:0;
+    box-shadow: 0 0 8px rgba(41, 43, 46, .2);
+    margin-left: 1rem;
 }
 
 .Song {
@@ -74,4 +84,25 @@
 
 .Song:hover{
     scale:1.05;
+}
+
+.loadingDiv{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+}
+.loadingImg{
+    height:200px;
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

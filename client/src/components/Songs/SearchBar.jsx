@@ -10,7 +10,6 @@ function SearchBar(){
                 <img id="searchIcon" src={searchIcon} alt='search icon'></img>
                 <input id="searchInput" onChange={() => onSearchClick(document.getElementById('searchInput').value, document.getElementById('searchSelect').value)}></input>
             </div>
-            <span>Search by:</span>
             <select id="searchSelect" placeholder='Track'>
                 <option>Track</option>
                 <option>Album</option>

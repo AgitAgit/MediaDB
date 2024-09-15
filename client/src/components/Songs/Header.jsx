@@ -4,7 +4,7 @@ function Header(){
     return(
         <header class="songsHeader">
             <div class="headerL1">
-                <h1>LOGO</h1>
+                <h1 class="logo">LOGO</h1>
             </div>
             <div class="headerL2">
                 <SearchBar/>

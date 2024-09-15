@@ -5,6 +5,7 @@ import Footer from './Footer.jsx';
 import { Song, Song2 } from './Song';
 import defaultImg from './assets/DefaultAlbumCover.png';
 import {getSongs, searchSongs} from './../../dataCenter.js';
+import Loading from './Loading.jsx';
 
 export const searchContext = createContext();
 
@@ -36,9 +37,12 @@ function Songs(){
         setSongs(data);
     }
 
+    
     if(!songs){
         return(
-            <div>oops...</div>
+            <div>
+                <Loading/>
+            </div>
         )
     }
     else return(
@@ -48,7 +52,7 @@ function Songs(){
             </searchContext.Provider>
             <div id="songsContainer">
                 {songs.map((song, index)=>{
-                    return(<Song data={song} key={index}/>);
+                    return(<Song2 data={song} key={index}/>);
                 })}
             </div>
             <Footer />
