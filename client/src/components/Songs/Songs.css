@@ -1,13 +1,50 @@
-
 #songsContainer{
     display:grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
     background-color: var(--background);
     color: var(--text);
 }
 
+.songsHeader{
+    display:flex;
+    flex-direction: column;
+}
+.headerL1{
+    
+}
+.headerL2{
+    display:flex;
+    justify-content: center;
+}
+
+.searchBar{
+    display:flex;
+    justify-content: space-around;
+}
+.searchField{
+    position:relative;
+    height: 30px;
+    width:360px;
+}
+#searchIcon{
+    position:absolute;
+    left:5px;
+    top:5px;
+    /* transform:translateY(-50%); */
+    z-index: 1;
+}
+#searchInput{
+    position: absolute;
+    left:0;
+    border-radius:0.5rem;
+    border:0;
+    box-shadow: 0 0 8px rgba(41, 43, 46, .2);
+    height:30px;
+    width:360px;
+}
+
 .Song {
-    border: 1px solid green;
     border-radius:5%;
     background-color: var(--elements);
     height:300px;
@@ -16,6 +53,7 @@
     text-align: center;
     transition: 0.3s ease;
     overflow:hidden;
+    box-shadow: 0 0 5px rgba(41, 43, 46, .2);
     img{
         margin:auto;
         height:50%;

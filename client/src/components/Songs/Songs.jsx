@@ -1,16 +1,18 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, createContext} from 'react';
 import './Songs.css';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 import { Song, Song2 } from './Song';
 import defaultImg from './assets/DefaultAlbumCover.png';
 import {getSongs, searchSongs} from './../../dataCenter.js';
-    
+
+export const searchContext = createContext();
+
+
 function Songs(){
     const [songs, setSongs] = useState(null);
-    //const songs = [{track:"name"},{track:"name2"}]
     useEffect(() => {
-        async function fetchData(){// "artists.0.name": { $regex: new RegExp("Led")} 
+        async function fetchData(){
             const data = await searchSongs('artists.0.name','Bob Dylan',10);
             console.log(data);
             setSongs(data);
@@ -18,8 +20,18 @@ function Songs(){
         fetchData();
     },[]);
 
-    async function onSearchClick(str){
-        const data = await searchSongs('artists.0.name', str,10);
+    async function onSearchClick(str, parameter){
+        let data;
+
+        if(parameter === 'Track'){
+            data = await searchSongs('name', str,10);
+        }
+        else if(parameter === 'Album'){
+            data = await searchSongs('album.name', str,10);
+        }
+        else if(parameter === 'Artist'){
+            data = await searchSongs('artists.0.name', str,10);
+        }
         console.log(data);
         setSongs(data);
     }
@@ -31,7 +43,9 @@ function Songs(){
     }
     else return(
         <div data-theme="light">
-            <Header onSearchClick={onSearchClick}/>
+            <searchContext.Provider value={onSearchClick}>
+                <Header />
+            </searchContext.Provider>
             <div id="songsContainer">
                 {songs.map((song, index)=>{
                     return(<Song data={song} key={index}/>);
