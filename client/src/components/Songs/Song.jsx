@@ -27,7 +27,7 @@ function Song2(props){
         }
     }
     function onLikeClick(){
-
+        
     }
 
     return(
