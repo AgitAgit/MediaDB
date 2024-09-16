@@ -15,6 +15,7 @@ function BigCard(){
                 <p><span>Authors: </span>{selectedBook.authors.join(", ")} </p>
                 <p><span>Categories: </span>{selectedBook.categories.join(", ")} </p>
                 <p><span>Language: </span>{selectedBook.language} </p>
+                <p><span>Published Date: </span>{selectedBook.publishedDate} </p>
                 <p><span>Link: </span><a href={selectedBook.link} target="blank">Click Here</a>{}</p>
             </div>
             <div className="book-description">
