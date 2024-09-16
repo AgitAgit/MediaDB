@@ -5,7 +5,7 @@ const _SERVER_ADDRESS = 'https://mediadb-91464205485.us-central1.run.app';
 const _LOCAL_SERVER_ADDRESS = 'http://localhost';
 const _SERVER_PORT = 8080;
 
-const _CURRENT_ADDRESS = _LOCAL_SERVER_ADDRESS;
+const _CURRENT_ADDRESS = _SERVER_ADDRESS;
 
 
 function getBooks(searchText, method){
