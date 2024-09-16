@@ -1,5 +1,6 @@
 import defaultImg from './assets/book_img_not_available.png';
 import axios from 'axios';
+import Books from './components/Books/Books';
 
 const _SERVER_PORT = 8080;
 const _SERVER_ADDRESS = 'https://mediadb-91464205485.us-central1.run.app';
@@ -8,20 +9,17 @@ const _LOCAL_SERVER_ADDRESS = `http://localhost:${_SERVER_PORT}`;
 const _CURRENT_ADDRESS = _SERVER_ADDRESS;
 
 
-function getBooks(searchText, method){
+function getBooks(searchText, method, limit=100){
     const filter = {};
     filter[method] = { $regex: searchText, $options: "i"};
-    
-    return fetch(`${_CURRENT_ADDRESS}/api/data/book/get`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({filter})
+
+    return axios.put(`${_CURRENT_ADDRESS}/api/data/book/get`, {
+        filter,
+        limit
     })
-    .then(response => response.json())
-    .then(data => {
-        // console.log("data on center is", data);
+    .then(books => {
+        const data = books.data;
+        console.log("data on center is", data);
         if(data && data.length > 0) data.forEach(element => {
             if(element.hasOwnProperty("publishedDate") && element.publishedDate.length > 10)
                 element.publishedDate = element.publishedDate.slice(0,10);

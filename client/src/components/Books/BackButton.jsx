@@ -1,10 +1,12 @@
+import React, { useContext } from "react";
+import { currBook } from './Books.jsx'
 import backArrow from './../../assets/back_arrow.png';
 
-function BackButton(props) {
-    const { route, setRoute, scrollY } = props;
+function BackButton() {
+    const { selectedBook, setSelectedBook } = useContext(currBook);
 
     function handleBackButtonClick(event) {
-        setRoute(event.target.value);
+        setSelectedBook(null);
     }
 
     return(

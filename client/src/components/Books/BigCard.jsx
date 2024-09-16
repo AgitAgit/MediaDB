@@ -1,11 +1,13 @@
+import React, { useContext } from "react";
+import { currBook } from './Books.jsx'
 import BackButton from "./BackButton";
 
-function BigCard(props){
-    const { selectedBook, setSelectedBook, scrollY} = props;
+function BigCard(){
+    const { selectedBook, setSelectedBook } = useContext(currBook);
 
     return (
     <div id="big-card-container">
-        <BackButton scrollY={scrollY} route={selectedBook} setRoute={setSelectedBook}/>
+        <BackButton />
         <div id="data">
             <img src={selectedBook.img} />
             <div className="book-details">

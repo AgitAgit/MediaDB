@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 function Header(props){
     const { theme, setTheme } = props;
+    
     function toggleColor(){
         setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
     }

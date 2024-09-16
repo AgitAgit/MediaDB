@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-html, body {
+html, body, #root, .App {
   height: 100vh;
 }
 :root {
@@ -19,6 +19,7 @@ html, body {
   --input: #2c3f5d;
   --link-color: #00b4d8;
   --link-hover: #07ccf4;
+  --header-background-animation: linear-gradient(270deg, #243B55, #2C5364, #3A6073, #204c60);
 }
 
 [data-theme="light"] {
@@ -29,6 +30,7 @@ html, body {
   --input: #faedcd;
   --link-color: #0b525b;
   --link-hover: #127d8b;
+  --header-background-animation: linear-gradient(270deg, #fce4ec, #f8bbd0, #ffccbc, #fff9c4);
 }
 
 img {
