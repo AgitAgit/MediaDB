@@ -1,0 +1,6 @@
+
+1. Making homepage instead of 2 buttons
+2. login component
+3. user tracking - JWT https://jwt.io/ - token for each user
+4. creating user table on DB ("users" collection each user will have document that includes array of book id's
+and array of songs id's that he liked)
