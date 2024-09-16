@@ -1,9 +1,16 @@
+import SearchBar from './SearchBar';
 
 function Header(){
     return(
-        <header>
-            <h1>this is the header</h1>
-            <hr/>
+        <header class="songsHeader">
+            <div class="headerL1">
+                <h1 class="logo">LOGO</h1>
+            </div>
+            <div class="headerL2">
+                <SearchBar/>
+            </div>
+            <div class="headerL3">
+            </div>
         </header>
     );
 }

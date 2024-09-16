@@ -1,19 +1,69 @@
-
 #songsContainer{
     display:grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
     background-color: var(--background);
     color: var(--text);
 }
 
+.songsHeader{
+    display:flex;
+    flex-direction: column;
+}
+.headerL1{
+    
+}
+.logo{
+    margin-left:1rem;
+    margin-top:0.5rem;
+}
+.headerL2{
+    display:flex;
+    justify-content: center;
+}
+
+.searchBar{
+    display:flex;
+    justify-content: space-around;
+}
+.searchField{
+    position:relative;
+    height: 30px;
+    width:360px;
+}
+#searchIcon{
+    position:absolute;
+    left:5px;
+    top:5px;
+    /* transform:translateY(-50%); */
+    z-index: 1;
+}
+#searchInput{
+    position: absolute;
+    left:0;
+    border-radius:0.5rem;
+    border:0;
+    box-shadow: 0 0 8px rgba(41, 43, 46, .2);
+    height:30px;
+    width:360px;
+}
+#searchSelect{
+    border-radius: 0.5rem;
+    border:0;
+    box-shadow: 0 0 8px rgba(41, 43, 46, .2);
+    margin-left: 1rem;
+}
+
 .Song {
-    border: 1px solid green;
     border-radius:5%;
     background-color: var(--elements);
     height:300px;
     width: 250px;
     margin-top: 15px;
     text-align: center;
+    transition: 0.3s ease;
+    overflow:hidden;
+    box-shadow: 0 0 5px rgba(41, 43, 46, .2);
     img{
         margin:auto;
         height:50%;
@@ -29,5 +79,30 @@
     }
     h4{
         margin: 0.5rem;
+    }
+}
+
+.Song:hover{
+    scale:1.05;
+}
+
+.loadingDiv{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+}
+.loadingImg{
+    height:200px;
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }
