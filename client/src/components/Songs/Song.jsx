@@ -26,7 +26,7 @@ function Song(props){
             <br/>
             <p>artist:{trimText(artist)}</p>
             <br/>
-            <button class="likeButton" onClick={onLikeClick}>likeButton</button>
+            <button class="likeButton" onClick={onLikeClick}>❤</button>
         </div>
     );
 }

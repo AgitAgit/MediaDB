@@ -6,6 +6,7 @@ import Song from './Song';
 import defaultImg from './assets/DefaultAlbumCover.png';
 import {getSongs, searchSongs} from './../../dataCenter.js';
 import Loading from './Loading.jsx';
+import SearchBar from './SearchBar.jsx';
 
 export const searchContext = createContext();
 
@@ -46,10 +47,11 @@ function Songs(){
         )
     }
     else return(
-        <div data-theme="light">
+        <div id="songsApp">
             <searchContext.Provider value={onSearchClick}>
                 <Header />
             </searchContext.Provider>
+            <SearchBar/>
             <div id="songsContainer">
                 {songs.map((song, index)=>{
                     return(<Song data={song} key={index}/>);

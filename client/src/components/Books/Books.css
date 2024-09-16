@@ -25,7 +25,6 @@
     grid-column: span 2; /* Takes 2 columns in the row*/
 }
 body { 
-    background-color: var(--background);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 #books-container {

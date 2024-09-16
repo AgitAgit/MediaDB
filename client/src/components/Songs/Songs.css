@@ -1,3 +1,13 @@
+#songsApp{
+    color:var(--text);
+}
+/* #songsApp button{
+    background-color: var(--background);
+    color:var(--text);
+    border:0;
+    border-radius: 0.5rem;
+    padding:0.5rem;
+} */
 #songsContainer{
     display:grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -8,23 +18,20 @@
 
 .songsHeader{
     display:flex;
-    flex-direction: column;
-}
-.headerL1{
-    
+    justify-content: space-between;
+    background-color: var(--elements);
+    box-shadow:var(--shadow);
+    padding:1rem;
 }
 .logo{
     margin-left:1rem;
     margin-top:0.5rem;
 }
-.headerL2{
-    display:flex;
-    justify-content: center;
-}
-
 .searchBar{
     display:flex;
     justify-content: space-around;
+    background-color: var(--background);
+    padding: 1rem 0 1rem 0;
 }
 .searchField{
     position:relative;
@@ -50,6 +57,7 @@
 }
 #searchSelect{
     background-color: var(--input);
+    color:var(--text);
     border-radius: 0.5rem;
     border:0;
     box-shadow: 0 0 8px rgba(41, 43, 46, .2);
@@ -86,6 +94,11 @@
 
 .Song:hover{
     scale:1.05;
+}
+
+.song button{
+    background-color: var(--elements);
+    border:0;
 }
 
 .loadingDiv{
