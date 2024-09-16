@@ -2,7 +2,7 @@ import {useState, useEffect, createContext} from 'react';
 import './Songs.css';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
-import { Song, Song2 } from './Song';
+import Song from './Song';
 import defaultImg from './assets/DefaultAlbumCover.png';
 import {getSongs, searchSongs} from './../../dataCenter.js';
 import Loading from './Loading.jsx';
@@ -52,7 +52,7 @@ function Songs(){
             </searchContext.Provider>
             <div id="songsContainer">
                 {songs.map((song, index)=>{
-                    return(<Song2 data={song} key={index}/>);
+                    return(<Song data={song} key={index}/>);
                 })}
             </div>
             <Footer />

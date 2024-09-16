@@ -39,6 +39,7 @@
     z-index: 1;
 }
 #searchInput{
+    background-color: var(--input);
     position: absolute;
     left:0;
     border-radius:0.5rem;
@@ -48,6 +49,7 @@
     width:360px;
 }
 #searchSelect{
+    background-color: var(--input);
     border-radius: 0.5rem;
     border:0;
     box-shadow: 0 0 8px rgba(41, 43, 46, .2);
@@ -75,11 +77,11 @@
         color:black;
     }
     h3{
-        margin: 1.5rem 0.5rem 0.5rem 0.5rem;
+        margin: 1rem 0.5rem 0.5rem 0.5rem;
     }
-    h4{
-        margin: 0.5rem;
-    }
+}
+.Song span{
+    padding-top: 1rem;
 }
 
 .Song:hover{
