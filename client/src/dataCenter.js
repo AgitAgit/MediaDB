@@ -1,9 +1,9 @@
 import defaultImg from './assets/book_img_not_available.png';
 import axios from 'axios';
 
-const _SERVER_ADDRESS = 'https://mediadb-91464205485.us-central1.run.app';
-const _LOCAL_SERVER_ADDRESS = 'http://localhost';
 const _SERVER_PORT = 8080;
+const _SERVER_ADDRESS = 'https://mediadb-91464205485.us-central1.run.app';
+const _LOCAL_SERVER_ADDRESS = `http://localhost:${_SERVER_PORT}`;
 
 const _CURRENT_ADDRESS = _SERVER_ADDRESS;
 
@@ -12,7 +12,7 @@ function getBooks(searchText, method){
     const filter = {};
     filter[method] = { $regex: searchText, $options: "i"};
     
-    return fetch(`${_CURRENT_ADDRESS}:${_SERVER_PORT}/api/data/book/get`, {
+    return fetch(`${_CURRENT_ADDRESS}/api/data/book/get`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ function getBooks(searchText, method){
 }
 
 function getSongs(filter = {}, limit = 2){
-    return axios.post(`${_CURRENT_ADDRESS}:${_SERVER_PORT}/api/data/song/get`,{
+    return axios.post(`${_CURRENT_ADDRESS}/api/data/song/get`,{
         filter,
         limit
     })
