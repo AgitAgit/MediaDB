@@ -48,7 +48,7 @@ function getSongs(filter = {}, limit = 2){
 
 function searchSongs(field = 'artists.0.name',query = 'Led', limit = 10){
     const filter = {
-        [field]:{ $regex: query}
+        [field]:{ $regex: query, $options:"i"}
     }
     return getSongs(filter,limit);
 }
