@@ -4,10 +4,7 @@ function BackButton(props) {
     const { route, setRoute, scrollY } = props;
 
     function handleBackButtonClick(event) {
-        console.log(scrollY);
-        
         setRoute(event.target.value);
-        window.scrollTo({top:scrollY,left: 0, behavior: 'smooth'})
     }
 
     return(
