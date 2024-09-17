@@ -48,10 +48,11 @@ function Songs(){
     }
     else return(
         <div id="songsApp">
+            
+            <Header />
             <searchContext.Provider value={onSearchClick}>
-                <Header />
+                <SearchBar/>
             </searchContext.Provider>
-            <SearchBar/>
             <div id="songsContainer">
                 {songs.map((song, index)=>{
                     return(<Song data={song} key={index}/>);

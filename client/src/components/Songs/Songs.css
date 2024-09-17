@@ -1,13 +1,6 @@
 #songsApp{
     color:var(--text);
 }
-/* #songsApp button{
-    background-color: var(--background);
-    color:var(--text);
-    border:0;
-    border-radius: 0.5rem;
-    padding:0.5rem;
-} */
 #songsContainer{
     display:grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -23,6 +16,13 @@
     box-shadow:var(--shadow);
     padding:1rem;
 }
+.songsHeader button{
+    background-color: var(--background);
+    color:var(--text);
+    border:0;
+    border-radius: 0.5rem;
+    padding:0.5rem;
+}
 .logo{
     margin-left:1rem;
     margin-top:0.5rem;
@@ -32,28 +32,37 @@
     justify-content: space-around;
     background-color: var(--background);
     padding: 1rem 0 1rem 0;
+    height: 70px;
 }
 .searchField{
     position:relative;
-    height: 30px;
+    height:100%;
     width:360px;
 }
 #searchIcon{
     position:absolute;
     left:5px;
-    top:5px;
-    /* transform:translateY(-50%); */
+    top:50%;
+    transform:translateY(-50%);
     z-index: 1;
 }
 #searchInput{
     background-color: var(--input);
+    color:var(--color);
     position: absolute;
     left:0;
     border-radius:0.5rem;
     border:0;
     box-shadow: 0 0 8px rgba(41, 43, 46, .2);
-    height:30px;
+    height:100%;
     width:360px;
+    padding: 0 0 0 2rem;
+}
+.selectDiv{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    height:100%;
 }
 #searchSelect{
     background-color: var(--input);
@@ -62,6 +71,8 @@
     border:0;
     box-shadow: 0 0 8px rgba(41, 43, 46, .2);
     margin-left: 1rem;
+    height:100%;
+    width:60px;
 }
 
 .Song {
@@ -110,14 +121,4 @@
 }
 .loadingImg{
     height:200px;
-    animation: spin 4s linear infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
 }

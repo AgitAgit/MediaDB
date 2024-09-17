@@ -1,13 +1,9 @@
-/**
- * I want to create a loading page that shows a spinning duck
- */
-import duck from './../../assets/Duck-PNG-Picture.png';
+import loading from './../../assets/loadingGif.gif';
 
 function Loading(){
     return(
         <div class="loadingDiv">
-            <img src={duck} class="loadingImg"></img>
-            <span id="loadingSpan">Loading content...</span>
+            <img src={loading} class="loadingImg"></img>
         </div>
     );
 }

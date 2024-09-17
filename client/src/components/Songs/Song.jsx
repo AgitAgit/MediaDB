@@ -1,3 +1,5 @@
+import LikeButton from "../Books/LikeButton";
+
 const MAX_TRACK_LENGTH = 40;
 const MAX_STRING_LENGTH = 20;
 
@@ -14,9 +16,6 @@ function Song(props){
             return str;
         }
     }
-    function onLikeClick(){
-        
-    }
     
     return(
         <div class="Song">
@@ -26,7 +25,7 @@ function Song(props){
             <br/>
             <p>artist:{trimText(artist)}</p>
             <br/>
-            <button class="likeButton" onClick={onLikeClick}>❤</button>
+            <LikeButton/>
         </div>
     );
 }
