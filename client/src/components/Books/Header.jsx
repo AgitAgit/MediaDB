@@ -10,7 +10,7 @@ function Header(props){
     return (
         <header className="book-header">
             <div id="header-container">
-                <div id="brand-name">Let's Find Your&nbsp;Book?</div>
+                <h1 id="brand-name">Let's Find Your&nbsp;Book?</h1>
                 <div id="color-mode" onClick={toggleColor}>
                     {theme === 'light' ? '☀️Light Mode' : '🌙Dark Mode'}</div>
             </div>

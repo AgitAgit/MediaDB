@@ -42,7 +42,10 @@ function Books(){
 
 
     useEffect(() => {
-        window.scrollTo({top:scrollY,left: 0, behavior: 'smooth'})
+        if(!selectedBook) 
+            window.scrollTo({top:scrollY,left: 0, behavior: 'smooth'})
+        else
+            window.scrollTo({top:0,left: 0, behavior: 'smooth'})
     }, [selectedBook])
 
     if (!data) // No data arrived yet -> loading page
@@ -53,11 +56,14 @@ function Books(){
     function handleCardClick(element){
         setScrollY(window.scrollY);
         setSelectedBook(element);
+        window.scrollTo({top:0,left: 0, behavior: 'smooth'})
     }
 
     function handlePageChange(newPage) {
-        setCurrPage(newPage)
+        console.log("HERE");
+        
         window.scrollTo({top:0,left: 0, behavior: 'smooth'})
+        setCurrPage(newPage)
     }
 
     return(
@@ -74,7 +80,7 @@ function Books(){
                 </div>
                     <Pagination currPage={currPage} totalPages={totalPages} handlePageChange={handlePageChange}/>
                 <div id='cards-container'>
-                    {data.length > 0 ? 
+                    {totalPages > 0 ? 
                     data
                     .slice((currPage - 1) * 24, currPage * 24)
                     .map((element, index) => <Card key={index} onClick={() => handleCardClick(element)} data={element}/>)

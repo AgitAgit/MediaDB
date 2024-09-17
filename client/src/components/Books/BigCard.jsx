@@ -20,7 +20,7 @@ function BigCard(){
             </div>
             <div className="book-description">
                 <p className="desc"><span>Description: </span>{selectedBook.description ? 
-                selectedBook.description : "Unavailable"} </p>
+                selectedBook.description : "Unavailable..."} </p>
             </div>
         </div>
     </div>

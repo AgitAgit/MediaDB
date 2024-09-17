@@ -34,8 +34,8 @@ function Pagination(props) {
             <div className="pagination-bar">
             <button
                 className="pagination-button inactive"
-                disabled={currPage === 1}
                 onClick={() => handlePageChange(currPage - 1)}
+                disabled={currPage === 1}
             >
                 &lt;
             </button>

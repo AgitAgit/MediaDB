@@ -19,7 +19,7 @@ function getBooks(searchText, method, limit=100){
     })
     .then(books => {
         const data = books.data;
-        console.log("data on center is", data);
+        // console.log("data on center is", data);
         if(data && data.length > 0) data.forEach(element => {
             if(element.hasOwnProperty("publishedDate") && element.publishedDate.length > 10)
                 element.publishedDate = element.publishedDate.slice(0,10);

@@ -132,6 +132,7 @@ a:hover {
     }
     select {
         width: 61%;
+        min-width: none;
         padding: 10px 20px 10px 10px;
         font-size: 16px;
         border: none;
@@ -153,6 +154,7 @@ a:hover {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
     padding: 20px;
+    z-index: 100;
 }
 .card {
     position: relative;
@@ -167,6 +169,7 @@ a:hover {
     margin-inline: auto;
     background-color: var(--elements);
     transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+    z-index: 100;
 
     .card-img {
         max-width: 75%;
@@ -242,6 +245,8 @@ a:hover {
     background-color: var(--elements);
     transition: background-color 0.3s ease;
     margin-bottom: 20px;
+    position: relative;
+    z-index: 100;
 }
 #big-card-container #data {
     display: grid;
@@ -309,11 +314,11 @@ a:hover {
     transition: background-color 0.3s ease, color 0.3s ease;
     border-radius: 20px;
     min-height: 40px;
+    opacity: 0.75;
     z-index: 100;
 }
 .pagination-button {
-    width: 40px;
-    aspect-ratio: 1/1;
+    width: fit-content;
     background-color: transparent;
     border: none;
     padding: 8px 12px;
@@ -348,10 +353,34 @@ a:hover {
 .footer-container {
     position: relative;
     bottom: 0;
-    z-index: 1;
-    margin-top: -4rem;
+    z-index: 0;
+    margin-top: -7rem;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
 }
 #svg {
+    height: 450px;
+}
+.footer-content {
+    position: absolute;
+    top: 60%;
+    left: 12.5%;
+    height: 75px;
+    width: 75%;
+    z-index: 10;
+    background-color: transparent;
+    border: 2px solid blueviolet;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.footer-content h2 {
+    align-self: flex-start;
+}
+.github-icon {
+    height: 50px;
     
 }
 
@@ -368,6 +397,38 @@ a:hover {
     #big-card-container #data {
         display: flex;
         flex-direction: column;
+    }
+
+    #svg {
+        height: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    .pagination-bar {
+        min-height: 30px;
+    }
+    .pagination-button, .pagination-dots {
+        width: fit-content;
+        padding: 2px 4px;
+        margin-inline: 3px;
+        font-size: 2.5vw;
+    }
+    .pagination-button.active {
+        padding-top: 4px;
+    }
+    #back-to-top {
+        height: 40px;
+    }
+}
+
+@media (max-width: 500px) {
+    .pagination-button, .pagination-dots {
+        margin-inline: 1.5px;
+        font-size: 12.75px;
+    }
+    .pagination-button.active {
+        padding-top: 3px;
     }
 }
 

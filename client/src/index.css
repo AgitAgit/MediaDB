@@ -43,6 +43,6 @@ html, body {
 /* dark-wave: #243B55 #3A6073 */
 /* light-wave:  #ffbe9e #FF7736 */
 
-img {
+img, svg {
   display: block;
 }
