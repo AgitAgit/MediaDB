@@ -1,10 +1,10 @@
 const { insertOne, findOne, find} = require('./mongoActions')
 
 exports.getData = (req, res)=> {
-    const { filter } = req.body;
+    const { filter, limit } = req.body;
     // console.log("FILTER", filter);
     
-    find("books", filter)
+    find("books", filter, limit)
     .then(data => {
         res.json(data);
     })
