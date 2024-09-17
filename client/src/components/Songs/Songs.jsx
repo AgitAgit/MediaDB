@@ -13,6 +13,8 @@ export const searchContext = createContext();
 
 function Songs(){
     const [songs, setSongs] = useState(null);
+    const [page, setPage] = useState('loading');
+
     useEffect(() => {
         async function fetchData(){
             const data = await searchSongs('artists.0.name','Bob Dylan',10);
@@ -38,27 +40,25 @@ function Songs(){
         setSongs(data);
     }
 
-    
-    if(!songs){
-        return(
-            <div>
+    return(
+        <div>
+            {page === 'loading' && (
                 <Loading/>
-            </div>
-        )
-    }
-    else return(
-        <div id="songsApp">
-            
-            <Header />
-            <searchContext.Provider value={onSearchClick}>
-                <SearchBar/>
-            </searchContext.Provider>
-            <div id="songsContainer">
-                {songs.map((song, index)=>{
-                    return(<Song data={song} key={index}/>);
-                })}
-            </div>
-            <Footer />
+            )}
+            {page === 'songs' && (
+                <div id="songsApp">
+                    <Header />
+                    <searchContext.Provider value={onSearchClick}>
+                        <SearchBar/>
+                    </searchContext.Provider>
+                    <div id="songsContainer">
+                        {songs.map((song, index)=>{
+                            return(<Song data={song} key={index}/>);
+                        })}
+                    </div>
+                    <Footer />
+                </div>
+            )}
         </div>
     );
 }
