@@ -14,7 +14,7 @@ function SearchBar(){
             
             <div class="selectDiv">
                 <span>search by:</span>
-                <select id="searchSelect" placeholder='Track'>
+                <select id="searchSelect" placeholder='Track' onChange={() => onSearchClick(document.getElementById('searchInput').value, document.getElementById('searchSelect').value)}>
                     <option>Track</option>
                     <option>Album</option>
                     <option>Artist</option>
