@@ -15,6 +15,7 @@ export const searchContext = createContext();
 function Songs(){
     const [songs, setSongs] = useState(null);
     const [page, setPage] = useState('loading');
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
     useEffect(() => {
         async function fetchData(){
@@ -53,16 +54,16 @@ function Songs(){
             )}
             {page === 'songs' && (
                 <div id="songsApp">
-                    <Header goToMenu={goToMenu}/>
+                    <Header goToMenu={goToMenu} theme={[theme, setTheme]}/>
                     <searchContext.Provider value={onSearchClick}>
                         <SearchBar/>
                     </searchContext.Provider>
                     <div id="songsContainer">
                         {songs.map((song, index)=>{
-                            return(<Song data={song} key={index}/>);
+                            return(<Song data={song} key={index} onClick={() => //handleSongClick()}/>);
                         })}
                     </div>
-                    <Footer theme={localStorage.getItem('theme') || 'light'}/>
+                    <Footer theme={theme}/>
                 </div>
             )}
             {page === 'Menu' && (
