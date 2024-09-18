@@ -14,3 +14,5 @@ function SongExt(props){
         </div>
     );
 }
+
+export default SongExt;
