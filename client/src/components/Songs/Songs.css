@@ -35,6 +35,11 @@
     padding: 1rem 0 1rem 0;
     height: 70px;
 }
+/* .searchBar{
+    display:grid;
+    justify-content: space-around;
+    background-color: var(--background);
+} */
 .searchField{
     position:relative;
     height:100%;
@@ -81,6 +86,7 @@
     background-color: var(--elements);
     height:300px;
     width: 250px;
+    z-index: 1;
     margin-top: 15px;
     text-align: center;
     transition: 0.3s ease;
@@ -122,4 +128,21 @@
 }
 .loadingImg{
     height:200px;
+}
+
+#songsApp Footer{
+    background-color: var(--background);
+}
+
+@media(max-width:400px){
+    #songsContainer{
+        margin:0;
+        padding:0;
+    }
+    #songsApp #searchInput{
+        width:80%;
+    }
+    /* #songsApp .searchBar{
+        grid-template-columns: ;
+    } */
 }

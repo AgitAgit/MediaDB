@@ -62,7 +62,7 @@ function Songs(){
                             return(<Song data={song} key={index}/>);
                         })}
                     </div>
-                    <Footer />
+                    <Footer theme={localStorage.getItem('theme') || 'light'}/>
                 </div>
             )}
             {page === 'Menu' && (
