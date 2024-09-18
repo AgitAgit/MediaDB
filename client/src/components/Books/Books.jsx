@@ -21,6 +21,7 @@ function Books(){
     const [method, setMethod] = useState("title");
     const [searchText, setSearchText] = useState("");
     const [selectedBook, setSelectedBook] = useState(null);
+    const [triggerSearch, setTriggerSearch] = useState(true);
     const [scrollY, setScrollY] = useState(window.scrollY);
     const [currPage, setCurrPage] = useState(1);
 
@@ -33,12 +34,12 @@ function Books(){
         const fetchData = debounce(async () => {
             const response = await getBooks(searchText, method, 1000);
             setData(response);
-        }, 300); // 300ms delay for requests
+        }, 100); // 300ms delay for requests
         fetchData();
         setCurrPage(1);
         // cancel pending request from before
         return () => { fetchData.cancel(); };
-    }, [searchText, method]);
+    }, [searchText, method, triggerSearch]);
 
 
     useEffect(() => {
@@ -56,14 +57,12 @@ function Books(){
     function handleCardClick(element){
         setScrollY(window.scrollY);
         setSelectedBook(element);
-        window.scrollTo({top:0,left: 0, behavior: 'smooth'})
+        window.scrollTo({top:0,left: 0, behavior: 'smooth'});
     }
 
     function handlePageChange(newPage) {
-        console.log("HERE");
-        
-        window.scrollTo({top:0,left: 0, behavior: 'smooth'})
-        setCurrPage(newPage)
+        window.scrollTo({top:0,left: 0, behavior: 'smooth'});
+        setCurrPage(newPage);
     }
 
     return(
@@ -75,7 +74,8 @@ function Books(){
             <div id='books-search-page'>
                 <BackToTop theme={theme}/>
                 <div id="search-row">
-                    <SearchButton theme={theme} searchText={searchText} setSearchText={setSearchText}/>
+                    <SearchButton theme={theme} searchText={searchText} setSearchText={setSearchText}
+                    setTriggerSearch={setTriggerSearch}/>
                     <FilterButton method={method} setMethod={setMethod}/>
                 </div>
                     <Pagination currPage={currPage} totalPages={totalPages} handlePageChange={handlePageChange}/>
