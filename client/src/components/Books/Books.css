@@ -1,9 +1,3 @@
-@font-face {
-    font-family: 'Arial Black';
-    src: url('./../../assets/arial_black.ttf') format('truetype');
-    font-weight: normal; 
-    font-style: normal;
-}
 
 :root {
     --White: hsl(0, 0%, 100%);
@@ -21,16 +15,16 @@ a:hover {
     color: var(--link-hover);
 }
 
-#loadingGif {
+.loadingDiv {
     height: 300px;
     width: auto;
     display: block;
     margin: 100px auto;
 }
 #books-not-found {
+    grid-column: span 2;
     font-size: 1.5rem;
     padding: 1rem;
-    grid-column: span 2; /* Takes 2 columns in the row*/
 }
 #books-container {
     background-color: var(--background);
@@ -45,7 +39,6 @@ a:hover {
 }
 /* Header */
 .book-header {
-    /* background-color: var(--elements); */
     background: var(--header-background-animation);
     background-size: 1000% 1000%;
     animation: gradientAnimation 10s ease-in-out infinite;
@@ -57,33 +50,38 @@ a:hover {
     box-shadow: var(--shadow);
     transition: background-color 0.3s ease, color 0.3s ease;
     margin-bottom: 2rem;
+    /* max-height: 85px; */
 }
 #header-container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    /* grid-template-columns: 60% 40%; */
-    height: 85px;
     width: 80%;
     max-width: var(--maxWidth);
     min-width: 240px;
     margin: 0 auto;
-    padding-block: 2rem;
+    padding-block: 1rem;
 }
 .brand {
     display: flex;
     gap: 10px;
     align-items: center;
 }
+#logo-img {
+    cursor: pointer;
+}
 #brand-name {
     font-size: 1.2rem;
     font-weight: 700;
 }
+.theme-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #color-mode {
     font-weight: 400;
     font-size: 0.9rem;
-    justify-self: end;
-    margin-right: 15%;
     cursor: pointer;
 }
 #color-mode:hover {
@@ -444,14 +442,9 @@ a:hover {
         grid-template-rows: 1fr 1fr;
         gap:10px;
     }
-
     #big-card-container #data {
         display: flex;
         flex-direction: column;
-    }
-
-    #svg {
-        /* height: 300px; */
     }
 }
 
@@ -494,6 +487,9 @@ a:hover {
 }
 
 @media (max-width: 500px) {
+    .theme-container {
+        margin-inline: auto;
+    }
     .pagination-button, .pagination-dots {
         margin-inline: 1.5px;
         font-size: 12.75px;
@@ -502,7 +498,6 @@ a:hover {
         padding-top: 3px;
     }
 }
-
 /* ANIMATION */
 @keyframes gradientAnimation {
     0% {

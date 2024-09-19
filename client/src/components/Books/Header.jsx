@@ -1,22 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
 import logoSmall from './../../assets/logo-small.png';
+import { currState } from "../Menu/Menu";
 
 function Header(props){
+    const { setState } = useContext(currState);
     const { theme, setTheme } = props;
     
-    function toggleColor(){
+    function toggleTheme(){
         setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    }
+    function handleLogoClick() {
+        setState('Menu');
     }
 
     return (
         <header className="book-header">
             <div id="header-container">
                 <div className="brand">
-                    <img src={logoSmall} width='30px' />
+                    <img id="logo-img" onClick={handleLogoClick} src={logoSmall} width='40px' />
                     <h1 id="brand-name">Let's Find Your&nbsp;Book?</h1>
                 </div>
-                <div id="color-mode" onClick={toggleColor}>
-                    {theme === 'light' ? '☀️Light Mode' : '🌙Dark Mode'}</div>
+                <div className="theme-container">
+                    <div id="color-mode" onClick={toggleTheme}>
+                        {theme === 'light' ? '☀️Light Mode' : '🌙Dark Mode'}</div>
+                </div>
             </div>
         </header>
     )

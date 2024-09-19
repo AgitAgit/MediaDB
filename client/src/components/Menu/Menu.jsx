@@ -1,7 +1,14 @@
 import './Menu.css';
+// import './../Books/Books.css';
 import Books from '../Books/Books.jsx';
 import Songs from '../Songs/Songs.jsx';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext } from 'react';
+
+
+import Header from '../Books/Header.jsx';
+import Footer from '../Books/Footer.jsx';
+
+export const currState = createContext();
 
 function Menu(){
     const [state, setState] = useState('Menu');
@@ -15,6 +22,7 @@ function Menu(){
     }
 
     return(
+        <currState.Provider value={{setState}}>
         <div>
             {state === 'Books' && (
                 <Books/>
@@ -22,13 +30,16 @@ function Menu(){
             {state === 'Songs' && (
                 <Songs/>
             )}
-            {state === 'Menu' &&(
+            {state === 'Menu' && (
                 <div id="Menu">
+                    {/* <Header /> */}
                     <button onClick={onBooksClick}>Books</button>
                     <button onClick={onSongsClick}>Songs</button>
+                    {/* <Footer /> */}
                 </div>
             )}
         </div>
+        </currState.Provider>
     )
 }
 

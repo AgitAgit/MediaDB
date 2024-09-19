@@ -11,11 +11,13 @@ import BackToTop from './BackToTop';
 import Pagination from './Pagination';
 import debounce from 'lodash.debounce';
 import Footer from './Footer';
+import Loading from '../Songs/Loading';
 
 export const currBook = createContext();
 // RENDER RUNS COMPONENTS 2 TIMES INITIALLY DON'T BE WORRIED ABOUT LOTS OF LOGS
 
-function Books(){
+function Books(props){
+    const { setState } = props;
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
     const [data, setData] = useState(null);
     const [method, setMethod] = useState("title");
@@ -24,6 +26,7 @@ function Books(){
     const [triggerSearch, setTriggerSearch] = useState(true);
     const [scrollY, setScrollY] = useState(window.scrollY);
     const [currPage, setCurrPage] = useState(1);
+    let totalPages;
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
@@ -49,10 +52,10 @@ function Books(){
             window.scrollTo({top:0,left: 0, behavior: 'smooth'})
     }, [selectedBook])
 
-    if (!data) // No data arrived yet -> loading page
-        return <img id="loadingGif" src={loadingGif} />
+    // if (!data) // No data arrived yet -> loading page
+    //     return <img id="loadingGif" src={loadingGif} />
 
-    const totalPages =  Math.ceil(data.length / 24);
+    if(data) totalPages =  Math.ceil(data.length / 24);
 
     function handleCardClick(element){
         setScrollY(window.scrollY);
@@ -80,11 +83,13 @@ function Books(){
                 </div>
                     <Pagination currPage={currPage} totalPages={totalPages} handlePageChange={handlePageChange}/>
                 <div id='cards-container'>
-                    {totalPages > 0 ? 
+                    {(!data) ? 
+                        <Loading /> :
+                    (totalPages > 0 ? 
                     data
                     .slice((currPage - 1) * 24, currPage * 24)
                     .map((element, index) => <Card key={index} onClick={() => handleCardClick(element)} data={element}/>)
-                    : <div id='books-not-found'>Unfortunately no such a book exists...</div>}
+                    : <div id='books-not-found'>Unfortunately no such a book exists...</div>)}
                 </div>
                 <Pagination currPage={currPage} totalPages={totalPages} handlePageChange={handlePageChange}/>
             </div>
