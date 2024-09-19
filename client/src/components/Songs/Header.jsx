@@ -4,7 +4,7 @@ import SearchBar from './SearchBar';
 
 
 function Header(props){
-    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+    const [theme, setTheme] = props.theme;//useState(localStorage.getItem('theme') || 'light');
     const {goToMenu} = props;
     
     document.documentElement.setAttribute('data-theme',theme);

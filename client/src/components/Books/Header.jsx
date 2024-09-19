@@ -1,9 +1,9 @@
 import React, { useState, useContext} from "react";
 import logoSmall from './../../assets/logo-small.png';
-import { currState } from "../Menu/Menu";
+import { stateContext } from "../Menu/Menu";
 
 function Header(props){
-    const { setState } = useContext(currState);
+    const { setState } = useContext(stateContext);
     const { theme, setTheme } = props;
     
     function toggleTheme(){

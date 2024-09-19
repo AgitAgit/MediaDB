@@ -4,16 +4,14 @@ import Books from '../Books/Books.jsx';
 import Songs from '../Songs/Songs.jsx';
 import { useState, useEffect, createContext } from 'react';
 
-
 import Header from '../Books/Header.jsx';
 import Footer from '../Books/Footer.jsx';
 
-export const currState = createContext();
+export const stateContext = createContext();
 
 function Menu(){
     const [state, setState] = useState('Menu');
-
-
+    
     function onBooksClick(){
         setState('Books');
     }
@@ -22,24 +20,22 @@ function Menu(){
     }
 
     return(
-        <currState.Provider value={{setState}}>
         <div>
-            {state === 'Books' && (
-                <Books/>
-            )}
-            {state === 'Songs' && (
-                <Songs/>
-            )}
-            {state === 'Menu' && (
-                <div id="Menu">
-                    {/* <Header /> */}
-                    <button onClick={onBooksClick}>Books</button>
-                    <button onClick={onSongsClick}>Songs</button>
-                    {/* <Footer /> */}
-                </div>
-            )}
+            <stateContext.Provider value={{state, setState}}>
+                {state === 'Books' && (
+                    <Books/>
+                )}
+                {state === 'Songs' && (
+                    <Songs/>
+                )}
+                {state === 'Menu' &&(
+                    <div id="Menu">
+                        <button onClick={onBooksClick}>Books</button>
+                        <button onClick={onSongsClick}>Songs</button>
+                    </div>
+                )}
+            </stateContext.Provider>
         </div>
-        </currState.Provider>
     )
 }
 

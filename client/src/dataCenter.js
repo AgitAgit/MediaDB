@@ -38,7 +38,7 @@ function getSongs(filter = {}, limit = 2){
     .then(songs => {
         return songs.data.map(song => {
             const process = processSong(song);
-            console.log(process);
+            //console.log(process);
             return process;
         });
     });
