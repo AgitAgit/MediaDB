@@ -1,0 +1,5 @@
+_id(created by mongo)
+username
+password
+liked_songs
+liked_books

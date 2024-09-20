@@ -106,4 +106,102 @@ function insertMany(collection, documents) {
     });
 }
 
-module.exports = { findOne, find, insertOne, insertMany };
+function createUser(username, password){
+    const url = `${base_url}/action/insertOne`;
+    const requestBody = {
+        dataSource: 'MediaDB',
+        database: 'media',
+        collection: 'users',
+        document: {
+            username,
+            password,
+            liked_books: [],
+            liked_songs: []
+        }
+    };
+    fetch(url, {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'apiKey': mongoApi
+        },
+        body: JSON.stringify(requestBody)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+function addToUser(userId, itemId){
+    const url = `${base_url}/action/updateOne`;
+    const requestBody = {
+        dataSource: 'MediaDB',
+        database: 'media',
+        collection: 'users',
+        filter:{
+            '_id':userId
+        },
+        update: { 
+            $push: { 
+                array_field: itemId 
+            } 
+        }
+    };
+    fetch(url, {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'apiKey': mongoApi
+        },
+        body: JSON.stringify(requestBody)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
+function removeFromUser(userId, itemId){
+    const url = `${base_url}/action/updateOne`;
+    const requestBody = {
+        dataSource: 'MediaDB',
+        database: 'media',
+        collection: 'users',
+        filter:{
+            '_id':userId
+        },
+        update: { 
+            $pull: { 
+                array_field: itemId 
+            } 
+        }
+    };
+    fetch(url, {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'apiKey': mongoApi
+        },
+        body: JSON.stringify(requestBody)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+//const update = { $pull: { array_field: { value: "old_element" } } };
+module.exports = { findOne, find, insertOne, insertMany, createUser, addToUser, removeFromUser };
