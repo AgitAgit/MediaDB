@@ -1,6 +1,6 @@
 import './Books.css';
 import loadingGif from './../../assets/loadingGif.gif';
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext, useContext} from 'react';
 import Header from './Header';
 import SearchButton from './SearchButton'
 import FilterButton from './FilterButton';
@@ -12,13 +12,14 @@ import Pagination from './Pagination';
 import debounce from 'lodash.debounce';
 import Footer from './Footer';
 import Loading from '../Songs/Loading';
+import { stateContext } from '../Menu/Menu';
 
 export const currBook = createContext();
 // RENDER RUNS COMPONENTS 2 TIMES INITIALLY DON'T BE WORRIED ABOUT LOTS OF LOGS
 
 function Books(props){
+    const { theme, setTheme } = useContext(stateContext);
     const { setState } = props;
-    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
     const [data, setData] = useState(null);
     const [method, setMethod] = useState("title");
     const [searchText, setSearchText] = useState("");
@@ -28,16 +29,13 @@ function Books(props){
     const [currPage, setCurrPage] = useState(1);
     let totalPages;
 
-    useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-    }, [theme]);
+    
 
     useEffect(() => {
         const fetchData = debounce(async () => {
             const response = await getBooks(searchText, method, 1000);
             setData(response);
-        }, 100); // 300ms delay for requests
+        }, 100); // 100ms delay for requests
         fetchData();
         setCurrPage(1);
         // cancel pending request from before
@@ -70,6 +68,7 @@ function Books(props){
 
     return(
     <div id="books-container">
+        <div>
         <Header theme={theme} setTheme={setTheme}/>
         <div id="main-content">
             { !selectedBook ?
@@ -100,6 +99,7 @@ function Books(props){
                 </div>
             </currBook.Provider>
             }
+        </div>
         </div>
         <Footer theme={theme}/>
     </div>
