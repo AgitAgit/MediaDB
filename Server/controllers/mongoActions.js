@@ -141,7 +141,7 @@ function createUser(username, password){
 
 function addToUser(userId, itemId, property){
     const uId = new ObjectId(`${userId}`);
-    const url = `${base_url}/action/updateOne`;
+    const url = `${base_url}/action/updateOne?`;
     const requestBody = {
         dataSource: 'MediaDB',
         database: 'media',
@@ -206,5 +206,34 @@ function removeFromUser(userId, itemId){
         console.error('Error:', error);
     });
 }
+
+function findOneId() 
+{
+    let url = `${base_url}/action/findOne?id=66ed44e26f9b16b8422aaf27`;
+    const requestBody = {
+        dataSource: 'MediaDB',
+        database: 'media',
+        collection:'users'
+    };
+    
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'apiKey': mongoApi
+        },
+        body: JSON.stringify(requestBody)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        return data.document;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
 //const update = { $pull: { array_field: { value: "old_element" } } };
-module.exports = { findOne, find, insertOne, insertMany, createUser, addToUser, removeFromUser };
+module.exports = { findOne, findOneId,find, insertOne, insertMany, createUser, addToUser, removeFromUser };
