@@ -28,9 +28,9 @@
     height: 100%;
     padding: 1rem;
     display: flex;
-    /* justify-content: center; */
+    justify-content: center; /* flex-end - for top*/
     align-items: center;
-    gap: 3rem;
+    gap: 10vw;
 }
 
 .background {
@@ -88,7 +88,7 @@
     z-index: 1;
 }
 /* LOGIN FORM */
-#login-form, #signup-form {
+.menu-form {
     /* border: 1px solid black; */
     display: flex;
     flex-direction: column;
@@ -146,6 +146,7 @@
 @media (max-width: 700px) {
     #main-content-menu {
         flex-direction: column-reverse;
+        gap: 2rem;
     }
     #logo-large-menu {
         width: 200px;
