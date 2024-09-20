@@ -1,7 +1,9 @@
 require('dotenv').config();
+const ObjectId = require('mongodb').ObjectId;
 const axios = require('axios');
 const mongoApi = process.env.MONGO_KEY;
 const base_url = 'https://data.mongodb-api.com/app/data-jxtnbij/endpoint/data/v1';
+
 
 function findOne(collection, filter) {
 let url = `${base_url}/action/findOne`;
@@ -23,7 +25,7 @@ let url = `${base_url}/action/findOne`;
     })
     .then(response => response.json())
     .then(data => {
-        //console.log('Success:', data);
+        console.log('Success:', data);
         return data.document;
     })
     .catch(error => {
@@ -137,18 +139,19 @@ function createUser(username, password){
     });
 }
 
-function addToUser(userId, itemId){
+function addToUser(userId, itemId, property){
+    const uId = new ObjectId(`${userId}`);
     const url = `${base_url}/action/updateOne`;
     const requestBody = {
         dataSource: 'MediaDB',
         database: 'media',
         collection: 'users',
         filter:{
-            '_id':userId
+            '_id':uId
         },
         update: { 
             $push: { 
-                array_field: itemId 
+                [property]: itemId 
             } 
         }
     };
