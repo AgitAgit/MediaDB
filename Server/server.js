@@ -33,9 +33,4 @@ app.post('/api/data/song/get', songHandler.getSongs);
 // mongoActions.findOne('users',{"username":"Amit"});
 // mongoActions.findOne('users',{"_id":{'$oid':'66ed44e26f9b16b8422aaf27'}});
 // userController.addLiked('66ed44e26f9b16b8422aaf27','books','66d80dc63f0a87f0045df1a0');
-console.log(userController.validateUser('Amit','1234'));
-console.log(userController.validateUser('amit','1234'));
-console.log(userController.validateUser('Yaniv','1234'));
-console.log(userController.validateUser('Amit','1111'));
-
-
+userController.testValidateUser();

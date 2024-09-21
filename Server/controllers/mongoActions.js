@@ -25,7 +25,7 @@ let url = `${base_url}/action/findOne`;
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Success:', data);
+        // console.log('Success:', data);
         return data.document;
     })
     .catch(error => {
