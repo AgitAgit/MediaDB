@@ -1,12 +1,13 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 
 import SearchBar from './SearchBar';
 
+import { stateContext } from './../Menu/Menu';
 
 function Header(props){
     const [theme, setTheme] = props.theme;//useState(localStorage.getItem('theme') || 'light');
-    const {goToMenu} = props;
-    
+    const {state, setState} = useContext(stateContext);
+
     document.documentElement.setAttribute('data-theme',theme);
     
     function toggleLightMode(){
@@ -17,8 +18,8 @@ function Header(props){
     }
 
     return(
-        <header class="songsHeader" >
-            <h1 id='logo' class="logo" onClick={goToMenu}>LOGO</h1>
+        <header className="songsHeader" >
+            <h1 id='logo' class="logo" onClick={() => setState('Menu')}>LOGO</h1>
             <button onClick={toggleLightMode}>{(theme === 'light' ? '🕶Dark mode':'💡Light mode')}</button>
         </header>
     );

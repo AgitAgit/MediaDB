@@ -17,7 +17,6 @@ function Songs(){
     const [page, setPage] = useState('loading');
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
     const [extSong, setExtSong] = useState(null);
-    const {state, setState} = useContext(stateContext);
 
 
     useEffect(() => {
@@ -29,15 +28,12 @@ function Songs(){
         }
         fetchData();
     },[]);
-    
-    function goToMenu(){
-        setState('Menu');
-    }
 
-    function handleSongClick({song}){
+    function handleSongClick(props){
         console.log('a song was clicked!');
         setPage('song');
-        setExtSong(song);
+        setExtSong(props);
+        console.log(props);
     }
 
     async function onSearchClick(str, parameter){
@@ -59,24 +55,32 @@ function Songs(){
     return(
         <div>
             {page === 'loading' && (
-                <Loading/>
+                <div>
+                    <Header theme={[theme, setTheme]}/>
+                    <Loading/>
+                    <Footer theme={theme}/>
+                </div>
             )}
             {page === 'songs' && (
                 <div id="songsApp">
-                    <Header goToMenu={goToMenu} theme={[theme, setTheme]}/>
+                    <Header theme={[theme, setTheme]}/> {/*goToMenu={goToMenu}*/}
                     <searchContext.Provider value={onSearchClick}>
                         <SearchBar/>
                     </searchContext.Provider>
                     <div id="songsContainer">
                         {songs.map((song, index)=>{
-                            return(<Song data={song} key={index} onClick={ () => console.log('click!') }/>);//handleSongClick(song)
+                            return(<Song data={song} key={index} onSongClick={ handleSongClick }/>);//handleSongClick(song)
                         })}
                     </div>
                     <Footer theme={theme}/>
                 </div>
             )}
             {page === 'song' && (
+                <div>
+                <Header theme={[theme, setTheme]}/>
                 <SongExt data={extSong}></SongExt>
+                <Footer theme={theme}/>
+            </div>
             )}
         </div>
     );
