@@ -45,7 +45,7 @@
     animation: gradientAnimation 10s ease-in-out infinite;
 }
 
-.form-container {
+.form-container, #menu-select-state {
     width: 300px;
     position: relative;
     box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
@@ -92,7 +92,8 @@
     z-index: 1;
     transition: 0.3s ease;
 }
-/* LOGIN FORM */
+
+/* LOGIN & SIGNUP FORM */
 .menu-form {
     /* border: 1px solid black; */
     display: flex;
@@ -112,6 +113,22 @@
 }
 .menu-input::placeholder {
     color: #aaa;
+}
+.position-relative {
+    position: relative;
+}
+.eye {
+    position: absolute;
+    right: 5%;
+    top: 37%;
+}
+.shake {
+    animation: shake 0.5s ease;
+}
+.error {
+    display: none;
+    color: red;
+    font-size: 0.75rem;
 }
 .link {
     font-weight: bold;
@@ -168,3 +185,11 @@
     
 }
 
+@keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+}
