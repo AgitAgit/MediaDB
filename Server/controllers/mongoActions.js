@@ -177,4 +177,4 @@ function pullFromArray(collection, documentId, field, value){
 
 
 //const update = { $pull: { array_field: { value: "old_element" } } };
-module.exports = { findOne, findOneId,find, insertOne, insertMany, createUser, addToUser, removeFromUser };
+module.exports = { findOne, find, insertOne, insertMany, pushToArray, pullFromArray };

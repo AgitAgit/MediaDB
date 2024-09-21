@@ -1,4 +1,4 @@
-import { findOne, find, insertOne, insertMany } from './mongoActions';
+const { findOne, find, insertOne, insertMany, pushToArray, pullFromArray } = require ('./mongoActions.js');
 
 function createUser(username, password){
     insertOne('users',{
@@ -9,10 +9,26 @@ function createUser(username, password){
     });
 }
 
-function validateUser(username, password){}
+function validateUser(username, password){
+    const user = findOne('users',{ 
+        $and:[
+        {'username':username},
+        {'password':password}
+    ]});
+    if(user) return true;
+    else return false;
+}
 
-function addLiked(collection, id){}
+function addLiked(userId, mediaType='songs', elementId){
+    pushToArray('users', userId, `liked_${mediaType}`,elementId);
+}
 
-function removeLiked(collection, id){}
+function removeLiked(userId, mediaType='songs', elementId){
+    pullFromArray('users', userId, `liked_${mediaType}`,elementId);
+}
+
+function getLiked(userId, mediaType){
+
+}
 
 module.exports = {createUser, validateUser, addLiked, removeLiked};

@@ -30,13 +30,12 @@ app.post('/api/data/song/get', songHandler.getSongs);
 //     console.log(`the server is listening on port ${port}`);
 // });
 
-// const ObjectId = require('mongodb').ObjectId;
-// let ddd = ObjectId.createFromHexString('66ed44e26f9b16b8422aaf27');
-//ddd = JSON.stringify(ddd);
-mongoActions.findOne('users',{"username":"Amit"});
-mongoActions.findOne('users',{"_id":{'$oid':'66ed44e26f9b16b8422aaf27'}});
-// mongoActions.findOne('users',{"_id":new ObjectId("66ed44e26f9b16b8422aaf27")});
-// console.log(ddd);
-//{"_id":ObjectId("66ed44e26f9b16b8422aaf27")}
-// mongoActions.addToUser("66ed44e26f9b16b8422aaf27",'66d80dc63f0a87f0045df19d','liked_books');
-// mongoActions.findOneId();
+// mongoActions.findOne('users',{"username":"Amit"});
+// mongoActions.findOne('users',{"_id":{'$oid':'66ed44e26f9b16b8422aaf27'}});
+// userController.addLiked('66ed44e26f9b16b8422aaf27','books','66d80dc63f0a87f0045df1a0');
+console.log(userController.validateUser('Amit','1234'));
+console.log(userController.validateUser('amit','1234'));
+console.log(userController.validateUser('Yaniv','1234'));
+console.log(userController.validateUser('Amit','1111'));
+
+
