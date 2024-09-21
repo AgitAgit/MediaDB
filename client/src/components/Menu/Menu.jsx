@@ -51,15 +51,12 @@ function Menu(){
             {state === 'Menu' &&(
                 <div id="Menu">
                     <div id='main-content-menu'>
-                        <button className='temp1' onClick={onBooksClick}>Books</button>
-                        <button className='temp2' onClick={onSongsClick}>Songs</button>
                         <div className='background'></div>
-                        { !userLogged ? 
-                        //NO USER LOGGED
                         <div className="form-container">
                             <div id="menu-theme" onClick={toggleTheme}>
                             {theme === 'light' ? '☀️' : '🌙'}</div>
-                            <div className="button-box">
+                            { !userLogged ? //NO USER LOGGED
+                            <><div className="button-box">
                                 <div id="btn"
                                 style={{left: loginForm ? "0px" : "110px",}}
                                 ></div>
@@ -67,10 +64,11 @@ function Menu(){
                                 <button className="toggle-btn" onClick={handleSignupClick}>Sign up</button>
                             </div>
                                 {loginForm ? <Login /> : <Signup />}
-                        </div>
+                                </>
                         : // USER LOGGED
                         <SelectionMenu />
                         }
+                        </div>
                         <div className='logo-container'>
                             <img id='logo-large-menu' src={logoLarge} />
                             <h1>Your Playlist<br/> of Stories</h1>

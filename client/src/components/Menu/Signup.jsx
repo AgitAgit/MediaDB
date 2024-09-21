@@ -71,7 +71,7 @@ function Signup() {
                 </div>
                 <p className="error signup-invalid" ref={err}>hello</p>
             </div>
-            <button id="submit-signup" className="submit-button" type="submit">Sign Up</button>
+            <button id="submit-signup" className="menu-button" type="submit">Sign Up</button>
         </form>
     )
 }

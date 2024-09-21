@@ -14,8 +14,8 @@ function Login() {
     const passwordRef = useRef(null);
     
     const handleSubmitLogin = async (e) => {
-        e.preventDefault();
-        const user = 'yaniv'; //Check data base
+        // e.preventDefault();
+        const user = usernameRef.current.value; //Check data base
         if(user)
             setUserLogged(user);
         else {
@@ -41,11 +41,13 @@ function Login() {
         setEyeOpen(prev => !prev)
     }
     return (
-        <form id='login-form' className="menu-form" onSubmit={handleSubmitLogin}>
+        <form id='login-form' className="menu-form" onSubmit={handleSubmitLogin} action="/api/login">
             <div>
-                <input id="username-login" className="menu-input" ref={usernameRef} onChange={handleInputChange} placeholder="Username" maxLength={15}/>
+                <input id="username-login" className="menu-input" name="username" autoComplete="username" required
+                ref={usernameRef} onChange={handleInputChange} placeholder="Username" maxLength={15}/>
                 <div className='position-relative'>
                     <input type={EyeOpen ? "text": "password"} id="password-login" className="menu-input"
+                    name="password" autoComplete="current-password" required
                     ref={passwordRef} onChange={handleInputChange} placeholder="Password" maxLength={15}/>
                     {EyeOpen ? <FontAwesomeIcon icon={faEye} onClick={toggleEye} className="open-eye eye"/> :
                     <FontAwesomeIcon icon={faEyeSlash} onClick={toggleEye} className="close-eye eye"/>}
@@ -54,7 +56,7 @@ function Login() {
                 <p id="forgot-password" className="link">Forgot Password?</p>
                 <p>Commitment-phobe?  <span className="link" onClick={handleGuestClick}>Go ahead as a guest!</span></p>
             </div>
-            <button id="submit-login" className="submit-button" type="submit">Login</button>
+            <button id="submit-login" className="menu-button" type="submit">Login</button>
         </form>
     )
 }

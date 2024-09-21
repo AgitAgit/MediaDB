@@ -353,7 +353,7 @@ a:hover {
 }
 .pagination-button.active {
     background-color: var(--page-button);
-    padding-top: 9px;
+    padding-block: 6px;
     text-align: center;
     border-radius: 50%;
 }

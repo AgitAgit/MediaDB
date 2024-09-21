@@ -14,11 +14,11 @@ html, body {
   min-height: 100vh;
 }
 :root {
-  /* --light-mode-input: 0, 0%, 52%;  */
+  --light-mode-input: 0, 0%, 52%; /* DELETE */
 }
-input {
+input, select {
   font-family: cursive;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 [data-theme="dark"] {

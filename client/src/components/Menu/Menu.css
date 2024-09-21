@@ -3,17 +3,6 @@
     src: url('./../../assets/fonts/Coffee\ Soda.ttf');
 }
 
-.temp1 {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-.temp2 {
-    position: absolute;
-    top: 0;
-    left: 80px;
-}
-
 
 #Menu {
     position: relative;
@@ -44,8 +33,17 @@
     background-size: 1000% 1000%;
     animation: gradientAnimation 10s ease-in-out infinite;
 }
-
-.form-container, #menu-select-state {
+#logo-large-menu {
+    width: 300px;
+    margin-inline: auto;
+}
+.logo-container h1 {
+    font-family: "coffee soda";
+    text-align: center;
+    font-size: 3rem;
+    transition: 0.3s ease;
+}
+.form-container {
     width: 300px;
     position: relative;
     box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
@@ -114,6 +112,12 @@
 .menu-input::placeholder {
     color: #aaa;
 }
+.menu-input:-webkit-autofill {
+    box-shadow: 0 0 0 1000px var(--input) inset !important; /* Background inside input google autofill */
+}
+.menu-input:-webkit-autofill::first-line {
+    color: var(--text) !important; /* Text inside input google autofill */
+}
 .position-relative {
     position: relative;
 }
@@ -140,7 +144,7 @@
     color: var(--link-hover);
     cursor: pointer;
 }
-.submit-button {
+.menu-button {
     font-weight: bold;
     font-family: "coffee soda";
     font-size: 1.2rem;
@@ -152,20 +156,15 @@
     border-radius: var(--radius);
     transition: 0.3s ease;
 }
-.submit-button:hover {
+.menu-button:hover {
     transform: scale(1.02);
 }
 
-#logo-large-menu {
-    width: 300px;
-    margin-inline: auto;
+#menu-select-state {
+    min-height: 270px;
 }
-.logo-container h1 {
-    font-family: "coffee soda";
-    text-align: center;
-    font-size: 3rem;
-    transition: 0.3s ease;
-}
+
+
 
 @media (max-width: 700px) {
     #main-content-menu {
