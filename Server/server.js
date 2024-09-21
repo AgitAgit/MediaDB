@@ -26,11 +26,22 @@ app.put('/api/data/book/get', bookHandler.getData);
 
 app.post('/api/data/song/get', songHandler.getSongs);
 
-// app.listen(port,()=>{
-//     console.log(`the server is listening on port ${port}`);
-// });
+// app.post('/api/data/users/getLiked', userController.appGetLiked);
+// app.post('/api/data/users/getLiked', userController.appGetLiked);
+app.post('/api/data/users/getLiked', userController.appGetLiked);
+
+app.listen(port,()=>{
+    console.log(`the server is listening on port ${port}`);
+});
 
 // mongoActions.findOne('users',{"username":"Amit"});
 // mongoActions.findOne('users',{"_id":{'$oid':'66ed44e26f9b16b8422aaf27'}});
+//66d80dc63f0a87f0045df1a7
 // userController.addLiked('66ed44e26f9b16b8422aaf27','books','66d80dc63f0a87f0045df1a0');
-userController.testValidateUser();
+// userController.addLiked('66ed44e26f9b16b8422aaf27','books','66d80dc63f0a87f0045df1a7');
+// userController.testValidateUser();
+// userController.getLiked('66ed44e26f9b16b8422aaf27','books')
+// .then(result => console.log(result));
+
+// userController.getLiked('66ed44e26f9b16b8422aaf27','songs')
+// .then(result => console.log(result));

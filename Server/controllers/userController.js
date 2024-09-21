@@ -20,16 +20,36 @@ async function validateUser(username, password){
     else return false;
 }
 
-function addLiked(userId, mediaType='songs', elementId){
+function addLiked(userId, mediaType='songs', elementId){//missing handling for already existing value
     pushToArray('users', userId, `liked_${mediaType}`,elementId);
 }
 
 function removeLiked(userId, mediaType='songs', elementId){
     pullFromArray('users', userId, `liked_${mediaType}`,elementId);
 }
+function appRemoveLiked(req, res){
+    const data = req.body;
+    const userId = data.userId;
+    const mediaType = data.mediaType;
+    const elementId = data.elementId;
+    removeLiked(userId,mediaType,elementId)
+    .then(() => res(`item ${elementId} removed from ${mediaType} of user: ${userId}`))
+    .catch(error => res.json(error));
+}
 
-function getLiked(userId, mediaType){
+async function getLiked(userId, mediaType){
+    const doc = await findOne('users',{
+        "_id":{ $oid:userId }
+    });
+    return doc[`liked_${mediaType}`];
+}
 
+function appGetLiked(req,res){
+    const data = req.body;
+    const userId = data.userId;
+    const mediaType = data.mediaType;
+    getLiked(userId, mediaType)
+    .then(result => res.json(result));
 }
 //Tests:
 async function testValidateUser(){
@@ -44,5 +64,5 @@ async function testValidateUser(){
     console.log('should not pass:',test4);
 }
 
-module.exports = {createUser, validateUser, addLiked, removeLiked, testValidateUser};
+module.exports = {createUser, validateUser, addLiked, removeLiked, getLiked, appGetLiked, testValidateUser};
 
