@@ -1,10 +1,9 @@
-import React, { useState, useContext} from "react";
+import React, { useContext} from "react";
 import logoSmall from './../../assets/logo-small.png';
 import { stateContext } from "../Menu/Menu";
 
 function Header(props){
-    const { setState } = useContext(stateContext);
-    const { theme, setTheme } = props;
+    const { setState, theme, setTheme } = useContext(stateContext);
     
     function toggleTheme(){
         setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));

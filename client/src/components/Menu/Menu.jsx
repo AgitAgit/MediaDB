@@ -17,10 +17,17 @@ function Menu(){
     const [isLoginActive, setIsLoginActive] = useState(true);
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
-    useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-    }, [theme]);
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+
+    // useEffect(() => {
+    //     document.documentElement.setAttribute('data-theme', theme);
+    //     localStorage.setItem('theme', theme);
+    // }, [theme]);
+
+    function toggleTheme(){
+        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    }
 
     const handleLoginClick = () => {
         setIsLoginActive(true);
@@ -51,6 +58,8 @@ function Menu(){
                             <button className='temp2' onClick={onSongsClick}>Songs</button>
                             <div className='background'></div>
                             <div className="form-container">
+                                <div id="menu-theme" onClick={toggleTheme}>
+                                {theme === 'light' ? '☀️' : '🌙'}</div>
                                 <div className="button-box">
                                     <div id="btn"
                                     style={{left: isLoginActive ? "0px" : "110px",}}

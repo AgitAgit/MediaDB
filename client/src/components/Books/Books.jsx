@@ -29,8 +29,6 @@ function Books(props){
     const [currPage, setCurrPage] = useState(1);
     let totalPages;
 
-    
-
     useEffect(() => {
         const fetchData = debounce(async () => {
             const response = await getBooks(searchText, method, 1000);
@@ -69,14 +67,14 @@ function Books(props){
     return(
     <div id="books-container">
         <div>
-        <Header theme={theme} setTheme={setTheme}/>
+        <Header/>
         <div id="main-content">
             { !selectedBook ?
             // ALL BOOKS
             <div id='books-search-page'>
-                <BackToTop theme={theme}/>
+                <BackToTop/>
                 <div id="search-row">
-                    <SearchButton theme={theme} searchText={searchText} setSearchText={setSearchText}
+                    <SearchButton searchText={searchText} setSearchText={setSearchText}
                     setTriggerSearch={setTriggerSearch}/>
                     <FilterButton method={method} setMethod={setMethod}/>
                 </div>
@@ -101,7 +99,7 @@ function Books(props){
             }
         </div>
         </div>
-        <Footer theme={theme}/>
+        <Footer/>
     </div>
     );
 }

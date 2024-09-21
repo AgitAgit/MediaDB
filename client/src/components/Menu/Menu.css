@@ -47,12 +47,18 @@
 
 .form-container {
     width: 300px;
-    /* min-height: 400px; */
     position: relative;
     box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
     background-color: var(--background);
     border-radius: 10px;
+    transition: 0.3s ease;
+}
+#menu-theme {
+    position: absolute;
+    top:4px;
+    left:4px;
+    cursor: pointer;
 }
 .button-box {
     position: relative;
@@ -70,7 +76,6 @@
     left: 0;
     width: 110px;
     height: 100%;
-    /* background: linear-gradient(to right, #0364f6bb, #4facfe); */
     background: linear-gradient(to right, var(--link-color), var(--link-hover));
     border-radius: var(--radius);
     transition: 0.5s ease;
@@ -82,10 +87,10 @@
     background: none;
     border: none;
     cursor: pointer;
-    /* font-size: 16px; */
     font-weight: bold;
     padding: 10px 20px;
     z-index: 1;
+    transition: 0.3s ease;
 }
 /* LOGIN FORM */
 .menu-form {
@@ -93,7 +98,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 250px;
+    min-height: 270px;
 }
 .menu-input {
     padding: 0.7rem;
@@ -102,6 +107,8 @@
     border: 1px solid rgb(193, 193, 193);
     background-color: var(--input);
     border-radius: var(--radius);
+    color: var(--text);
+    transition: 0.3s ease;
 }
 .menu-input::placeholder {
     color: #aaa;
@@ -123,7 +130,6 @@
     padding: 0.7rem;
     margin-block: 0.6rem;
     width: 100%;
-    /* background: linear-gradient(to right, #0364f6bb, #4facfe); */
     background: linear-gradient(to right, var(--link-color), var(--link-hover));
     border: none;
     border-radius: var(--radius);
@@ -141,6 +147,7 @@
     font-family: "coffee soda";
     text-align: center;
     font-size: 3rem;
+    transition: 0.3s ease;
 }
 
 @media (max-width: 700px) {
