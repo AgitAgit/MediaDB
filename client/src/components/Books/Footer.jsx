@@ -1,8 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faReact, faFacebook, faTwitter, faLinkedin, faNode, faNpm  } from '@fortawesome/free-brands-svg-icons'; // Brand icons
+import { useContext } from 'react';
+import { stateContext } from '../Menu/Menu';
 
-function Footer(props) {
-    const { theme } = props;
+function Footer() {
+    const { theme } = useContext(stateContext);
+    
     return(
         <footer className="footer-container">
             {theme === 'light' ?

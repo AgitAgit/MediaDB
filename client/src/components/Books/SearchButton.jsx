@@ -1,8 +1,11 @@
 import search_icon_black from './../../assets/search_icon-black.png';
 import search_icon_white from './../../assets/‏‏search_icon-white.png'
+import { stateContext } from '../Menu/Menu';
+import { useContext } from 'react';
 
 function SearchButton(props){
-    const { searchText, setSearchText, theme, setTriggerSearch } = props;
+    const { searchText, setSearchText, setTriggerSearch} = props;
+    const { theme } = useContext(stateContext);
 
     function handleTextChange(event){
         setSearchText(event.target.value);

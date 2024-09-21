@@ -29,10 +29,8 @@ a:hover {
 #books-container {
     background-color: var(--background);
     transition: background-color 0.3s ease, color 0.3s ease;
-    font-family: Arial, sans-serif;
     color: var(--text);
     min-height: 100vh;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -57,6 +55,7 @@ a:hover {
     /* max-height: 85px; */
 }
 #header-container {
+    font-family: 'coffee soda';
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
