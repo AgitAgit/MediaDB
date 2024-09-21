@@ -1,6 +1,163 @@
-#Menu {
-    color:blue;
-    button{
-        color:red;        
-    }
+@font-face {
+    font-family: "coffee soda";
+    src: url('./../../assets/fonts/Coffee\ Soda.ttf');
 }
+
+.temp1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.temp2 {
+    position: absolute;
+    top: 0;
+    left: 80px;
+}
+
+
+#Menu {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    color: var(--text);
+}
+#main-content-menu {
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center; /* flex-end - for top*/
+    align-items: center;
+    gap: 10vw;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    background: var(--header-background-animation);
+    background-size: 1000% 1000%;
+    animation: gradientAnimation 10s ease-in-out infinite;
+}
+
+.form-container {
+    width: 300px;
+    /* min-height: 400px; */
+    position: relative;
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: var(--background);
+    border-radius: 10px;
+}
+.button-box {
+    position: relative;
+    width: 220px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid rgb(223, 223, 223);
+    border-radius: var(--radius);
+}
+#btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 110px;
+    height: 100%;
+    /* background: linear-gradient(to right, #0364f6bb, #4facfe); */
+    background: linear-gradient(to right, var(--link-color), var(--link-hover));
+    border-radius: var(--radius);
+    transition: 0.5s ease;
+}
+.toggle-btn {
+    color: var(--text);
+    font-family: "coffee soda";
+    font-size: 1.2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    /* font-size: 16px; */
+    font-weight: bold;
+    padding: 10px 20px;
+    z-index: 1;
+}
+/* LOGIN FORM */
+.menu-form {
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 250px;
+}
+.menu-input {
+    padding: 0.7rem;
+    margin-block: 0.6rem;
+    width: 100%;
+    border: 1px solid rgb(193, 193, 193);
+    background-color: var(--input);
+    border-radius: var(--radius);
+}
+.menu-input::placeholder {
+    color: #aaa;
+}
+.link {
+    font-weight: bold;
+    width: fit-content;
+    margin-block: 0.4rem;
+    color: var(--link-color);
+}
+.link:hover {
+    color: var(--link-hover);
+    cursor: pointer;
+}
+.submit-button {
+    font-weight: bold;
+    font-family: "coffee soda";
+    font-size: 1.2rem;
+    padding: 0.7rem;
+    margin-block: 0.6rem;
+    width: 100%;
+    /* background: linear-gradient(to right, #0364f6bb, #4facfe); */
+    background: linear-gradient(to right, var(--link-color), var(--link-hover));
+    border: none;
+    border-radius: var(--radius);
+    transition: 0.3s ease;
+}
+.submit-button:hover {
+    transform: scale(1.02);
+}
+
+#logo-large-menu {
+    width: 300px;
+    margin-inline: auto;
+}
+.logo-container h1 {
+    font-family: "coffee soda";
+    text-align: center;
+    font-size: 3rem;
+}
+
+@media (max-width: 700px) {
+    #main-content-menu {
+        flex-direction: column-reverse;
+        gap: 2rem;
+    }
+    #logo-large-menu {
+        width: 200px;
+    }
+    .logo-container h1 {
+
+        font-size: 2rem;
+    }
+    .form-container {
+        width: 270px;
+    }
+    
+}
+
