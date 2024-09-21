@@ -141,7 +141,7 @@ function createUser(username, password){
 
 function addToUser(userId, itemId, property){
     const uId = new ObjectId(`${userId}`);
-    const url = `${base_url}/action/updateOne?`;
+    const url = `${base_url}/action/updateOne`;
     const requestBody = {
         dataSource: 'MediaDB',
         database: 'media',
