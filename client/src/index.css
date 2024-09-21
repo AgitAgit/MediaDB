@@ -16,6 +16,10 @@ html, body {
 :root {
   /* --light-mode-input: 0, 0%, 52%;  */
 }
+input {
+  font-family: cursive;
+  font-weight: bold;
+}
 
 [data-theme="dark"] {
   --elements: hsl(209, 23%, 22%); /* 70% black+10%blue */
