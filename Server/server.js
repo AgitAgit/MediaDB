@@ -34,7 +34,7 @@ app.post('/api/data/song/get', songHandler.getSongs);
 // let ddd = ObjectId.createFromHexString('66ed44e26f9b16b8422aaf27');
 //ddd = JSON.stringify(ddd);
 mongoActions.findOne('users',{"username":"Amit"});
-mongoActions.findOne('users',{"_id":"ObjectId('66ed44e26f9b16b8422aaf27')"});
+mongoActions.findOne('users',{"_id":{'$oid':'66ed44e26f9b16b8422aaf27'}});
 // mongoActions.findOne('users',{"_id":new ObjectId("66ed44e26f9b16b8422aaf27")});
 // console.log(ddd);
 //{"_id":ObjectId("66ed44e26f9b16b8422aaf27")}

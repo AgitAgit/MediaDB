@@ -1,6 +1,13 @@
-//import { findOne, find, insertOne, insertMany } from './mongoActions';
+import { findOne, find, insertOne, insertMany } from './mongoActions';
 
-function createUser(username, password){}
+function createUser(username, password){
+    insertOne('users',{
+        username,
+            password,
+            liked_books: [],
+            liked_songs: []
+    });
+}
 
 function validateUser(username, password){}
 
