@@ -1,31 +1,103 @@
 const { findOne, find, insertOne, insertMany, pushToArray, pullFromArray } = require ('./mongoActions.js');
 
-function createUser(username, password){
+//needs some touch ups
+async function createUser(username, password){
+    const check = await validateUser(username, password);
+    if(check.userExists){
+        check.passwordCorrect = null;
+        check.newUserCreated = false;
+        return check;
+    }
+
     insertOne('users',{
         username,
-            password,
-            liked_books: [],
-            liked_songs: []
-    });
+        password,
+        liked_books: [],
+        liked_songs: []
+    })
+    
+    // const check2 = await validateUser(username, password);
+    // if(check2.userExists && check2.passwordCorrect){
+    //     check2.newUserCreated = true;
+    // }
+    const check2 = {
+        newUserCreated:true
+    }
+    return check2;
+}
+async function appCreateUser(req, res){
+    const data = req.body;
+    const username = data.username;
+    const password = data.password;
+    const check = await createUser(username, password);
+    res.json(check);
 }
 
 async function validateUser(username, password){
-    const user = await findOne('users',{ 
-        $and:[
-        {'username':username},
-        {'password':password}
-    ]});
-    // console.log(user);
-    if(user) return true;
-    else return false;
+    let response = {
+        userExists: false,
+        passwordCorrect: false
+    };
+    const user = await findOne('users', {
+        'username':username
+    });
+    // const correctUser = await findOne('users',{ 
+    //     $and:[
+    //     {'username':username},
+    //     {'password':password}
+    // ]});
+    if(user && user.username === username && user.password === password){
+        response.userExists = true;
+        response.passwordCorrect = true;
+    }
+    else if(user && user.username === username && !(user.password === password)){
+        response.userExists = true;
+        response.passwordCorrect = false;
+    }
+
+    return response;
+}
+function appValidateUser(req,res){
+    const data = req.body;
+    const username = data.username;
+    const password = data.password;
+    validateUser(username, password)
+    .then(response => res.json(response))
+    .catch(error => res.json(error));
 }
 
-function addLiked(userId, mediaType='songs', elementId){//missing handling for already existing value
-    pushToArray('users', userId, `liked_${mediaType}`,elementId);
+async function addLiked(userId, mediaType, elementId){//missing handling for already existing value
+    const liked = await getLiked(userId, mediaType);
+    if(liked && liked.includes(elementId)){
+        return false;
+    }
+    else{
+        pushToArray('users', userId, `liked_${mediaType}`,elementId);
+        return true;
+    }
+}
+async function appAddLiked(req, res){
+    const data = req.body;
+    const userId = data.userId;
+    const mediaType = data.mediaType;
+    const elementId = data.elementId;
+    const isAdded = await addLiked(userId, mediaType, elementId)
+    console.log('appAddLiked isAdded', isAdded);
+    let response = 'check';
+    if(isAdded){
+        response = `item '${elementId}' added to liked_${mediaType} of user: '${userId}'`
+    }
+    else{
+        response = `failed to add item '${elementId}'. It already exists in liked_${mediaType} of user: '${userId}',or some error occured`
+    } 
+    res.json(response);
+    // .then(isAdded => {
+    // })
+    // .catch(error => res.json(error));
 }
 
-function removeLiked(userId, mediaType='songs', elementId){
-    pullFromArray('users', userId, `liked_${mediaType}`,elementId);
+async function removeLiked(userId, mediaType='songs', elementId){
+    await pullFromArray('users', userId, `liked_${mediaType}`,elementId);
 }
 function appRemoveLiked(req, res){
     const data = req.body;
@@ -33,7 +105,7 @@ function appRemoveLiked(req, res){
     const mediaType = data.mediaType;
     const elementId = data.elementId;
     removeLiked(userId,mediaType,elementId)
-    .then(() => res(`item ${elementId} removed from ${mediaType} of user: ${userId}`))
+    .then(result => res.json(`item ${elementId} removed from liked_${mediaType} of user: ${userId}`))
     .catch(error => res.json(error));
 }
 
@@ -43,7 +115,6 @@ async function getLiked(userId, mediaType){
     });
     return doc[`liked_${mediaType}`];
 }
-
 function appGetLiked(req,res){
     const data = req.body;
     const userId = data.userId;
@@ -64,5 +135,5 @@ async function testValidateUser(){
     console.log('should not pass:',test4);
 }
 
-module.exports = {createUser, validateUser, addLiked, removeLiked, getLiked, appGetLiked, testValidateUser};
+module.exports = { appCreateUser, appValidateUser, appAddLiked, appRemoveLiked, appGetLiked, testValidateUser};
 

@@ -26,9 +26,11 @@ app.put('/api/data/book/get', bookHandler.getData);
 
 app.post('/api/data/song/get', songHandler.getSongs);
 
-// app.post('/api/data/users/getLiked', userController.appGetLiked);
-// app.post('/api/data/users/getLiked', userController.appGetLiked);
-app.post('/api/data/users/getLiked', userController.appGetLiked);
+app.post('/api/data/users/create', userController.appCreateUser);
+app.post('/api/data/users/validate', userController.appValidateUser);
+app.post('/api/data/users/liked/add', userController.appAddLiked);
+app.post('/api/data/users/liked/remove', userController.appRemoveLiked);
+app.post('/api/data/users/liked/getliked', userController.appGetLiked);
 
 app.listen(port,()=>{
     console.log(`the server is listening on port ${port}`);
