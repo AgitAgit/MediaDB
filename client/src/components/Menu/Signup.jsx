@@ -1,10 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import React, { useState, useRef } from 'react';
+import { faEye, faEyeSlash, faSpinner, faXmark } from '@fortawesome/free-solid-svg-icons';
+import React, { useState, useRef, useContext } from 'react';
 import { createUser } from '../../dataCenter';
+import { stateContext } from './Menu';
 
-function Signup() {
+function Signup(props) {
+    const { setCurrForm } = props;
+    const { userLogged, setUserLogged } = useContext(stateContext);
     const [EyeOpen, setEyeOpen] = useState(false);
+    const [isPopupVisible, setIsPopupVisible] = useState(false);
     const err = useRef(null);
     const usernameRef = useRef(null);
     const passwordRef = useRef(null);
@@ -24,7 +28,9 @@ function Signup() {
             }
             return;
         }
+        setUserLogged("");
         const { newUserCreated } = await createUser(usernameRef.current.value,passwordRef.current.value);
+        setUserLogged(null);
         if(!newUserCreated){
             err.current.textContent = "Username Already Taken";
             err.current.style.display = "block";
@@ -35,10 +41,9 @@ function Signup() {
             }, 500);
         }
         else {
-            alert("Account Added");
+            setIsPopupVisible(true);
         }
     }
-
     const handleInputChange = (e) => {
         if(e.target === passwordRef.current || e.target === repeatPasswordRef.current)
             passwordRef.current.style.borderColor = repeatPasswordRef.current.style.borderColor = "rgb(193, 193, 193)";
@@ -46,12 +51,22 @@ function Signup() {
             e.target.style.borderColor = "rgb(193, 193, 193)";
         err.current.style.display = "none";
     }
-
     function toggleEye() {
         setEyeOpen(prev => !prev)
     }
+    function togglePopUp() {
+        setIsPopupVisible(false);
+        setCurrForm("login");
+    }
     return (
         <form id='signup-form' className="menu-form" onSubmit={handleSubmitSignup}>
+            {isPopupVisible && (
+            <div className="overlay">
+                <div className="popup">
+                    <p>Sign-up successful!<br/> Welcome to StoryTunes. You can now log in and start exploring.</p>
+                    <FontAwesomeIcon icon={faXmark} className='pop-msg-x' onClick={togglePopUp} beatFade style={{color: "#ce1c1c",}} />
+                </div>
+            </div>)}
             <div>
                 <input id="username-signup" className="menu-input" required
                 ref={usernameRef} onChange={handleInputChange} placeholder="Username" maxLength={15}/>
@@ -69,7 +84,8 @@ function Signup() {
                 </div>
                 <p className="error signup-invalid" ref={err}></p>
             </div>
-            <button id="submit-signup" className="menu-button" type="submit">Sign Up</button>
+            <button id="submit-signup" className="menu-button" type="submit">
+                {userLogged === "" ? <FontAwesomeIcon icon={faSpinner} spinPulse/> :"Sign Up"}</button>
         </form>
     )
 }

@@ -14,11 +14,13 @@ function SelectionMenu() {
 
     return(
         <div id='menu-select-state'>
-            <h1>Welcome {userLogged}!</h1>
+            <h1>Welcome!</h1>
             <p>Please select:</p>
-            <button className="menu-button" onClick={handleStateButtonClick}>Books</button>
-            <button className="menu-button" onClick={handleStateButtonClick}>Songs</button>
-            <button className="menu-button" onClick={handleSignOut}>Sign Out</button>
+            <div className="selection-menu-buttons">
+                <button className="menu-button" onClick={handleStateButtonClick}>Books</button>
+                <button className="menu-button" onClick={handleStateButtonClick}>Songs</button>
+                <button className="menu-button" onClick={handleSignOut}>Sign Out</button>
+            </div>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import { useContext, useState, useRef } from "react";
 import { stateContext } from "./Menu";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { validateUser } from "../../dataCenter";
 
 
@@ -16,10 +16,12 @@ function Login() {
     const handleSubmitLogin = async (e) => {
         e.preventDefault();
         const [username, password] = [usernameRef.current.value, passwordRef.current.value];
+        setUserLogged("");
         const { userExists, passwordCorrect } = await validateUser(username,password);
         if(userExists && passwordCorrect)
             setUserLogged(username);
         else {
+            setUserLogged(null);
             err.current.style.display = "block";
             for(const input of [usernameRef,passwordRef]){
                 input.current.style.borderColor = "red";
@@ -57,7 +59,8 @@ function Login() {
                 <p id="forgot-password" className="link">Forgot Password?</p>
                 <p>Commitment-phobe?  <span className="link" onClick={handleGuestClick}>Go ahead as a guest!</span></p>
             </div>
-            <button id="submit-login" className="menu-button" type="submit">Login</button>
+            <button id="submit-login" className="menu-button" type="submit">
+            {userLogged === "" ? <FontAwesomeIcon icon={faSpinner} spinPulse/> : "Login"}</button>
         </form>
     )
 }

@@ -14,7 +14,6 @@
     color: var(--text);
 }
 #main-content-menu {
-    height: 100%;
     padding: 1rem;
     display: flex;
     justify-content: center; /* flex-end - for top*/
@@ -23,11 +22,11 @@
 }
 
 .background {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    bottom: 0;
-    right: 0;
+    height: 100vh;
+    width: 100vw;
     z-index: -1;
     background: var(--header-background-animation);
     background-size: 1000% 1000%;
@@ -45,6 +44,7 @@
 }
 .form-container {
     width: 300px;
+    min-height: 369px;
     position: relative;
     box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -159,13 +159,67 @@
 .menu-button:hover {
     transform: scale(1.02);
 }
-
+/* pop-up signup */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.popup {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--elements);
+    padding: 20px;
+    border-radius: var(--radius);
+    width: 25%;
+    height: 200px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.pop-msg-x {
+    position: absolute;
+    top:20px;
+    right:20px;
+    font-size: 2rem;
+}
+.popup p {
+    width: 60%;
+}
+/* Selection menu */
 #menu-select-state {
-    min-height: 270px;
+    margin: 7px;
+    p {
+        margin-top: 10px;
+    }
+}
+.selection-menu-buttons {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
-
-
+@media (max-width:1500px) {
+    .popup {
+        width: 35%;
+        height: 300px;
+    }
+}
+@media (max-width:850px) {
+    .popup {
+        width: 45%;
+        height: 400px;
+    }
+}
 @media (max-width: 700px) {
     #main-content-menu {
         flex-direction: column-reverse;
@@ -183,7 +237,12 @@
     }
     
 }
-
+@media (max-width:850px) {
+    .popup {
+        width: 65%;
+        height: 400px;
+    }
+}
 @keyframes shake {
     0% { transform: translateX(0); }
     20% { transform: translateX(-5px); }
