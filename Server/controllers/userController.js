@@ -20,15 +20,10 @@ async function createUser(username, password){
     // if(check2.userExists && check2.passwordCorrect){
     //     check2.newUserCreated = true;
     // }
-    const check2 = {
-        newUserCreated:true
-    }
-    return check2;
+    return {newUserCreated:true}
 }
 async function appCreateUser(req, res){
-    const data = req.body;
-    const username = data.username;
-    const password = data.password;
+    const {username, password} = req.body;
     const check = await createUser(username, password);
     res.json(check);
 }
@@ -41,26 +36,15 @@ async function validateUser(username, password){
     const user = await findOne('users', {
         'username':username
     });
-    // const correctUser = await findOne('users',{ 
-    //     $and:[
-    //     {'username':username},
-    //     {'password':password}
-    // ]});
-    if(user && user.username === username && user.password === password){
-        response.userExists = true;
-        response.passwordCorrect = true;
-    }
-    else if(user && user.username === username && !(user.password === password)){
-        response.userExists = true;
-        response.passwordCorrect = false;
-    }
+
+    if(user?.username === username) response.userExists = true;
+    
+    if(user?.password === password) response.passwordCorrect = true;
 
     return response;
 }
 function appValidateUser(req,res){
-    const data = req.body;
-    const username = data.username;
-    const password = data.password;
+    const {username, password} = req.body;
     validateUser(username, password)
     .then(response => res.json(response))
     .catch(error => res.json(error));
@@ -77,10 +61,7 @@ async function addLiked(userId, mediaType, elementId){//missing handling for alr
     }
 }
 async function appAddLiked(req, res){
-    const data = req.body;
-    const userId = data.userId;
-    const mediaType = data.mediaType;
-    const elementId = data.elementId;
+    const {userId, mediaType, elementId} = req.body;
     const isAdded = await addLiked(userId, mediaType, elementId)
     console.log('appAddLiked isAdded', isAdded);
     let response = 'check';
@@ -100,10 +81,7 @@ async function removeLiked(userId, mediaType='songs', elementId){
     await pullFromArray('users', userId, `liked_${mediaType}`,elementId);
 }
 function appRemoveLiked(req, res){
-    const data = req.body;
-    const userId = data.userId;
-    const mediaType = data.mediaType;
-    const elementId = data.elementId;
+    const {userId, mediaType, elementId} = req.body;
     removeLiked(userId,mediaType,elementId)
     .then(result => res.json(`item ${elementId} removed from liked_${mediaType} of user: ${userId}`))
     .catch(error => res.json(error));
@@ -116,23 +94,9 @@ async function getLiked(userId, mediaType){
     return doc[`liked_${mediaType}`];
 }
 function appGetLiked(req,res){
-    const data = req.body;
-    const userId = data.userId;
-    const mediaType = data.mediaType;
+    const {userId, mediaType} = req.body;
     getLiked(userId, mediaType)
     .then(result => res.json(result));
-}
-//Tests:
-async function testValidateUser(){
-    const test1= await validateUser('Amit','1234');
-    const test2= await validateUser('Yaniv','1234');
-    const test3= await validateUser('Amit','1111');
-    const test4= await validateUser('amit','1234');
-    
-    console.log('should pass:',test1);
-    console.log('should not pass:',test2);
-    console.log('should not pass:',test3);
-    console.log('should not pass:',test4);
 }
 
 module.exports = { appCreateUser, appValidateUser, appAddLiked, appRemoveLiked, appGetLiked, testValidateUser};
