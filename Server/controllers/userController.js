@@ -61,8 +61,8 @@ async function addLiked(userId, mediaType, elementId){//missing handling for alr
     }
 }
 async function appAddLiked(req, res){
-    const {userId, mediaType, elementId} = req.body;
-    const isAdded = await addLiked(userId, mediaType, elementId)
+    const {username, mediaType, elementId} = req.body;
+    const isAdded = await addLiked(nameToId(username), mediaType, elementId)
     console.log('appAddLiked isAdded', isAdded);
     let response = 'check';
     if(isAdded){
@@ -81,8 +81,8 @@ async function removeLiked(userId, mediaType='songs', elementId){
     await pullFromArray('users', userId, `liked_${mediaType}`,elementId);
 }
 function appRemoveLiked(req, res){
-    const {userId, mediaType, elementId} = req.body;
-    removeLiked(userId,mediaType,elementId)
+    const {username, mediaType, elementId} = req.body;
+    removeLiked(nameToId(username),mediaType,elementId)
     .then(result => res.json(`item ${elementId} removed from liked_${mediaType} of user: ${userId}`))
     .catch(error => res.json(error));
 }
@@ -94,9 +94,16 @@ async function getLiked(userId, mediaType){
     return doc[`liked_${mediaType}`];
 }
 function appGetLiked(req,res){
-    const {userId, mediaType} = req.body;
-    getLiked(userId, mediaType)
+    const {username, mediaType} = req.body;
+    getLiked(nameToId(username), mediaType)
     .then(result => res.json(result));
+}
+
+async function nameToId(username){
+    const user = await findOne('users', {
+        'username':username
+    });
+    return user._id;
 }
 
 module.exports = { appCreateUser, appValidateUser, appAddLiked, appRemoveLiked, appGetLiked, testValidateUser};
