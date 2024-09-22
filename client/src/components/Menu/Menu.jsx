@@ -16,7 +16,7 @@ export const stateContext = createContext();
 function Menu(){
     const [state, setState] = useState('Menu');
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
-    const [loginForm, setLoginForm] = useState(true);
+    const [currForm, setCurrForm] = useState("login");
     const [userLogged, setUserLogged] = useState(null);
 
     document.documentElement.setAttribute('data-theme', theme);
@@ -27,18 +27,12 @@ function Menu(){
     }
 
     const handleLoginClick = () => {
-        setLoginForm(true);
+        setCurrForm("login");
     };
 
     const handleSignupClick = () => {
-        setLoginForm(false);
+        setCurrForm("signup");
     };
-    function onBooksClick(){
-        setState('Books');
-    }
-    function onSongsClick(){
-        setState('Songs');
-    }
 
     return(
         <stateContext.Provider value={{state, setState, theme, setTheme , userLogged, setUserLogged}}>
@@ -58,12 +52,12 @@ function Menu(){
                             { !userLogged ? //NO USER LOGGED
                             <><div className="button-box">
                                 <div id="btn"
-                                style={{left: loginForm ? "0px" : "110px",}}
+                                style={{left: currForm === "login" ? "0px" : "110px",}}
                                 ></div>
                                 <button className="toggle-btn" onClick={handleLoginClick}>Log in</button>
                                 <button className="toggle-btn" onClick={handleSignupClick}>Sign up</button>
                             </div>
-                                {loginForm ? <Login /> : <Signup />}
+                                {currForm === "login" ? <Login /> : <Signup setCurrForm={setCurrForm} />}
                                 </>
                         : // USER LOGGED
                         <SelectionMenu />
