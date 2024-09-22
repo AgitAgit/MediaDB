@@ -1,6 +1,6 @@
 import defaultImg from './assets/book_img_not_available.png';
 import axios from 'axios';
-import Books from './components/Books/Books';
+import CryptoJS from 'crypto-js';
 
 const _SERVER_PORT = 8080;
 const _SERVER_ADDRESS = 'https://mediadb-91464205485.us-central1.run.app';
@@ -8,6 +8,26 @@ const _LOCAL_SERVER_ADDRESS = `http://localhost:${_SERVER_PORT}`;
 
 const _CURRENT_ADDRESS = _SERVER_ADDRESS;
 
+function validateUser(username, password) {
+    return axios.post(`${_CURRENT_ADDRESS}/api/data/users/validate`,
+        {
+            username,
+            password: CryptoJS.SHA256(password).toString()
+        }
+    )
+    .then(response => response.data)
+    .catch(err => console.log("Client fetching error:",err)); 
+}
+function createUser(username,password) {
+    return axios.post(`${_CURRENT_ADDRESS}/api/data/users/create`,
+        {
+            username,
+            password: CryptoJS.SHA256(password).toString()
+        }
+    )
+    .then(response => response.data)
+    .catch(err => console.log("Client fetching error:",err)); 
+}
 
 function getBooks(searchText, method, limit=100){
     const filter = {};
@@ -19,7 +39,6 @@ function getBooks(searchText, method, limit=100){
     })
     .then(books => {
         const data = books.data;
-        // console.log("data on center is", data);
         if(data && data.length > 0) data.forEach(element => {
             if(element.hasOwnProperty("publishedDate") && element.publishedDate.length > 10)
                 element.publishedDate = element.publishedDate.slice(0,10);
@@ -63,4 +82,4 @@ function processSong(song){
     return {img, track, album, artist, trackLink, albumLink, artistLink}
 }
 
-export {getBooks, getSongs, searchSongs};
+export {getBooks, getSongs, searchSongs, validateUser, createUser};

@@ -6,3 +6,6 @@ https://www.mongodb.com/docs/manual/reference/method/db.collection.find/
 
 color picker:
 https://coolors.co/palettes/trending
+
+FontAwesome:
+https://fontawesome.com/icons

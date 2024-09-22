@@ -2,7 +2,7 @@ import { useContext, useState, useRef } from "react";
 import { stateContext } from "./Menu";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
+import { validateUser } from "../../dataCenter";
 
 
 function Login() {
@@ -14,10 +14,11 @@ function Login() {
     const passwordRef = useRef(null);
     
     const handleSubmitLogin = async (e) => {
-        // e.preventDefault();
-        const user = usernameRef.current.value; //Check data base
-        if(user)
-            setUserLogged(user);
+        e.preventDefault();
+        const [username, password] = [usernameRef.current.value, passwordRef.current.value];
+        const { userExists, passwordCorrect } = await validateUser(username,password);
+        if(userExists && passwordCorrect)
+            setUserLogged(username);
         else {
             err.current.style.display = "block";
             for(const input of [usernameRef,passwordRef]){
@@ -41,7 +42,7 @@ function Login() {
         setEyeOpen(prev => !prev)
     }
     return (
-        <form id='login-form' className="menu-form" onSubmit={handleSubmitLogin} action="/api/login">
+        <form id='login-form' className="menu-form" onSubmit={handleSubmitLogin}>
             <div>
                 <input id="username-login" className="menu-input" name="username" autoComplete="username" required
                 ref={usernameRef} onChange={handleInputChange} placeholder="Username" maxLength={15}/>
