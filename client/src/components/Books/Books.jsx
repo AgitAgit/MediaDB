@@ -1,6 +1,6 @@
 import './Books.css';
 import loadingGif from './../../assets/loadingGif.gif';
-import React, { useState, useEffect, createContext, useContext} from 'react';
+import React, { useState, useEffect, createContext, useContext, useRef} from 'react';
 import Header from './Header';
 import SearchButton from './SearchButton'
 import FilterButton from './FilterButton';
@@ -13,6 +13,7 @@ import debounce from 'lodash.debounce';
 import Footer from './Footer';
 import Loading from '../Songs/Loading';
 import { stateContext } from '../Menu/Menu';
+import { faV } from '@fortawesome/free-solid-svg-icons';
 
 export const currBook = createContext();
 // RENDER RUNS COMPONENTS 2 TIMES INITIALLY DON'T BE WORRIED ABOUT LOTS OF LOGS
@@ -27,18 +28,20 @@ function Books(props){
     const [triggerSearch, setTriggerSearch] = useState(true);
     const [scrollY, setScrollY] = useState(window.scrollY);
     const [currPage, setCurrPage] = useState(1);
+    const [favorites, setFavorites] = useState(false);
+    const favButtonRef = useRef(null);
     let totalPages;
 
     useEffect(() => {
         const fetchData = debounce(async () => {
             const response = await getBooks(searchText, method, 1000);
             setData(response);
-        }, 100); // 100ms delay for requests
+        }, 300); // 300ms delay for requests
         fetchData();
         setCurrPage(1);
         // cancel pending request from before
         return () => { fetchData.cancel(); };
-    }, [searchText, method, triggerSearch]);
+    }, [searchText, method, triggerSearch, favorites]);
 
 
     useEffect(() => {
@@ -58,10 +61,13 @@ function Books(props){
         setSelectedBook(element);
         window.scrollTo({top:0,left: 0, behavior: 'smooth'});
     }
-
     function handlePageChange(newPage) {
         window.scrollTo({top:0,left: 0, behavior: 'smooth'});
         setCurrPage(newPage);
+    }
+    function toggleFavorites() {
+        setFavorites(prev => !prev);
+        favButtonRef.current.classList.toggle("button-checked");
     }
 
     return(
@@ -76,6 +82,7 @@ function Books(props){
                 <div id="search-row">
                     <SearchButton searchText={searchText} setSearchText={setSearchText}
                     setTriggerSearch={setTriggerSearch}/>
+                    <button className='favorites-button' ref={favButtonRef} onClick={toggleFavorites}>Favorites</button>
                     <FilterButton method={method} setMethod={setMethod}/>
                 </div>
                     <Pagination currPage={currPage} totalPages={totalPages} handlePageChange={handlePageChange}/>
