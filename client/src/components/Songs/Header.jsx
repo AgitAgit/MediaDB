@@ -2,10 +2,10 @@ import {useState, useEffect, useContext} from 'react';
 
 import SearchBar from './SearchBar';
 
-import { stateContext } from './../Menu/Menu';
+import {stateContext} from './../Menu/Menu';
 
 function Header(props){
-    const [theme, setTheme] = props.theme;//useState(localStorage.getItem('theme') || 'light');
+    const {theme, setTheme} = useContext(stateContext);
     const {state, setState} = useContext(stateContext);
 
     document.documentElement.setAttribute('data-theme',theme);
