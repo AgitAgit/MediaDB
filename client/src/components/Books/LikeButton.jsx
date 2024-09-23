@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { stateContext } from '../Menu/Menu';
+import { addLiked, removeLiked } from '../../dataCenter';
 
-const LikeButton = () => {
-    const [liked, setLiked] = useState(false);
-
-    const toggleLike = (event) => {
+const LikeButton = (props) => {
+    const { favBooks, userLogged } = useContext(stateContext);
+    const { isLiked, _id } = props
+    const [liked, setLiked] = useState(isLiked ? true:false);
+    
+    const toggleLike = async (event) => {
         event.stopPropagation();
         setLiked(!liked);
+        try{
+            if(liked)
+                await addLiked(userLogged,'books', _id)
+            else
+                await removeLiked(userLogged,'books',_id);
+        }
+        catch (err) {
+            console.error("Error adding liked item:", err);
+        }
     };
 
     return (

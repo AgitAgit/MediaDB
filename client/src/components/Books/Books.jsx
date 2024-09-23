@@ -19,7 +19,7 @@ export const currBook = createContext();
 // RENDER RUNS COMPONENTS 2 TIMES INITIALLY DON'T BE WORRIED ABOUT LOTS OF LOGS
 
 function Books(props){
-    const { theme, setTheme } = useContext(stateContext);
+    const { theme, setTheme, favBooks } = useContext(stateContext);
     const { setState } = props;
     const [data, setData] = useState(null);
     const [method, setMethod] = useState("title");
@@ -32,9 +32,12 @@ function Books(props){
     const favButtonRef = useRef(null);
     let totalPages;
 
+    
     useEffect(() => {
         const fetchData = debounce(async () => {
-            const response = await getBooks(searchText, method, 1000);
+            let response = await getBooks(searchText, method, 1000);
+            if(favorites)
+                response = response.filter(item => favBooks.includes(item._id));
             setData(response);
         }, 300); // 300ms delay for requests
         fetchData();
@@ -51,9 +54,6 @@ function Books(props){
             window.scrollTo({top:0,left: 0, behavior: 'smooth'})
     }, [selectedBook])
 
-    // if (!data) // No data arrived yet -> loading page
-    //     return <img id="loadingGif" src={loadingGif} />
-
     if(data) totalPages =  Math.ceil(data.length / 24);
 
     function handleCardClick(element){
@@ -67,7 +67,6 @@ function Books(props){
     }
     function toggleFavorites() {
         setFavorites(prev => !prev);
-        favButtonRef.current.classList.toggle("button-checked");
     }
 
     return(
@@ -82,17 +81,18 @@ function Books(props){
                 <div id="search-row">
                     <SearchButton searchText={searchText} setSearchText={setSearchText}
                     setTriggerSearch={setTriggerSearch}/>
-                    <button className='favorites-button' ref={favButtonRef} onClick={toggleFavorites}>Favorites</button>
+                    <button className={"favorites-button" + (favorites ? " button-checked": "")} ref={favButtonRef} onClick={toggleFavorites}>Favorites</button>
                     <FilterButton method={method} setMethod={setMethod}/>
                 </div>
                     <Pagination currPage={currPage} totalPages={totalPages} handlePageChange={handlePageChange}/>
                 <div id='cards-container'>
-                    {(!data) ? 
+                    {(!data) ?
                         <Loading /> :
-                    (totalPages > 0 ? 
+                    (totalPages > 0 ?
                     data
                     .slice((currPage - 1) * 24, currPage * 24)
-                    .map((element, index) => <Card key={index} onClick={() => handleCardClick(element)} data={element}/>)
+                    .map((element, index) => <Card key={index} onClick={() => handleCardClick(element)} 
+                    data={element} favBooks={favBooks}/>)
                     : <div id='books-not-found'>Unfortunately no such a book exists...</div>)}
                 </div>
                 <Pagination currPage={currPage} totalPages={totalPages} handlePageChange={handlePageChange}/>

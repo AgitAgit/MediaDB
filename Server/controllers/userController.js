@@ -67,6 +67,8 @@ async function addLiked(userId, mediaType, elementId){
 }
 async function appAddLiked(req, res){
     const {username, mediaType, elementId} = req.body;
+    console.log(req.body);
+    
     const response = {};
     nameToId(username)
     .then(userId => addLiked(userId, mediaType, elementId))
