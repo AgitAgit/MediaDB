@@ -1,13 +1,14 @@
 import {useState, useEffect, createContext, useContext} from 'react';
 import './Songs.css';
-import Header from './Header.jsx';
+// import Header from './Header.jsx';
+import Header from './../Books/Header.jsx';
 import Footer from './../Books/Footer.jsx';
 import Song from './Song';
 import defaultImg from './assets/DefaultAlbumCover.png';
 import {getSongs, searchSongs} from './../../dataCenter.js';
 import Loading from './Loading.jsx';
 import SearchBar from './SearchBar.jsx';
-import { stateContext } from './../Menu/Menu.jsx';
+import {state, setState, theme, setTheme , userLogged, setUserLogged} from './../Menu/Menu.jsx';
 import SongExt from './SongExt.jsx';
 export const searchContext = createContext();
 
@@ -15,7 +16,6 @@ export const searchContext = createContext();
 function Songs(){
     const [songs, setSongs] = useState(null);
     const [page, setPage] = useState('loading');
-    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
     const [extSong, setExtSong] = useState(null);
 
 
@@ -56,14 +56,14 @@ function Songs(){
         <div>
             {page === 'loading' && (
                 <div>
-                    <Header theme={[theme, setTheme]}/>
+                    <Header/>
                     <Loading/>
-                    <Footer theme={theme}/>
+                    <Footer/>
                 </div>
             )}
             {page === 'songs' && (
                 <div id="songsApp">
-                    <Header theme={[theme, setTheme]}/> {/*goToMenu={goToMenu}*/}
+                    <Header/>
                     <searchContext.Provider value={onSearchClick}>
                         <SearchBar/>
                     </searchContext.Provider>
@@ -72,14 +72,14 @@ function Songs(){
                             return(<Song data={song} key={index} onSongClick={ handleSongClick }/>);//handleSongClick(song)
                         })}
                     </div>
-                    <Footer theme={theme}/>
+                    <Footer/>
                 </div>
             )}
             {page === 'song' && (
                 <div>
-                <Header theme={[theme, setTheme]}/>
+                <Header/>
                 <SongExt data={extSong}></SongExt>
-                <Footer theme={theme}/>
+                <Footer/>
             </div>
             )}
         </div>
