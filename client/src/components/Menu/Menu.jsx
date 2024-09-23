@@ -10,6 +10,7 @@ import Footer from '../Books/Footer.jsx';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
 import SelectionMenu from './SelectionMenu.jsx';
+import { getUserLiked } from '../../dataCenter.js';
 
 export const stateContext = createContext();
 
@@ -18,24 +19,39 @@ function Menu(){
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
     const [currForm, setCurrForm] = useState("login");
     const [userLogged, setUserLogged] = useState(null);
+    const [favBooks, setFavBooks] = useState(null);
+    const [favSongs, setFavSongs] = useState(null);
 
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
 
+    useEffect(() => {
+        const fetchFavorites = async () => {
+            if(userLogged && userLogged !== "guest") {
+                try {
+                    setFavBooks(await getUserLiked(userLogged, 'books'));
+                    setFavSongs(await getUserLiked(userLogged, 'songs'));
+                }
+                catch(err) {
+                    console.log("Client Error getting favorites: " + err);
+                }
+            }
+        };
+        fetchFavorites();
+    }, [userLogged]);
+
     function toggleTheme(){
         setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
     }
-
     const handleLoginClick = () => {
         setCurrForm("login");
     };
-
     const handleSignupClick = () => {
         setCurrForm("signup");
     };
 
     return(
-        <stateContext.Provider value={{state, setState, theme, setTheme , userLogged, setUserLogged}}>
+        <stateContext.Provider value={{state, setState, theme, setTheme , userLogged, setUserLogged, favBooks, setFavBooks, favSongs, setFavSongs}}>
             {state === 'Books' && (
                 <Books/>
             )}

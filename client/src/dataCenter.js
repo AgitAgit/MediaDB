@@ -8,6 +8,39 @@ const _LOCAL_SERVER_ADDRESS = `http://localhost:${_SERVER_PORT}`;
 
 const _CURRENT_ADDRESS = _LOCAL_SERVER_ADDRESS;
 
+function addLiked(username,mediaType, elementId) {
+    return axios.post(`${_CURRENT_ADDRESS}/api/data/users/liked/add`,
+        {
+            username,
+            mediaType,
+            elementId
+        }
+    )
+    .then(response => {console.log(response.data);
+    return response.data})
+    .catch(err => console.log("Client fetching error:",err)); 
+}
+function removeLiked(username,mediaType, elementId) {
+    return axios.post(`${_CURRENT_ADDRESS}/api/data/users/liked/remove`,
+        {
+            username,
+            mediaType,
+            elementId
+        }
+    )
+    .then(response => response.data)
+    .catch(err => console.log("Client fetching error:",err)); 
+}
+function getUserLiked(username, mediaType) {
+    return axios.post(`${_CURRENT_ADDRESS}/api/data/users/liked/getliked`,
+        {
+            username,
+            mediaType
+        }
+    )
+    .then(response => response.data)
+    .catch(err => console.log("Client fetching error:",err)); 
+}
 function validateUser(username, password) {
     return axios.post(`${_CURRENT_ADDRESS}/api/data/users/validate`,
         {
@@ -82,4 +115,5 @@ function processSong(song){
     return {img, track, album, artist, trackLink, albumLink, artistLink}
 }
 
-export {getBooks, getSongs, searchSongs, validateUser, createUser};
+export {getBooks, getSongs, searchSongs, validateUser,
+    createUser, getUserLiked, addLiked, removeLiked};
