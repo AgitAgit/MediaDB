@@ -40,7 +40,7 @@ async function validateUser(username, password){
     if(user?.username === username) response.userExists = true;
     
     if(user?.password === password) response.passwordCorrect = true;
-
+    
     return response;
 }
 function appValidateUser(req,res){
@@ -50,61 +50,79 @@ function appValidateUser(req,res){
     .catch(error => res.json(error));
 }
 
-async function addLiked(userId, mediaType, elementId){//missing handling for already existing value
-    const liked = await getLiked(userId, mediaType);
-    if(liked && liked.includes(elementId)){
-        return false;
+async function addLiked(userId, mediaType, elementId){
+    try {
+        if(!["books","songs"].includes(mediaType)) throw new Error("Wrong mediaType");
+        const liked = await getLiked(userId, mediaType);
+        if(liked?.includes(elementId))
+            return false;
+        else {
+            pushToArray('users', userId, `liked_${mediaType}`,elementId);
+            return true;
+        }
     }
-    else{
-        pushToArray('users', userId, `liked_${mediaType}`,elementId);
-        return true;
+    catch(err) {
+        console.log("Server Error " + err);
     }
 }
 async function appAddLiked(req, res){
     const {username, mediaType, elementId} = req.body;
-    const isAdded = await addLiked(nameToId(username), mediaType, elementId)
-    console.log('appAddLiked isAdded', isAdded);
-    let response = 'check';
-    if(isAdded){
-        response = `item '${elementId}' added to liked_${mediaType} of user: '${userId}'`
-    }
-    else{
-        response = `failed to add item '${elementId}'. It already exists in liked_${mediaType} of user: '${userId}',or some error occured`
-    } 
-    res.json(response);
-    // .then(isAdded => {
-    // })
-    // .catch(error => res.json(error));
+    const response = {};
+    nameToId(username)
+    .then(userId => addLiked(userId, mediaType, elementId))
+    .then(isAdded => {
+        if(isAdded)
+            response["status"] = true;
+        else
+            response["status"] = false;
+        return res.json(response);
+    })
+    .catch(err => res.status(500).json({ error: "Server Error:" + err.message }));
 }
 
 async function removeLiked(userId, mediaType='songs', elementId){
     await pullFromArray('users', userId, `liked_${mediaType}`,elementId);
+    return true;
 }
 function appRemoveLiked(req, res){
-    const {username, mediaType, elementId} = req.body;
-    removeLiked(nameToId(username),mediaType,elementId)
-    .then(result => res.json(`item ${elementId} removed from liked_${mediaType} of user: ${userId}`))
-    .catch(error => res.json(error));
+    try {
+        const {username, mediaType, elementId} = req.body;
+        if(!["books","songs"].includes(mediaType)) throw new Error("Wrong mediaType");
+        nameToId(username)
+        .then(userId => {
+            if(!user) throw new Error("Username not exists");
+            return removeLiked(userId,mediaType,elementId)
+        })
+        .then(result => res.json({status:result}))
+        .catch(err => res.status(500).json({ error: "Server Error:" + err.message }));
+    }
+    catch(err) {
+        console.log("Server Error: " + err);
+    }
 }
 
 async function getLiked(userId, mediaType){
     const doc = await findOne('users',{
         "_id":{ $oid:userId }
     });
-    return doc[`liked_${mediaType}`];
+    
+    return doc ? doc[`liked_${mediaType}`] : [];
 }
 function appGetLiked(req,res){
     const {username, mediaType} = req.body;
-    getLiked(nameToId(username), mediaType)
-    .then(result => res.json(result));
+    
+    nameToId(username)
+    .then(userId => getLiked(userId, mediaType))
+    .then(result => res.json(result))
+    .catch(err => res.status(500).json({ error: "Server Error:" + err.message }));
 }
 
 async function nameToId(username){
     const user = await findOne('users', {
         'username':username
     });
-    return user._id;
+    return user ? user._id : null;
 }
 
-module.exports = { appCreateUser, appValidateUser, appAddLiked, appRemoveLiked, appGetLiked, testValidateUser};
+module.exports = { appCreateUser, appValidateUser, appAddLiked, appRemoveLiked, appGetLiked};
 
