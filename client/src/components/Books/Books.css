@@ -16,10 +16,7 @@ a:hover {
 }
 
 .loadingDiv {
-    height: 300px;
-    width: auto;
-    display: block;
-    margin: 100px auto;
+    grid-column: span 4;
 }
 #books-not-found {
     grid-column: span 2;
@@ -93,7 +90,7 @@ a:hover {
 /* Search Row */
 #search-row {
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 40% 20% 40%;
     max-width: var(--maxWidth);
     min-width: 240px;
     margin: 0 auto 10px;
@@ -133,6 +130,24 @@ a:hover {
     #search-icon:hover {
         transform: scale(1.05) translateY(-50%);
     }
+}
+.favorites-button {
+    font-family: cursive;
+    font-size: 1rem;
+    color: var(--text);
+    background-color: var(--input);
+    border: none;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    width: 150px;
+    margin-left: auto;
+    transition: 0.3s ease;
+}
+.favorites-button:hover {
+    transform: scale(1.05);
+}
+.button-checked {
+    background-color: var(--link-hover);
 }
 #filter-container {
     margin: auto 10%;
@@ -433,15 +448,22 @@ a:hover {
 }
 
 /* MEDIA QUERIES */
-@media (max-width: 750px){
-    #search-container {
-        width: 75%;
-    }
+@media (max-width: 1000px) {
     #search-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-        gap:10px;
+        gap: 15px;
     }
+    .favorites-button {
+        margin-inline: auto;
+    }
+    #filter-container {
+        grid-column: span 2;
+        margin-inline: auto;
+        min-width: 300px;
+    }
+}
+@media (max-width: 750px){
     #big-card-container #data {
         display: flex;
         flex-direction: column;
@@ -487,6 +509,20 @@ a:hover {
 }
 
 @media (max-width: 500px) {
+    #search-row {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+    #search-container {
+        width: 80%;
+    }
+    .favorites-button {
+        width: 75%;
+    }
+    #filter-container {
+        grid-column: 1;
+        max-width: 400px;
+    }
     .theme-container {
         margin-inline: auto;
     }
