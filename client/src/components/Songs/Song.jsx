@@ -1,10 +1,10 @@
-import LikeButton from "../Books/LikeButton";
+import LikeButton from "./LikeButton";
 
 const MAX_TRACK_LENGTH = 40;
 const MAX_STRING_LENGTH = 20;
 
 function Song(props){
-    const {img, track, album, artist, trackLink, albumLink, artistLink} = props.data;
+    const {_id, img, track, album, artist, trackLink, albumLink, artistLink} = props.data;
 
     const onSongClick = props.onSongClick;
 
@@ -28,7 +28,7 @@ function Song(props){
             <br/>
             <p>artist:{trimText(artist)}</p>
             <br/>
-            <LikeButton/>
+            <LikeButton _id={_id}/>
         </div>
     );
 }

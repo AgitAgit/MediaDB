@@ -22,7 +22,7 @@ function Songs(){
     useEffect(() => {
         async function fetchData(){
             const data = await searchSongs('artists.0.name','Bob Dylan',36);
-            //console.log(data);
+            // console.log(data);
             setSongs(data);
             setPage('songs');
         }
@@ -69,6 +69,7 @@ function Songs(){
                     </searchContext.Provider>
                     <div id="songsContainer">
                         {songs.map((song, index)=>{
+                            // console.log(song);
                             return(<Song data={song} key={index} onSongClick={ handleSongClick }/>);//handleSongClick(song)
                         })}
                     </div>
