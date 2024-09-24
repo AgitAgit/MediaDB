@@ -1,10 +1,13 @@
 import {useContext} from 'react';
 import {searchContext} from './Songs';
 import searchIcon from './../../assets/search1.svg';
+// import { stateContext } from '../Menu/Menu';
 function SearchBar(){
-    const onSearchClick = useContext(searchContext);
+    const { onSearchClick, favBtnOn, setFavBtnOn } = useContext(searchContext);
     function handleFavoritesClick(event){
         event.target.classList.toggle('btnClicked');
+        setFavBtnOn((current) => !current);
+        // onSearchClick(document.getElementById('searchInput').value, document.getElementById('searchSelect').value);
         //now I need to add to a context the favorites btn state,
         //and display songs based on that.
     }

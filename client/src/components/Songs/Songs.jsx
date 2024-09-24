@@ -8,8 +8,9 @@ import defaultImg from './assets/DefaultAlbumCover.png';
 import {getSongs, searchSongs} from './../../dataCenter.js';
 import Loading from './Loading.jsx';
 import SearchBar from './SearchBar.jsx';
-import {state, setState, theme, setTheme , userLogged, setUserLogged} from './../Menu/Menu.jsx';
+// import {state, setState, theme, setTheme , userLogged, setUserLogged} from './../Menu/Menu.jsx';
 import SongExt from './SongExt.jsx';
+import { stateContext } from '../Menu/Menu.jsx';
 export const searchContext = createContext();
 
 
@@ -18,18 +19,26 @@ function Songs(){
     const [page, setPage] = useState('loading');
     const [extSong, setExtSong] = useState(null);
     const [yPosition, setYPosition] = useState(0);
-    window.scrollTo(0,yPosition);
-
+    const [favBtnOn, setFavBtnOn] = useState(false);
+    const { favSongs } = useContext(stateContext);
+    window.scrollTo(0, yPosition);
+    
     useEffect(() => {
         async function fetchData(){
-            const data = await searchSongs('artists.0.name','Bob Dylan',36);
-            // console.log(data);
+            let data = await searchSongs('artists.0.name','Bob Dylan',36);
+            console.log(data);
+            if(favBtnOn){
+                data = await data.filter(song =>{
+                    return favSongs.includes(song._id);
+                });
+            }
+            console.log(data);
             setSongs(data);
             setPage('songs');
         }
         fetchData();
-    },[]);
-
+    },[favBtnOn]);
+    
     function handleSongClick(props){
         console.log('a song was clicked!');
         setYPosition(window.scrollY);
@@ -66,7 +75,7 @@ function Songs(){
             {page === 'songs' && (
                 <div id="songsApp">
                     <Header/>
-                    <searchContext.Provider value={onSearchClick}>
+                    <searchContext.Provider value={{ onSearchClick, favBtnOn, setFavBtnOn }}>
                         <SearchBar/>
                     </searchContext.Provider>
                     <div id="songsContainer">

@@ -27,7 +27,7 @@ function Song(props){
             <p>album:{trimText(album)}</p>
             <br/>
             <p>artist:{trimText(artist)}</p>
-            <br/>
+            {/* <br/> */}
             <LikeButton _id={_id}/>
         </div>
     );
