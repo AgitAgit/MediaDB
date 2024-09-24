@@ -1,5 +1,4 @@
 import './Books.css';
-import loadingGif from './../../assets/loadingGif.gif';
 import React, { useState, useEffect, createContext, useContext, useRef} from 'react';
 import Header from './Header';
 import SearchButton from './SearchButton'
@@ -13,14 +12,15 @@ import debounce from 'lodash.debounce';
 import Footer from './Footer';
 import Loading from '../Songs/Loading';
 import { stateContext } from '../Menu/Menu';
-import { faV } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 export const currBook = createContext();
 // RENDER RUNS COMPONENTS 2 TIMES INITIALLY DON'T BE WORRIED ABOUT LOTS OF LOGS
 
-function Books(props){
-    const { theme, setTheme, favBooks } = useContext(stateContext);
-    const { setState } = props;
+function Books(/*props*/){
+    const { theme, setTheme, favBooks, setState, userLogged, setUserLogged } = useContext(stateContext);
+    // const { setState } = props;
     const [data, setData] = useState(null);
     const [method, setMethod] = useState("title");
     const [searchText, setSearchText] = useState("");
@@ -30,18 +30,16 @@ function Books(props){
     const [currPage, setCurrPage] = useState(1);
     const [favorites, setFavorites] = useState(false);
     const favButtonRef = useRef(null);
+    const [isLoginPopupVisible, setIsLoginPopupVisible] = useState(false);
     let totalPages;
 
     
     useEffect(() => {
+        setData(null);
         const fetchData = debounce(async () => {
-            console.log("CLIENT", favBooks);
-            
             let response = await getBooks(searchText, method, 1000, favorites, favBooks);
             setData(response);
-            console.log(data);
-            
-        }, 300); // 300ms delay for requests
+        }, 100); // ms delay for requests
         fetchData();
         setCurrPage(1);
         // cancel pending request from before
@@ -68,15 +66,36 @@ function Books(props){
         setCurrPage(newPage);
     }
     function toggleFavorites() {
-        setFavorites(prev => !prev);
+        if(userLogged === "guest")
+            setIsLoginPopupVisible(true);
+        else
+            setFavorites(prev => !prev);
+    }
+    function toggleLoginPopUp() {
+        setIsLoginPopupVisible(false);
+    }
+    function handleBackToLogin() {
+        setState("Menu");
+        setUserLogged(null);
     }
 
     return(
     <div id="books-container">
         <div>
+        <currBook.Provider value={{selectedBook, setSelectedBook, favorites, setIsLoginPopupVisible, setTriggerSearch}}>
+        {isLoginPopupVisible && (
+            <div className="overlay">
+                <div className="popup">
+                    <p><span>Please Login First!</span><br/> Only subscribed members can like & save their favorites</p>
+                    <FontAwesomeIcon icon={faXmark} className='pop-msg-x' onClick={toggleLoginPopUp} beatFade style={{color: "#ce1c1c",}} />
+                    <div className='flex'>
+                        <button className="menu-button" onClick={toggleLoginPopUp}>Continue as guest</button>
+                        <button className="menu-button" onClick={handleBackToLogin}>Login / Signup</button>
+                    </div>
+                </div>
+            </div>)}
         <Header/>
         <div id="main-content">
-        <currBook.Provider value={{selectedBook, setSelectedBook, favorites}}>
             { !selectedBook ?
             // ALL BOOKS
             <div id='books-search-page'>
@@ -107,8 +126,8 @@ function Books(props){
                 </div>
             
             }
-        </currBook.Provider>
         </div>
+        </currBook.Provider>
         </div>
         <Footer/>
     </div>

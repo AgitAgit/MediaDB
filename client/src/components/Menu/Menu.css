@@ -159,6 +159,10 @@
 .menu-button:hover {
     transform: scale(1.02);
 }
+.flex {
+    display: flex;
+    gap: 5px;
+}
 /* pop-up signup */
 .overlay {
     position: fixed;
@@ -175,8 +179,10 @@
 .popup {
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap:10px;
     background-color: var(--elements);
     padding: 20px;
     border-radius: var(--radius);
@@ -193,6 +199,10 @@
 }
 .popup p {
     width: 60%;
+}
+.popup p span {
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 /* Selection menu */
 #menu-select-state {

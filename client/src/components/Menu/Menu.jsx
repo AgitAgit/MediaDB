@@ -19,15 +19,19 @@ function Menu(){
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
     const [currForm, setCurrForm] = useState("login");
     const [userLogged, setUserLogged] = useState(null);
-    const [favBooks, setFavBooks] = useState([]);
-    const [favSongs, setFavSongs] = useState([]);
+    const [favBooks, setFavBooks] = useState(null);
+    const [favSongs, setFavSongs] = useState(null);
 
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
 
     useEffect(() => {
         const fetchFavorites = async () => {
-            if(userLogged && userLogged !== "guest") {
+            if(userLogged && userLogged === "guest") {
+                setFavBooks([]);
+                setFavSongs([]);
+            }
+            else if(userLogged && userLogged !== "guest") {
                 try {
                     setFavBooks(await getUserLiked(userLogged, 'books'));
                     setFavSongs(await getUserLiked(userLogged, 'songs'));
