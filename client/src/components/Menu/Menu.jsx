@@ -19,8 +19,8 @@ function Menu(){
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
     const [currForm, setCurrForm] = useState("login");
     const [userLogged, setUserLogged] = useState(null);
-    const [favBooks, setFavBooks] = useState(null);
-    const [favSongs, setFavSongs] = useState(null);
+    const [favBooks, setFavBooks] = useState([]);
+    const [favSongs, setFavSongs] = useState([]);
 
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);

@@ -35,10 +35,12 @@ function Books(props){
     
     useEffect(() => {
         const fetchData = debounce(async () => {
-            let response = await getBooks(searchText, method, 1000);
-            if(favorites)
-                response = response.filter(item => favBooks.includes(item._id));
+            console.log("CLIENT", favBooks);
+            
+            let response = await getBooks(searchText, method, 1000, favorites, favBooks);
             setData(response);
+            console.log(data);
+            
         }, 300); // 300ms delay for requests
         fetchData();
         setCurrPage(1);
@@ -74,6 +76,7 @@ function Books(props){
         <div>
         <Header/>
         <div id="main-content">
+        <currBook.Provider value={{selectedBook, setSelectedBook, favorites}}>
             { !selectedBook ?
             // ALL BOOKS
             <div id='books-search-page'>
@@ -91,19 +94,20 @@ function Books(props){
                     (totalPages > 0 ?
                     data
                     .slice((currPage - 1) * 24, currPage * 24)
-                    .map((element, index) => <Card key={index} onClick={() => handleCardClick(element)} 
-                    data={element} favBooks={favBooks}/>)
-                    : <div id='books-not-found'>Unfortunately no such a book exists...</div>)}
+                    .map((element, index) => <Card key={index} onClick={() => handleCardClick(element)} data={element}/>)
+                    : <div id='books-not-found'>
+                        {favorites ? "You haven't liked anything yet": "Unfortunately no such a book exists..."}</div>)}
                 </div>
                 <Pagination currPage={currPage} totalPages={totalPages} handlePageChange={handlePageChange}/>
             </div>
             : // SELECTED BOOK DISPLAY
-            <currBook.Provider value={{selectedBook, setSelectedBook}}>
+            
                 <div id='book-selected-page'>
                     <BigCard />
                 </div>
-            </currBook.Provider>
+            
             }
+        </currBook.Provider>
         </div>
         </div>
         <Footer/>

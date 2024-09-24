@@ -54,7 +54,7 @@ function find(collection, filter, limit = 40) {
         .catch(error => {
             console.error('Error:', error);
         });
-    }
+}
 
 function insertOne(collection, document) {
     const url = `${base_url}/action/insertOne`;

@@ -92,7 +92,7 @@ function appRemoveLiked(req, res){
         if(!["books","songs"].includes(mediaType)) throw new Error("Wrong mediaType");
         nameToId(username)
         .then(userId => {
-            if(!user) throw new Error("Username not exists");
+            if(!userId) throw new Error("Username not exists");
             return removeLiked(userId,mediaType,elementId)
         })
         .then(result => res.json({status:result}))

@@ -1,3 +1,4 @@
+import { faV } from '@fortawesome/free-solid-svg-icons';
 import defaultImg from './assets/book_img_not_available.png';
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
@@ -6,7 +7,7 @@ const _SERVER_PORT = 8080;
 const _SERVER_ADDRESS = 'https://mediadb-91464205485.us-central1.run.app';
 const _LOCAL_SERVER_ADDRESS = `http://localhost:${_SERVER_PORT}`;
 
-const _CURRENT_ADDRESS = _SERVER_ADDRESS;
+const _CURRENT_ADDRESS = _LOCAL_SERVER_ADDRESS;
 
 function addLiked(username,mediaType, elementId) {
     return axios.post(`${_CURRENT_ADDRESS}/api/data/users/liked/add`,
@@ -16,8 +17,7 @@ function addLiked(username,mediaType, elementId) {
             elementId
         }
     )
-    .then(response => {console.log(response.data);
-    return response.data})
+    .then(response => response.data)
     .catch(err => console.log("Client fetching error:",err)); 
 }
 function removeLiked(username,mediaType, elementId) {
@@ -62,10 +62,11 @@ function createUser(username,password) {
     .catch(err => console.log("Client fetching error:",err)); 
 }
 
-function getBooks(searchText, method, limit=100){
+function getBooks(searchText, method, limit=100, favorites, favBooks){    
     const filter = {};
     filter[method] = { $regex: searchText, $options: "i"};
-
+    if(favorites)
+        filter["_id"] = favBooks?.length > 0 ? { $in : favBooks.map(id => ({ "$oid": id }))} : [];
     return axios.put(`${_CURRENT_ADDRESS}/api/data/book/get`, {
         filter,
         limit
