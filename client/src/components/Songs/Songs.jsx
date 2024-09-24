@@ -17,7 +17,8 @@ function Songs(){
     const [songs, setSongs] = useState(null);
     const [page, setPage] = useState('loading');
     const [extSong, setExtSong] = useState(null);
-
+    const [yPosition, setYPosition] = useState(0);
+    window.scrollTo(0,yPosition);
 
     useEffect(() => {
         async function fetchData(){
@@ -31,8 +32,9 @@ function Songs(){
 
     function handleSongClick(props){
         console.log('a song was clicked!');
-        setPage('song');
+        setYPosition(window.scrollY);
         setExtSong(props);
+        setPage('song');
         console.log(props);
     }
 
@@ -78,7 +80,7 @@ function Songs(){
             {page === 'song' && (
                 <div>
                 <Header/>
-                <SongExt data={extSong}></SongExt>
+                <SongExt data={extSong} setPage={setPage}></SongExt>
                 <Footer/>
             </div>
             )}
