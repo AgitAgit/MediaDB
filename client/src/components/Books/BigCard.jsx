@@ -19,9 +19,6 @@ function BigCard(){
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
-        prevArrow: <div className="slick-prev">Prev</div>,
-        nextArrow: <div className="slick-next">Next</div>,
-        // swipeToSlide: true,
         responsive: [
             {
                 breakpoint: 1524,
@@ -45,7 +42,6 @@ function BigCard(){
             breakpoint: 650,
             settings: {
                 slidesToShow: 1,
-                // slidesToScroll: 1,
             },
             },
         ],
@@ -76,13 +72,13 @@ function BigCard(){
         <LikeButton _id={selectedBook._id} bigCard="true"/>
         <div id="data">
             <img src={selectedBook.img} />
-            <div className="book-details">
+            <div className="book-details" alt="Book Cover">
                 <p><span>Title: </span>{selectedBook.title}</p>
                 <p><span>Authors: </span>{selectedBook.authors.join(", ")} </p>
                 <p><span>Categories: </span>{selectedBook.categories.join(", ")} </p>
                 <p><span>Language: </span>{selectedBook.language} </p>
                 <p><span>Published Date: </span>{selectedBook.publishedDate} </p>
-                <p><span>Link: </span><a href={selectedBook.link} target="blank">Click Here</a>{}</p>
+                <p><span>Link: </span><a href={selectedBook.link} target="blank" rel="noopener noreferrer">Click Here</a>{}</p>
             </div>
             <div className="book-description">
                 <p className="desc"><span>Description: </span>{selectedBook.description ? 
