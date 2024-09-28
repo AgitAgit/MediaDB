@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y python3 python3-venv
 WORKDIR /usr/src/app
 
 # Copy the package.json and install Node.js dependencies
-COPY package*.json ./
+COPY package*.json ./Server/package.json
 RUN npm install
 
 # Copy the rest of the application
