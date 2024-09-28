@@ -37,7 +37,6 @@ exports.getBookRecommendation = (req, res) => {
                 fs.writeFileSync(tmpFilePath, JSON.stringify(allBooks));
 
                 const { bookId } = req.body; // Retrieve the bookId from the request
-                console.log("HERE", bookId);
 
                 // Spawn the Python process and pass the bookId and temp file path
                 const pythonProcess = spawn('.\\venv\\Scripts\\python.exe', ['./machineLearning/booksML.py', bookId, tmpFilePath]);

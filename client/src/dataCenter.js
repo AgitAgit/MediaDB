@@ -83,8 +83,6 @@ function getBooks(searchText, method, limit=100, favorites, favBooks){
     .catch(err => console.log("Client fetching error:",err));
 }
 function getBookRecommendation(bookId) {
-    console.log(bookId);
-    
     return axios.post(`${_CURRENT_ADDRESS}/api/data/book/getrecommendation`, {
         bookId
     })

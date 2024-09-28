@@ -49,10 +49,7 @@ function BigCard(){
     useEffect(() => {
         const recommendation = () => {
             getBookRecommendation(selectedBook._id)
-            .then(data => {
-                console.log(data)
-                setRecommendationData(data);
-            })
+            .then(data => setRecommendationData(data))
             .catch(err => console.log("Error on Big-Card: " + err));
         };
         
