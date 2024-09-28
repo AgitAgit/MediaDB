@@ -18,9 +18,8 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 export const currBook = createContext();
 // RENDER RUNS COMPONENTS 2 TIMES INITIALLY DON'T BE WORRIED ABOUT LOTS OF LOGS
 
-function Books(/*props*/){
+function Books(){
     const { theme, setTheme, favBooks, setState, userLogged, setUserLogged } = useContext(stateContext);
-    // const { setState } = props;
     const [data, setData] = useState(null);
     const [method, setMethod] = useState("title");
     const [searchText, setSearchText] = useState("");
@@ -39,6 +38,8 @@ function Books(/*props*/){
         const fetchData = debounce(async () => {
             let response = await getBooks(searchText, method, 1000, favorites, favBooks);
             setData(response);
+            // console.log(response);
+            
         }, 100); // ms delay for requests
         fetchData();
         setCurrPage(1);

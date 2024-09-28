@@ -1,12 +1,12 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
-const {findOne} = require('./controllers/mongoActions');
 const spotifyHandler = require('./api/spotifyAPI');
 const bkHandle = require('./api/googleBooksAPI');
 const cors = require('cors');
 const port = process.env.PORT || 8080;
 require('dotenv').config();
+
 
 const bookHandler = require('./controllers/bookHandler');
 const songHandler = require('./controllers/songHandler');
@@ -23,6 +23,7 @@ app.get('/api/ping', (req,res) =>{
 })
 
 app.put('/api/data/book/get', bookHandler.getData);
+app.post('/api/data/book/getrecommendation', bookHandler.getBookRecommendation);
 
 app.post('/api/data/song/get', songHandler.getSongs);
 
@@ -31,6 +32,9 @@ app.post('/api/data/users/validate', userController.appValidateUser);
 app.post('/api/data/users/liked/add', userController.appAddLiked);
 app.post('/api/data/users/liked/remove', userController.appRemoveLiked);
 app.post('/api/data/users/liked/getliked', userController.appGetLiked);
+
+
+
 
 app.listen(port,()=>{
     console.log(`the server is listening on port ${port}`);

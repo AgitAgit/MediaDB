@@ -7,7 +7,7 @@ const _SERVER_PORT = 8080;
 const _SERVER_ADDRESS = 'https://mediadb-91464205485.us-central1.run.app';
 const _LOCAL_SERVER_ADDRESS = `http://localhost:${_SERVER_PORT}`;
 
-const _CURRENT_ADDRESS = _SERVER_ADDRESS;
+const _CURRENT_ADDRESS = _LOCAL_SERVER_ADDRESS;
 
 function addLiked(username,mediaType, elementId) {
     return axios.post(`${_CURRENT_ADDRESS}/api/data/users/liked/add`,
@@ -82,6 +82,23 @@ function getBooks(searchText, method, limit=100, favorites, favBooks){
     })
     .catch(err => console.log("Client fetching error:",err));
 }
+function getBookRecommendation(bookId) {
+    console.log(bookId);
+    
+    return axios.post(`${_CURRENT_ADDRESS}/api/data/book/getrecommendation`, {
+        bookId
+    })
+    .then(books => {
+        const data = books.data;
+        if(data && data.length > 0) data.forEach(element => {
+            if(element.hasOwnProperty("publishedDate") && element.publishedDate.length > 10)
+                element.publishedDate = element.publishedDate.slice(0,10);
+            if(!element.img) element.img = defaultImg;
+    });
+    return data;
+    })
+    .catch(err => console.log("Client fetching error:",err));
+}
 
 function getSongs(filter = {}, limit = 2){
     return axios.post(`${_CURRENT_ADDRESS}/api/data/song/get`,{
@@ -118,4 +135,4 @@ function processSong(song){
 }
 
 export {getBooks, getSongs, searchSongs, validateUser,
-    createUser, getUserLiked, addLiked, removeLiked};
+    createUser, getUserLiked, addLiked, removeLiked, getBookRecommendation};

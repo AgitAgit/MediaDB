@@ -235,6 +235,10 @@ a:hover {
 .heart-button.liked {
     color: red;
 }
+.big-card-like {
+    top: 20px;
+    font-size: 3.5rem;
+}
 /* Big Card */
 #back-button {
     position: relative;
@@ -266,6 +270,9 @@ a:hover {
     right: 10%;
     transform: translate(-50%,-50%);
     margin: auto;
+}
+#book-selected-page {
+    padding-inline: 30px;
 }
 #big-card-container {
     margin-inline: auto;
@@ -308,8 +315,77 @@ a:hover {
         padding: 1rem;
         max-height: 200px;
         overflow-y: auto;
+        border-left: 10px solid var(--link-color);
     }
 }
+/* Big Card- Carrousel */
+#loading-carousel-container {
+    padding: 25px;
+}
+#loading-carousel-container h2 {
+    margin-block: 20px;
+}
+.carousel-card {
+    background-color: var(--background);
+}
+.slick-dots.custom-dots li button:before {
+    font-size: 12px;
+    color: var(--link-color);
+    opacity: 0.75; 
+}
+.slick-dots.custom-dots li.slick-active button:before {
+    color: var(--link-hover);
+    opacity: 1;
+}
+.slick-dots.custom-dots li {
+    margin: 0 5px;
+}
+.slick-dots.custom-dots {
+    bottom: -30px;
+}
+.slick-dots.custom-dots li button:hover:before {
+    color: var(--link-hover);
+}
+
+.slick-slider .slick-arrow {
+    width: 35px;
+    height: 35px;
+    background-color: var(--link-color);
+    border-radius: 50%;
+    z-index: 9999;
+}
+.slick-slider .slick-prev {
+    
+}
+.slick-slider .slick-next {
+    
+}
+
+/* Change the color on hover */
+.slick-slider .slick-prev:hover,
+.slick-slider .slick-next:hover {
+    background-color: var(--link-hover); 
+}
+
+/* Arrow styles */
+.slick-slider .slick-prev:before,
+.slick-slider .slick-next:before {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    color: black; 
+    font-size: 18px;
+    top: 45%;
+}
+
+.slick-slider .slick-prev:before {
+    content: '◀';
+    left: 45%;
+}
+.slick-slider .slick-next:before {
+    content: '▶';
+    left: 55%;
+}
+
 /* Back To Top */
 #back-to-top {
     position: fixed;
@@ -532,6 +608,17 @@ a:hover {
     }
     .pagination-button.active {
         padding-top: 3px;
+    }
+}
+@media (max-width: 463px) {
+    .slick-dots.custom-dots {
+        bottom: -50px;
+    }
+    .carousel-card {
+        max-width: 170px;
+    }
+    #loading-carousel-container {
+        padding: 35px;
     }
 }
 /* ANIMATION */

@@ -7,7 +7,7 @@ import { currBook } from './Books';
 const LikeButton = (props) => {
     const { favBooks, setFavBooks, userLogged, setUserLogged, setState } = useContext(stateContext);
     const { favorites, setIsLoginPopupVisible, setTriggerSearch } = useContext(currBook);
-    const { _id } = props
+    const { _id, bigCard } = props
     const [liked, setLiked] = useState(false); // Set initial state to false
 
     useEffect(() => {
@@ -42,7 +42,7 @@ const LikeButton = (props) => {
     };
 
     return (
-            <button className={`heart-button ${liked ? 'liked' : ''}`} onClick={toggleLike}>
+            <button className={`heart-button ${liked ? 'liked' : ''} ${bigCard ? "big-card-like": ""}`} onClick={toggleLike}>
             ❤
             </button>
     );
