@@ -149,8 +149,38 @@
 }
 
 .SongExt{
-    
+    z-index: 10;
+    width:80%;
+    margin-left:2rem;
 }
+.backArrowImg{
+    position:absolute;
+    width:5rem;
+    z-index: 12;
+}
+.backArrowDiv{/*needs further work*/
+    z-index: 11;
+    background-color: var(--background);
+}
+.innerSongExt{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+}
+.SongExt .imgDiv{
+    /* width:40%; */
+    position:relative;
+    z-index: 10;
+    .artistImg{
+        opacity: 100%;
+        width: 100%;
+    }
+}
+.SongExt .infoDiv{
+    padding:0 1rem 1rem 1rem;
+    display:grid;
+    grid-template-rows:2fr 1fr;
+}
+
 .loadingDiv{
     display:flex;
     flex-direction: column;

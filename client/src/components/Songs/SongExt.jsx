@@ -9,19 +9,24 @@ function SongExt(props){
         setPage('songs');
     }
     return(
-        <div class="SongExt">
-            <img src={backImg} onClick={goBack}></img>
+        <div className="SongExt">
             
-            <div class="imgDiv">
-                <img src={img} alt={album}></img>
-            </div>
-            
-            <div class="infoDiv">
-                <h3>{track}</h3>
-                <p>album:{album}</p>
-                <br/>
-                <p>artist:{artist}</p>
-                <br/>
+            <div className="innerSongExt">
+                <div className="imgDiv">
+
+                    <div className="backArrowDiv">
+                        <img className="backArrowImg" src={backImg} onClick={goBack}></img>
+                    </div>
+                    <img className="artistImg" src={img} alt={album}></img>
+                </div>
+                
+                <div className="infoDiv">
+                    <h3>{track}</h3>
+                    <p>album:{album}</p>
+                    <br/>
+                    <p>artist:{artist}</p>
+                    <br/>
+                </div>
             </div>
         </div>
     );
