@@ -14,7 +14,13 @@ const songHandler = require('./controllers/songHandler');
 const userController = require('./controllers/userController');
 const mongoActions = require('./controllers/mongoActions');
 
-app.use(cors());
+// app.use(cors());
+// app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors({
+    origin: 'http://localhost:3000', // Change to your frontend URL in production
+    methods: ['GET', 'POST', 'PUT'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
