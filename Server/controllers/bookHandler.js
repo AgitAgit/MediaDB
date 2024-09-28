@@ -94,7 +94,12 @@ exports.getBookRecommendation = (req, res) => {
 
                     try {
                         const recommendations = JSON.parse(data); // Parse the output from Python
-                        res.setHeader('Access-Control-Allow-Origin', '*');
+                        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+                        res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+                        res.header('Access-Control-Allow-Headers', 'Authorization, Content-Type');
+                        res.header('Access-Control-Max-Age',3600); // 1 hour
+                        res.header('Access-Control-Expose-Headers', 'Custom-Header');
+                        res.header('Access-Control-Allow-Credentials', 'true');
                         res.json(recommendations); // Send recommendations as JSON response
                     } catch (err) {
                         return res.status(500).send('Error parsing Python output: ' + err.message);
