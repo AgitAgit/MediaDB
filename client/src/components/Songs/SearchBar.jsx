@@ -6,8 +6,9 @@ function SearchBar(){
     const { onSearchClick, favBtnOn, setFavBtnOn } = useContext(searchContext);
     function handleFavoritesClick(event){
         event.target.classList.toggle('btnClicked');
-        setFavBtnOn((current) => !current);
-        // onSearchClick(document.getElementById('searchInput').value, document.getElementById('searchSelect').value);
+        setFavBtnOn(favBtnOn => !favBtnOn);
+        console.log(`from handleFavoritesClick favBtnOn: ${favBtnOn}`)
+        onSearchClick(document.getElementById('searchInput').value, document.getElementById('searchSelect').value);
         //now I need to add to a context the favorites btn state,
         //and display songs based on that.
     }
