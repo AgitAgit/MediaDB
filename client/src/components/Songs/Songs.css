@@ -152,15 +152,22 @@
     z-index: 10;
     width:80%;
     margin-left:2rem;
+    display:flex;
+    flex-direction: column;
 }
 .backArrowImg{
-    position:absolute;
+    /* position:absolute; */
     width:5rem;
     z-index: 12;
+    /* transform: translateY(-2.5rem); */
 }
 .backArrowDiv{/*needs further work*/
+    /* position:absolute; */
+    width:5rem;
+    aspect-ratio: 2/1;
     z-index: 11;
-    background-color: var(--background);
+    background-color:var(--arrowBackground);
+    border-radius: 40%;
 }
 .innerSongExt{
     display:grid;

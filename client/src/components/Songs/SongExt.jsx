@@ -10,13 +10,15 @@ function SongExt(props){
     }
     return(
         <div className="SongExt">
-            
+            <div className="backArrowDiv">
+                <img className="backArrowImg" src={backImg} onClick={goBack}></img>
+            </div>
             <div className="innerSongExt">
                 <div className="imgDiv">
 
-                    <div className="backArrowDiv">
+                    {/* <div className="backArrowDiv">
                         <img className="backArrowImg" src={backImg} onClick={goBack}></img>
-                    </div>
+                    </div> */}
                     <img className="artistImg" src={img} alt={album}></img>
                 </div>
                 
