@@ -11,7 +11,7 @@
     padding:0 5rem 0 5rem;
     margin:0 auto 0 auto;
     max-width: 1400px;
-    min-height: 40vh;
+    min-height: 50vh;
 }
 
 .songsHeader{
@@ -85,6 +85,9 @@
     scale:1.05;
     transition: 0.3s ease;
 }
+.clickedDarkFavoritesBtn{
+    
+}
 
 .btnClicked{
     box-shadow:inset 0 0 8px rgba(41, 43, 46, .2); 
@@ -149,25 +152,31 @@
 }
 
 .SongExt{
-    z-index: 10;
+    z-index: 11;
     width:80%;
     margin-left:2rem;
     display:flex;
     flex-direction: column;
+    background-color: var(--background);
+}
+.backArrowDiv{
+    position:relative;
+    height:3rem;
+    margin-bottom: 1rem;
+}
+.backArrowBackground{
+    z-index: 11;
+    width:5rem;
+    height:3rem;
+    background-color:var(--arrowBackground);
+    border-radius: 50%;
 }
 .backArrowImg{
-    /* position:absolute; */
+    position:absolute;
+    top:1.5rem;
     width:5rem;
     z-index: 12;
-    /* transform: translateY(-2.5rem); */
-}
-.backArrowDiv{/*needs further work*/
-    /* position:absolute; */
-    width:5rem;
-    aspect-ratio: 2/1;
-    z-index: 11;
-    background-color:var(--arrowBackground);
-    border-radius: 40%;
+    transform: translateY(-2.5rem);
 }
 .innerSongExt{
     display:grid;
@@ -186,6 +195,7 @@
     padding:0 1rem 1rem 1rem;
     display:grid;
     grid-template-rows:2fr 1fr;
+    z-index: 10;
 }
 
 .loadingDiv{
@@ -193,7 +203,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* height:100vh; */
+    min-height:70vh;
 }
 .loadingImg{
     height:200px;

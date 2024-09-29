@@ -66,7 +66,7 @@ function Songs(){
     return(
         <div>
             {page === 'loading' && (
-                <div>
+                <div id="songsApp">
                     <Header/>
                     <Loading/>
                     <Footer/>
@@ -88,7 +88,7 @@ function Songs(){
                 </div>
             )}
             {page === 'song' && (
-                <div>
+                <div id="songsApp">
                 <Header/>
                 <SongExt data={extSong} setPage={setPage}></SongExt>
                 <Footer/>

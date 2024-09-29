@@ -33,7 +33,7 @@ input, select {
   --page-button: hsl(263, 88%, 62%);
   --page-button-hover: rgba(138, 74, 243, 0.2);
 
-  --arrowBackground:rgba(255, 196, 0, 0.534);
+  --arrowBackground:hsla(208, 19%, 38%, 0.459);
 }
 
 [data-theme="light"] {
@@ -50,7 +50,7 @@ input, select {
   --page-button: hsl(27, 87%, 68%);
   --page-button-hover: hsl(27, 87%, 68%,0.2);
 
-  --arrowBackground:rgba(255, 196, 0, 0.534);
+  /* --arrowBackground:rgba(255, 196, 0, 0.534); */
 }
 
 /* dark-wave: #243B55 #3A6073 */
