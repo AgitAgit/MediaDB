@@ -19,7 +19,7 @@ function Songs(){
     const [page, setPage] = useState('loading');
     const [extSong, setExtSong] = useState(null);
     const [yPosition, setYPosition] = useState(0);
-    const [favBtnOn, setFavBtnOn] = useState(true);
+    const [favBtnOn, setFavBtnOn] = useState(false);
     const { favSongs } = useContext(stateContext);
     window.scrollTo(0, yPosition);
     
@@ -27,6 +27,7 @@ function Songs(){
         async function fetchData(){
             let data = await searchSongs('artists.0.name','Bob Dylan',36);
             setSongs(data);
+
             setPage('songs');
         }
         fetchData();
@@ -42,7 +43,7 @@ function Songs(){
     
     async function onSearchClick(str, parameter){
         let data;
-        if(favBtnOn){
+        if(favBtnOn && favSongs){
             // data = await data.filter(song =>{
             //     return favSongs.includes(song._id);
             // });

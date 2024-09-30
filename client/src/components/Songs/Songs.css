@@ -114,6 +114,7 @@
 }
 
 .Song {
+    position:relative;
     border-radius:5%;
     background-color: var(--elements);
     height:300px;
@@ -147,11 +148,18 @@
 }
 
 .songLikeButton{
-    color:lightgray;
+    position:absolute;
+    right:1rem;
+    bottom:1rem;
+    font-size: 2rem;
+    background:none;
+    border:none;
 }
-
-.likedSong{
-
+.songLikeButton:hover{
+    scale:1.05;
+    border-radius: 50%;
+    border:1px solid var(--background);
+    background-color: var(--background);
 }
 
 .SongExt{

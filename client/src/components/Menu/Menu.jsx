@@ -34,7 +34,7 @@ function Menu(){
             else if(userLogged && userLogged !== "guest") {
                 try {
                     setFavBooks(await getUserLiked(userLogged, 'books'));
-                    setFavSongs(await getUserLiked(userLogged, 'songs'));
+                    setFavSongs(await getUserLiked(userLogged, 'songs'));//maybe this is case insensitive and causes some mixups?
                 }
                 catch(err) {
                     console.log("Client Error getting favorites: " + err);
