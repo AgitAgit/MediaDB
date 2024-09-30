@@ -1,4 +1,4 @@
-import LikeButton from "./LikeButton";
+import LikeButton from "./songLikeButton";
 
 const MAX_TRACK_LENGTH = 40;
 const MAX_STRING_LENGTH = 20;

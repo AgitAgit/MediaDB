@@ -146,28 +146,12 @@
     scale:1.05;
 }
 
-#songsContainer .heart-button {
-    position: absolute;
-    bottom: 5%;
-    right: 5%;
-    background: none;
-    border: none;
-    cursor: pointer;
-    height: 40px;
-    font-size: 35px;
-    transition: 0.2s ease;
-    color: rgb(181, 179, 179);
-}
-/* #songsContainer .heart-button:hover {
-    transform: scale(1.15);
-} */
-#songsContainer .heart-button-liked{
-    color: red;
+.songLikeButton{
+    color:lightgray;
 }
 
-.song button{
-    background-color: var(--elements);
-    border:0;
+.likedSong{
+
 }
 
 .SongExt{
