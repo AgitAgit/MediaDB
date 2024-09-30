@@ -6,22 +6,23 @@ function SearchBar(){
     const { onSearchClick, favBtnOn, setFavBtnOn } = useContext(searchContext);
     function handleFavoritesClick(event){
         event.target.classList.toggle('btnClicked');
-        setFavBtnOn((current) => !current);
-        // onSearchClick(document.getElementById('searchInput').value, document.getElementById('searchSelect').value);
+        setFavBtnOn(favBtnOn => !favBtnOn);
+        console.log(`from handleFavoritesClick favBtnOn: ${favBtnOn}`)
+        onSearchClick(document.getElementById('searchInput').value, document.getElementById('searchSelect').value);
         //now I need to add to a context the favorites btn state,
         //and display songs based on that.
     }
     return(
-        <div class="searchBar">
-            <div class="searchField">
+        <div className="searchBar">
+            <div className="searchField">
                 <img id="searchIcon" src={searchIcon} alt='search icon'></img>
                 <input id="searchInput" onChange={() => onSearchClick(document.getElementById('searchInput').value, document.getElementById('searchSelect').value)}>
                 </input>
             </div>
-            <div class="favoritesDiv">
-                <button class="favoritesBtn" onClick={handleFavoritesClick}>Favorites</button>
+            <div className="favoritesDiv">
+                <button className="favoritesBtn" onClick={handleFavoritesClick}>Favorites</button>
             </div>
-            <div class="selectDiv">
+            <div className="selectDiv">
                 <span>search by:</span>
                 <select id="searchSelect" placeholder='Track' onChange={() => onSearchClick(document.getElementById('searchInput').value, document.getElementById('searchSelect').value)}>
                     <option>Track</option>

@@ -1,21 +1,19 @@
-# Use an official Node.js runtime as the base image
-FROM node:14
+FROM node:18-alpine
 
-# Install Python
-RUN apt-get update && apt-get install -y python3 python3-venv
-
-# Create and set the working directory
+# Set the working directory inside the 'server' folder
 WORKDIR /usr/src/app
 
-# Copy the package.json and install Node.js dependencies
+# Copy the package.json and package-lock.json (if present) into the container's working directory
 COPY ./Server/package*.json ./
+
+# Install Node.js dependencies
 RUN npm install
 
-# Copy the rest of the application
-COPY . .
+# Copy the rest of the application files from the 'server' folder into the container
+COPY ./Server/. .
 
 # Expose the port (use 8080 for Cloud Run)
 EXPOSE 8080
 
-# Start the Node.js app
+# Start the Node.js app (assuming your start script is defined in package.json)
 CMD [ "npm", "start" ]

@@ -42,5 +42,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "https://mediadb-91464205485.us-central1.run.app"
 }

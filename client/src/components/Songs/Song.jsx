@@ -21,8 +21,8 @@ function Song(props){
     }
     
     return(
-        <div class="Song" onClick={() => onSongClick(props.data)}>
-            <img src={img} alt='failed to load image...' class="songImg"></img>
+        <div className="Song" onClick={() => onSongClick(props.data)}>
+            <img src={img} alt='failed to load image...' className="songImg"></img>
             <h3>{trimText(track,'track')}</h3>
             <p>album:{trimText(album)}</p>
             <br/>
