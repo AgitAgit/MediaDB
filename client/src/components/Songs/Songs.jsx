@@ -1,4 +1,4 @@
-import {useState, useEffect, createContext, useContext} from 'react';
+import {useState, useEffect, createContext, useContext, useRef} from 'react';
 import './Songs.css';
 // import Header from './Header.jsx';
 import Header from './../Books/Header.jsx';
@@ -13,7 +13,6 @@ import SongExt from './SongExt.jsx';
 import { stateContext } from '../Menu/Menu.jsx';
 export const searchContext = createContext();
 
-
 function Songs(){
     const [songs, setSongs] = useState(null);
     const [page, setPage] = useState('loading');
@@ -21,6 +20,7 @@ function Songs(){
     const [yPosition, setYPosition] = useState(0);
     const { favSongs } = useContext(stateContext);
     window.scrollTo(0, yPosition);
+    const _songsContainerRef = useRef(null);
     
     useEffect(() => {
         async function fetchData(){
@@ -28,6 +28,7 @@ function Songs(){
             setSongs(data);
 
             setPage('songs');
+
         }
         fetchData();
     },[]);
@@ -41,6 +42,12 @@ function Songs(){
     }
     
     async function onSearchClick(str, parameter, favBtnOn=false){
+        // if(_songsContainerRef.current){
+        //     console.log("ref called");
+        //     while(_songsContainerRef.current.firstChild){
+        //             _songsContainerRef.current.removeChild(_songsContainerRef.current.firstChild);
+        //     }
+        // }
         let data;
         if(favBtnOn && favSongs){
             // data = await data.filter(song =>{
@@ -83,11 +90,12 @@ function Songs(){
                     <searchContext.Provider value={{ onSearchClick}}>
                         <SearchBar/>
                     </searchContext.Provider>
-                    <div id="songsContainer">
-                        {songs.map((song, index)=>{
-                            // console.log(song);
-                            return(<Song data={song} key={index} onSongClick={ handleSongClick }/>);//handleSongClick(song)
-                        })}
+                    <div id="songsContainer" ref={_songsContainerRef}>
+                        {
+                            songs.map((song, index)=>{
+                            return(<Song data={song} key={index} onSongClick={ handleSongClick }/>)
+                            })
+                        }
                     </div>
                     <Footer/>
                 </div>

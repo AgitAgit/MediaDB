@@ -11,5 +11,9 @@ todo for Amit {
     Or are the songs that appear liked even though they are not?
 
     Current problem:in searchBar.handleFavoritesClick, onSearchClick is called before the favBtnOn is updated, causing problems in the search.
-
+    Fixed. I changed it so favBtnOn is stored in the search bar and not songs. Also fixed some wrong array
+    spreading syntax.
+    Current problem: After turning off the favorites mode, all the songs in the general search mode where
+    favorites had been appear to be liked. 
+    (Note, their id is not on the liked list. So perhaps the same card is kept only it's contents change?)
 }

@@ -4,16 +4,19 @@ import { addLiked, removeLiked } from '../../dataCenter.js';
 
 function SongLike(props){
     const [liked, setLiked] = useState(false);
-    const _id = props._id;
+    // const [_id, setId] = useState(props._id);
+    const { _id } = props
     const {favSongs, setFavSongs, userLogged} = useContext(stateContext);
 
     useEffect(()=>{
+        console.log("SongLike useEffect from: ",_id, "liked:",liked);
+        console.log("favSongs:",favSongs);
         if(favSongs.includes(_id)){
             setLiked(true);
         }
     },[favSongs, _id]);
 
-    function handleSongLikeClick(event){
+    function handleSongLikeClick(event){//being tested, needs some refactor...
         event.stopPropagation();
         if(!liked){
             setFavSongs([...favSongs, _id]);
@@ -27,7 +30,9 @@ function SongLike(props){
     }
 
     return(
-        <button className="songLikeButton" onClick={handleSongLikeClick}>{liked ? '❤️':'🩶'}</button>
+        <button className="songLikeButton" onClick={handleSongLikeClick}>
+            {liked ? '❤️':'🩶'}
+        </button>
     );
 }
 

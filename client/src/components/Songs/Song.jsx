@@ -1,11 +1,13 @@
 import SongLike from "./SongLike.jsx";
+import {useState} from 'react';
 
 const MAX_TRACK_LENGTH = 40;
 const MAX_STRING_LENGTH = 20;
 
 function Song(props){
-    const {_id, img, track, album, artist, trackLink, albumLink, artistLink} = props.data;
-
+    const { _id,img, track, album, artist, trackLink, albumLink, artistLink} = props.data;
+    // const [ img, setImg ] = useState(props.data.img);
+    // const [_id, setId] = useState(props.data._id);
     const onSongClick = props.onSongClick;
 
     function trimText(str,type){
