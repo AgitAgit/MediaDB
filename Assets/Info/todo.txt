@@ -1,25 +1,5 @@
-React
-1. Making homepage instead of 2 buttons
-2. login component
-7.add a form for user registering and sign in
-8.add functionality to the like component to communicate with the server
-9.add some button to display favorites(or some other way)
-
-Mongo
-4. creating user table on DB ("users" collection each user will have document that includes array of book id's
-and array of songs id's that he liked)
-{
-    _id(created by mongo)
-    username
-    password
-    liked_songs
-    liked_books
-}
-
-Server
-5.add an update method to mongoActions to edit the liked songs and books of each user
-6.add a path to access the new userController methods
-
 todo for Amit {
-    refactor the context provider so it feeds directly into the header
+    Fix the songs like/favorite system
+    Add a pagination system
+    Add media queries to the songs css(make it properly responsive)
 }
