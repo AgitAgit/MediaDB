@@ -1,4 +1,4 @@
-import LikeButton from "./LikeButton";
+import SongLike from "./SongLike.jsx";
 
 const MAX_TRACK_LENGTH = 40;
 const MAX_STRING_LENGTH = 20;
@@ -28,7 +28,7 @@ function Song(props){
             <br/>
             <p>artist:{trimText(artist)}</p>
             {/* <br/> */}
-            <LikeButton _id={_id}/>
+            <SongLike _id={_id}/>
         </div>
     );
 }

@@ -1,5 +1,15 @@
 todo for Amit {
-    Fix the songs like/favorite system
-    Add a pagination system
-    Add media queries to the songs css(make it properly responsive)
+    refactor the context provider so it feeds directly into the header
+
+    Why are there songs appearing with a heart but not in the favorites?
+    Maybe the favorites queries a different resource than the like button.
+    
+    favorites button relies on
+    like button relies on the favSongs context
+
+    Are there liked songs that don't appear on the favorites button?
+    Or are the songs that appear liked even though they are not?
+
+    Current problem:in searchBar.handleFavoritesClick, onSearchClick is called before the favBtnOn is updated, causing problems in the search.
+
 }

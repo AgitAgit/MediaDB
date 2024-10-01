@@ -114,6 +114,7 @@
 }
 
 .Song {
+    position:relative;
     border-radius:5%;
     background-color: var(--elements);
     height:300px;
@@ -146,28 +147,19 @@
     scale:1.05;
 }
 
-#songsContainer .heart-button {
-    position: absolute;
-    bottom: 5%;
-    right: 5%;
-    background: none;
-    border: none;
-    cursor: pointer;
-    height: 40px;
-    font-size: 35px;
-    transition: 0.2s ease;
-    color: rgb(181, 179, 179);
+.songLikeButton{
+    position:absolute;
+    right:1rem;
+    bottom:1rem;
+    font-size: 2rem;
+    background:none;
+    border:none;
 }
-/* #songsContainer .heart-button:hover {
-    transform: scale(1.15);
-} */
-#songsContainer .heart-button-liked{
-    color: red;
-}
-
-.song button{
-    background-color: var(--elements);
-    border:0;
+.songLikeButton:hover{
+    scale:1.05;
+    border-radius: 50%;
+    border:1px solid var(--background);
+    background-color: var(--background);
 }
 
 .SongExt{
