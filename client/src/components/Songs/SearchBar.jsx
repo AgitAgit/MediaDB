@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import {searchContext} from './Songs';
 import searchIcon from './../../assets/search1.svg';
 // import { stateContext } from '../Menu/Menu';
