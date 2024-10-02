@@ -17,37 +17,33 @@ function Songs(){
     const [songs, setSongs] = useState(null);
     const [page, setPage] = useState('loading');
     const [extSong, setExtSong] = useState(null);
-    const [yPosition, setYPosition] = useState(0);
     const { favSongs } = useContext(stateContext);
-    window.scrollTo(0, yPosition);
-    const _songsContainerRef = useRef(null);
-    
+    let yPosition = parseInt(localStorage.getItem('songsYPosition')) || 0;
+
     useEffect(() => {
         async function fetchData(){
             let data = await searchSongs('artists.0.name','Bob Dylan',36);
             setSongs(data);
-
             setPage('songs');
-
         }
         fetchData();
     },[]);
+
+    useEffect(() => {
+        if(page === 'songs'){
+            window.scrollTo(0,yPosition);
+        }
+    },[page])
     
     function handleSongClick(props){
         // console.log('a song was clicked!');
-        setYPosition(window.scrollY);
+        localStorage.setItem('songsYPosition',`${window.scrollY}`);
         setExtSong(props);
         setPage('song');
         // console.log(props);
     }
     
     async function onSearchClick(str, parameter, favBtnOn=false){
-        // if(_songsContainerRef.current){
-        //     console.log("ref called");
-        //     while(_songsContainerRef.current.firstChild){
-        //             _songsContainerRef.current.removeChild(_songsContainerRef.current.firstChild);
-        //     }
-        // }
         let data;
         if(favBtnOn && favSongs){
             // data = await data.filter(song =>{
@@ -59,7 +55,10 @@ function Songs(){
             data = await getSongsById(ids);
         }
         else{
-            if(parameter === 'Track'){
+            if(str === ''){
+                data = await searchSongs('artists.0.name','Bob Dylan',36);
+            }
+            else if(parameter === 'Track'){
                 data = await searchSongs('name', str,36);
             }
             else if(parameter === 'Album'){
@@ -90,7 +89,7 @@ function Songs(){
                     <searchContext.Provider value={{ onSearchClick}}>
                         <SearchBar/>
                     </searchContext.Provider>
-                    <div id="songsContainer" ref={_songsContainerRef}>
+                    <div id="songsContainer" >
                         {
                             songs.map((song, index)=>{
                             return(<Song data={song} key={index} onSongClick={ handleSongClick }/>)
@@ -103,7 +102,7 @@ function Songs(){
             {page === 'song' && (
                 <div id="songsApp">
                 <Header/>
-                <SongExt data={extSong} setPage={setPage}></SongExt>
+                    <SongExt data={extSong} setPage={setPage} yPosition={window.scrollY.valueOf}></SongExt>
                 <Footer/>
             </div>
             )}
