@@ -16,4 +16,6 @@ todo for Amit {
     Current problem: After turning off the favorites mode, all the songs in the general search mode where
     favorites had been appear to be liked. 
     (Note, their id is not on the liked list. So perhaps the same card is kept only it's contents change?)
+
+    Add artist select to the search bar
 }

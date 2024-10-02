@@ -19,6 +19,14 @@ function SearchBar(){
                 <input id="searchInput" onChange={() => onSearchClick(document.getElementById('searchInput').value, document.getElementById('searchSelect').value)}>
                 </input>
             </div>
+            {/* <div className="selectDiv">
+                <span>Artists in db:</span>
+                <select id="artistSelect" placeholder='Artist' onChange={() => onSearchClick(document.getElementById('searchInput').value, document.getElementById('searchSelect').value)}>
+                    <option>Track</option>
+                    <option>Album</option>
+                    <option>Artist</option>
+                </select>
+            </div> */}
             <div className="favoritesDiv">
                 <button className="favoritesBtn" onClick={handleFavoritesClick}>Favorites</button>
             </div>

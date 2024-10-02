@@ -21,7 +21,7 @@ function Song(props){
         }
         // console.log("SongLike useEffect from: ",_id, "liked:",liked);
         // console.log("favSongs:",favSongs);
-    },[_id]);
+    },[_id,favSongs]);
 
     function handleSongLikeClick(event){
         event.stopPropagation();
