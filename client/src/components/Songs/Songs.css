@@ -165,7 +165,7 @@
 .SongExt{
     position:relative;
     z-index:11;
-    width:80%;
+    width:70%;
     margin-left:2rem;
     display:flex;
     flex-direction: column;
@@ -185,7 +185,7 @@
 .backArrowImg{
     position:absolute;
     top:1.5rem;
-    width:5rem;
+    width:4rem;
     z-index: 12;
     transform: translateY(-2.5rem);
 }

@@ -1,7 +1,7 @@
 import backImg from './../../assets/back_arrow.png';
 import {useContext} from 'react';
 function SongExt(props){
-    const {img, track, album, artist, trackLink, albumLink, artistLink} = props.data;
+    const {img, track, album, albumReleaseDate, artist, trackLink, albumLink, artistLink} = props.data;
     const setPage  = props.setPage;
     window.scrollTo(0,0);
 
@@ -28,8 +28,18 @@ function SongExt(props){
                     <h3>Track:{track}</h3>
                     <p>Album:{album}</p>
                     <br/>
+                    <p>Release date:{albumReleaseDate}</p>
+                    <br/>
                     <p>Artist:{artist}</p>
                     <br/>
+                    <p>External links:</p>
+                    <br/>
+                    <a href={trackLink} target='_blank'>{track} on spotify</a>
+                    <br/>
+                    <a href={albumLink} target='_blank'>{album} on spotify</a>
+                    <br/>
+                    <a href={artistLink} target='_blank'>{artist} on spotify</a>
+
                 </div>
             </div>
         </div>

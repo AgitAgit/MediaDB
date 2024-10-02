@@ -132,12 +132,13 @@ function processSong(song){
     const _id = song._id;
     const track = song.name;
     const album = song.album.name;
+    const albumReleaseDate = song.album.release_date;
     const artist = song.artists[0].name;
     const img = song.album.images[0].url;
     const trackLink = song.external_urls.spotify;
     const albumLink = song.album.external_urls.spotify;
     const artistLink = song.artists[0].external_urls.spotify;
-    return {_id, img, track, album, artist, trackLink, albumLink, artistLink}
+    return {_id, img, track, album, albumReleaseDate, artist, trackLink, albumLink, artistLink}
 }
 
 export {getBooks, getSongs, getSongsById,searchSongs, validateUser,
