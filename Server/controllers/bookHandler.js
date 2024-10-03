@@ -4,7 +4,7 @@ const pythonPath = 'venv\\Scripts\\python';
 const fs = require('fs');
 const tmp = require('tmp');
 const axios = require('axios');
-
+const pythonServerPath = "https://bookrecommendformediadb-91464205485.us-central1.run.app";
 exports.getData = (req, res)=> {
     const { filter, limit } = req.body;
     // console.log("FILTER", filter);
@@ -59,7 +59,22 @@ exports.getBookRecommendation = (req, res) => {
 };
 */
 
+exports.getBookRecommendation = (req, res) => {
+    const { book_id } = req.body;
+    console.log(book_id);
+    
+    axios.post(`${pythonServerPath}/recommend`, {
+        book_id
+    })
+    .then(response => {
+        res.json(response.data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
 
+/*
 tmp.setGracefulCleanup();
 exports.getBookRecommendation = (req, res) => {
     find("books", null, 12470) // Current amount of books: 12,470 in mongoDB
@@ -118,3 +133,4 @@ exports.getBookRecommendation = (req, res) => {
             res.status(500).send('Server error: ' + err.message);
         });
 };
+*/
