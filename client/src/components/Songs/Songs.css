@@ -126,7 +126,25 @@
     height:100%;
     width:80px;
 }
-
+.SongsPaginationBar{
+    display:flex;
+    justify-content: center;
+    background-color: var(--input);
+    color:var(--text);
+    border-radius: 0.5rem;
+    border:0;
+    box-shadow: 0 0 8px rgba(41, 43, 46, .2);
+}
+.SongsPaginationBar button{/*need to fix coloring scheme, including light/dark mode*/
+    margin: 0 0.2rem 0 0.2rem;
+    height:2rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+.SongsPaginationBar button:hover{
+    scale:1.05;
+    transition: 0.3s ease;
+}
 .Song {
     position:relative;
     border-radius:5%;

@@ -2,14 +2,15 @@ import {useState, useEffect, createContext, useContext, useRef} from 'react';
 import './Songs.css';
 // import Header from './Header.jsx';
 import Header from './../Books/Header.jsx';
-import Footer from './../Books/Footer.jsx';
-import Song from './Song';
-import defaultImg from './assets/DefaultAlbumCover.png';
-import {getSongs, getSongsById, searchSongs, getUserLiked} from './../../dataCenter.js';
-import Loading from './Loading.jsx';
 import SearchBar from './SearchBar.jsx';
-// import {state, setState, theme, setTheme , userLogged, setUserLogged} from './../Menu/Menu.jsx';
+import PaginationBar from './PaginationBar.jsx';
+import Footer from './../Books/Footer.jsx';
+import defaultImg from './assets/DefaultAlbumCover.png';
+import Song from './Song';
 import SongExt from './SongExt.jsx';
+import Loading from './Loading.jsx';
+// import {state, setState, theme, setTheme , userLogged, setUserLogged} from './../Menu/Menu.jsx';
+import {getSongs, getSongsById, searchSongs, getUserLiked} from './../../dataCenter.js';
 import { stateContext } from '../Menu/Menu.jsx';
 export const searchContext = createContext();
 
@@ -89,6 +90,7 @@ function Songs(){
                     <searchContext.Provider value={{ onSearchClick}}>
                         <SearchBar/>
                     </searchContext.Provider>
+                    <PaginationBar/>
                     <div id="songsContainer" >
                         {
                             songs.map((song, index)=>{
