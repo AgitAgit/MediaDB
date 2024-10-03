@@ -248,7 +248,7 @@ a:hover {
     margin: 1rem;
     border-radius: var(--radius);
     box-shadow: 0 0 8px rgba(41,43,46,.2);
-    background-color: var(--elements);
+    background-color: var(--background);
     transition: 0.3s ease;
     cursor: pointer;
     transition: 0.3s ease;
@@ -363,7 +363,9 @@ a:hover {
 
 /* Change the color on hover */
 .slick-slider .slick-prev:hover,
-.slick-slider .slick-next:hover {
+.slick-slider .slick-next:hover,
+.slick-slider .slick-prev:focus,
+.slick-slider .slick-next:focus {
     background-color: var(--link-hover); 
 }
 
