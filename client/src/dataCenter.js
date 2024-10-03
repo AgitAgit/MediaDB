@@ -119,18 +119,27 @@ function searchSongs(field = 'artists.0.name',query = 'Led', limit = 10){
     return getSongs(filter,limit);
 }
 
+function getSongsById(ids,limit = 1000){
+    console.log("getById called with ids:", ids);
+    const filter = {
+        _id: {$in:ids}
+    }
+    return getSongs(filter,limit);
+}
+
 
 function processSong(song){
     const _id = song._id;
     const track = song.name;
     const album = song.album.name;
+    const albumReleaseDate = song.album.release_date;
     const artist = song.artists[0].name;
     const img = song.album.images[0].url;
     const trackLink = song.external_urls.spotify;
     const albumLink = song.album.external_urls.spotify;
     const artistLink = song.artists[0].external_urls.spotify;
-    return {_id, img, track, album, artist, trackLink, albumLink, artistLink}
+    return {_id, img, track, album, albumReleaseDate, artist, trackLink, albumLink, artistLink}
 }
 
-export {getBooks, getSongs, searchSongs, validateUser,
+export {getBooks, getSongs, getSongsById,searchSongs, validateUser,
     createUser, getUserLiked, addLiked, removeLiked, getBookRecommendation};

@@ -11,7 +11,7 @@
     padding:0 5rem 0 5rem;
     margin:0 auto 0 auto;
     max-width: 1400px;
-    min-height: 40vh;
+    min-height: 50vh;
 }
 
 .songsHeader{
@@ -85,6 +85,9 @@
     scale:1.05;
     transition: 0.3s ease;
 }
+.clickedDarkFavoritesBtn{
+    
+}
 
 .btnClicked{
     box-shadow:inset 0 0 8px rgba(41, 43, 46, .2); 
@@ -109,8 +112,23 @@
     height:100%;
     width:60px;
 }
+.hidden{
+    display:none;
+}
+.artistSelect{
+    text-align: center;
+    background-color: var(--input);
+    color:var(--text);
+    border-radius: 0.5rem;
+    border:0;
+    box-shadow: 0 0 8px rgba(41, 43, 46, .2);
+    margin-left: 1rem;
+    height:100%;
+    width:80px;
+}
 
 .Song {
+    position:relative;
     border-radius:5%;
     background-color: var(--elements);
     height:300px;
@@ -143,20 +161,78 @@
     scale:1.05;
 }
 
-.song button{
-    background-color: var(--elements);
-    border:0;
+.songLikeButton{
+    position:absolute;
+    right:1rem;
+    bottom:1rem;
+    font-size: 2rem;
+    background:none;
+    border:none;
+}
+.songLikeButton:hover{
+    scale:1.05;
+    border-radius: 50%;
+    border:1px solid var(--background);
+    background-color: var(--background);
 }
 
 .SongExt{
-    
+    position:relative;
+    z-index:11;
+    width:70%;
+    margin-left:2rem;
+    display:flex;
+    flex-direction: column;
 }
+.backArrowDiv{
+    position:relative;
+    height:3rem;
+    margin-bottom: 1rem;
+}
+.backArrowBackground{
+    z-index: 11;
+    width:5rem;
+    height:3rem;
+    background-color:var(--arrowBackground);
+    border-radius: 50%;
+}
+.backArrowImg{
+    position:absolute;
+    top:1.5rem;
+    width:4rem;
+    z-index: 12;
+    transform: translateY(-2.5rem);
+}
+.innerSongExt{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: var(--elements);
+    box-shadow: 0px 1px 50px -10px rgba(0,0,0,0.75);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+.SongExt .imgDiv{
+    /* width:40%; */
+    position:relative;
+    z-index: 10;
+    .artistImg{
+        opacity: 100%;
+        width: 100%;
+    }
+}
+.SongExt .infoDiv{
+    padding:1rem 1rem 1rem 1rem;
+    display:grid;
+    grid-template-rows:2fr 1fr;
+    z-index: 10;
+}
+
 .loadingDiv{
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* height:100vh; */
+    min-height:70vh;
 }
 .loadingImg{
     height:200px;
