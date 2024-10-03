@@ -1,25 +1,21 @@
-React
-1. Making homepage instead of 2 buttons
-2. login component
-7.add a form for user registering and sign in
-8.add functionality to the like component to communicate with the server
-9.add some button to display favorites(or some other way)
-
-Mongo
-4. creating user table on DB ("users" collection each user will have document that includes array of book id's
-and array of songs id's that he liked)
-{
-    _id(created by mongo)
-    username
-    password
-    liked_songs
-    liked_books
-}
-
-Server
-5.add an update method to mongoActions to edit the liked songs and books of each user
-6.add a path to access the new userController methods
-
 todo for Amit {
     refactor the context provider so it feeds directly into the header
+
+    Why are there songs appearing with a heart but not in the favorites?
+    Maybe the favorites queries a different resource than the like button.
+    
+    favorites button relies on
+    like button relies on the favSongs context
+
+    Are there liked songs that don't appear on the favorites button?
+    Or are the songs that appear liked even though they are not?
+
+    Current problem:in searchBar.handleFavoritesClick, onSearchClick is called before the favBtnOn is updated, causing problems in the search.
+    Fixed. I changed it so favBtnOn is stored in the search bar and not songs. Also fixed some wrong array
+    spreading syntax.
+    Current problem: After turning off the favorites mode, all the songs in the general search mode where
+    favorites had been appear to be liked. 
+    (Note, their id is not on the liked list. So perhaps the same card is kept only it's contents change?)
+
+    Add artist select to the search bar
 }
