@@ -6,6 +6,7 @@ function SearchBar(){
     const { onSearchClick } = useContext(searchContext);
     const [favBtnOn, setFavBtnOn] = useState(false);
     const artists = [
+        "Artist",
         "AC/DC",
         "Adele",
         "Aerosmith",
@@ -51,7 +52,7 @@ function SearchBar(){
         "Queen",
         "Rihanna",
         "Ringo Starr",
-        "Rolling Stones, The",
+        "The Rolling Stones",
         "Shakira",
         "Taylor Swift",
         "The Beatles",
