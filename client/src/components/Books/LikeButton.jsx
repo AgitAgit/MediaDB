@@ -8,7 +8,7 @@ const LikeButton = (props) => {
     const { favBooks, setFavBooks, userLogged, setUserLogged, setState } = useContext(stateContext);
     const { favorites, setIsLoginPopupVisible, setTriggerSearch } = useContext(currBook);
     const { _id, bigCard } = props
-    const [liked, setLiked] = useState(false); // Set initial state to false
+    const [liked, setLiked] = useState(false);
 
     useEffect(() => {
         if (favBooks.includes(_id)) {
@@ -18,22 +18,22 @@ const LikeButton = (props) => {
         }
     }, [_id]);
     
-    const toggleLike = async (event) => {
+    const toggleLike = (event) => {
         event.stopPropagation();
         if(userLogged === "guest")
             setIsLoginPopupVisible(true);
         else {
             try{
                 if(!liked){
-                    await addLiked(userLogged,'books', _id)
+                    addLiked(userLogged,'books', _id)
                     setFavBooks(prev => [...prev, _id]);
                 }
                 else {
-                    await removeLiked(userLogged,'books',_id);
+                    removeLiked(userLogged,'books',_id);
                     setFavBooks(prev => prev.filter(id => id !== _id));
                 }
             setLiked(!liked);
-            if(favorites) setTriggerSearch(prev => !prev); /* Loading after dislike */
+            if(favorites) setTriggerSearch(prev => !prev);
             }
             catch (err) {
                 console.error("Error adding liked item:", err);
@@ -41,9 +41,10 @@ const LikeButton = (props) => {
         }
     };
 
+
     return (
-            <button className={`heart-button ${liked ? 'liked' : ''} ${bigCard ? "big-card-like": ""}`} onClick={toggleLike}>
-            ❤
+            <button className={`heart-button ${bigCard ? "big-card-like": ""}`} onClick={toggleLike}>
+            {liked ? '❤️':'🤍'}
             </button>
     );
 };

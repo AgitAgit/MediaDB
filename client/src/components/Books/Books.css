@@ -232,9 +232,6 @@ a:hover {
 .heart-button:hover {
     transform: scale(1.15);
 }
-.heart-button.liked {
-    color: red;
-}
 .big-card-like {
     top: 20px;
     font-size: 3.5rem;
