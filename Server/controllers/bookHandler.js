@@ -1,10 +1,7 @@
 const { find} = require('./mongoActions')
-const { spawn } = require('child_process');
-const pythonPath = 'venv\\Scripts\\python';
-const fs = require('fs');
-const tmp = require('tmp');
 const axios = require('axios');
 const pythonServerPath = "https://bookrecommendformediadb-91464205485.us-central1.run.app";
+
 exports.getData = (req, res)=> {
     const { filter, limit } = req.body;
     // console.log("FILTER", filter);
@@ -19,49 +16,13 @@ exports.getData = (req, res)=> {
     })
 };
 
-/*
 exports.getBookRecommendation = (req, res) => {
-    find("books", null, 12470) // Current amount of books: 12,470 in mongoDB
-        .then(allBooks =>  {
-            // Create a temporary file for the books data
-            tmp.file(async (err, tmpFilePath, fd, cleanupCallback) => {
-                if (err) {
-                    return res.status(500).send('Error creating temp file');
-                }
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "POST");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-                // Write the books data to the temporary file
-                fs.writeFileSync(tmpFilePath, JSON.stringify(allBooks));
-
-                const { bookId } = req.body; // Retrieve the bookId from the request
-
-                try {
-                    console.log("here", bookId);
-                    
-                    const response = await axios.post(`http://localhost:5000/api/data/python/book/recommend`,
-                        {
-                            bookId,
-                            tmpFilePath
-                        }
-                    );
-                    console.log(response.data);
-                    
-                    res.json(response.data);
-                } catch (err) {
-                    return res.status(402).send('Error parsing Python output: ' + err.message);
-                } finally {
-                    cleanupCallback(); // Clean up the temp file
-                }
-            });
-        })
-        .catch(err => {
-            res.status(401).send('Server error: ' + err.message);
-        });
-};
-*/
-
-exports.getBookRecommendation = (req, res) => {
     const { book_id } = req.body;
-    console.log(book_id);
+    // console.log(book_id);
     
     axios.post(`${pythonServerPath}/recommend`, {
         book_id
@@ -73,64 +34,3 @@ exports.getBookRecommendation = (req, res) => {
         console.error('Error:', error);
     });
 }
-
-/*
-tmp.setGracefulCleanup();
-exports.getBookRecommendation = (req, res) => {
-    find("books", null, 12470) // Current amount of books: 12,470 in mongoDB
-        .then(allBooks => {
-            // Create a temporary file for the books data
-            tmp.file((err, tmpFilePath, fd, cleanupCallback) => {
-                if (err) {
-                    return res.status(500).send('Error creating temp file');
-                }
-
-                // Write the books data to the temporary file
-                fs.writeFileSync(tmpFilePath, JSON.stringify(allBooks));
-
-                const { bookId } = req.body; // Retrieve the bookId from the request
-
-                // Spawn the Python process and pass the bookId and temp file path
-                const pythonProcess = spawn(pythonPath, ['./machineLearning/booksML.py', bookId, tmpFilePath]);
-
-                let data = ''; // Variable to capture the Python output
-
-                // Capture data (output) from the Python process
-                pythonProcess.stdout.on('data', (chunk) => {
-                    data += chunk.toString();
-                });
-
-                // Handle Python process exit
-                pythonProcess.on('close', (code) => {
-                    if (code !== 0) {
-                        cleanupCallback(); // Clean up the temp file
-                        return res.status(500).send('Python script failed');
-                    }
-
-                    try {
-                        const recommendations = JSON.parse(data); // Parse the output from Python
-                        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-                        res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-                        res.header('Access-Control-Allow-Headers', 'Authorization, Content-Type');
-                        res.header('Access-Control-Max-Age',3600); // 1 hour
-                        res.header('Access-Control-Expose-Headers', 'Custom-Header');
-                        res.header('Access-Control-Allow-Credentials', 'true');
-                        res.json(recommendations); // Send recommendations as JSON response
-                    } catch (err) {
-                        return res.status(500).send('Error parsing Python output: ' + err.message);
-                    } finally {
-                        cleanupCallback(); // Clean up the temp file
-                    }
-                });
-
-                // Handle any errors from the Python process
-                pythonProcess.stderr.on('data', (chunk) => {
-                    console.error(`Python error: ${chunk.toString()}`);
-                });
-            });
-        })
-        .catch(err => {
-            res.status(500).send('Server error: ' + err.message);
-        });
-};
-*/
