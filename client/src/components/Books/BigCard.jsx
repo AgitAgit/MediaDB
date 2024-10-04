@@ -25,37 +25,44 @@ function BigCard(){
                 settings: {
                     slidesToShow: 4,
                 },
-                },
-            {
-            breakpoint: 1224,
-            settings: {
-                slidesToShow: 3,
             },
+            {
+                breakpoint: 1224,
+                settings: {
+                    slidesToShow: 3,
+                },
             },
             {
                 breakpoint: 900,
                 settings: {
                     slidesToShow: 2,
                 },
-                },
-            {
-            breakpoint: 650,
-            settings: {
-                slidesToShow: 1,
             },
+            {
+                breakpoint: 650,
+                settings: {
+                    slidesToShow: 1,
+                },
             },
         ],
         };
     useEffect(() => {
+        const controller = new AbortController(); // Create an instance of AbortController
+        const signal = controller.signal;
+        
         const recommendation = () => {
-            getBookRecommendation(selectedBook._id)
+            getBookRecommendation(selectedBook._id, { signal })
             .then(data => setRecommendationData(data))
             .catch(err => console.log("Error on Big-Card: " + err));
         };
         
-        if (selectedBook && selectedBook._id) {
+        if (selectedBook?._id) {
             recommendation();
         }
+
+        return () => {
+            controller.abort(); // Cancel the ongoing request
+        };
     }, [selectedBook._id]);
 
     function handleCardClick(element) {
