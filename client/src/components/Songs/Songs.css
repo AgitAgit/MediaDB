@@ -1,6 +1,8 @@
+
 #songsApp{
     color:var(--text);
     background-color: var(--background);
+    min-width: 320px
 }
 #songsContainer{
     display:grid;
@@ -45,7 +47,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     background-color: var(--background);
-    margin: 2rem 0 1rem 0;
+    margin: 2rem 0rem 1rem 0rem;
     row-gap: 0.5rem;
     column-gap: 0.5rem;
 }
@@ -148,15 +150,23 @@
     height:2rem;
     aspect-ratio: 1/1;
     border-radius: 50%;
+    border:0px solid;
+    color:var(--color);
+    background-color: var(--background);
+    box-shadow: 0 0 8px rgba(41, 43, 46, .2);
 }
 .SongsPaginationBar button:hover{
-    scale:1.05;
-    transition: 0.3s ease;
+    scale:1.10;
+    /* transition: 0.3s ease; */
+    border:2px solid;
+    border-color: var(--color);
 }
 
-.marked{
-    background-color: red;
+.SongsPaginationBar .marked{
+    border:2px solid;
+    border-color: var(--color);
 }
+
 .Song {
     justify-self: center;
     position:relative;
