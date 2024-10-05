@@ -17,6 +17,7 @@ export const searchContext = createContext();
 function Songs(){
     const [songs, setSongs] = useState(null);
     const [page, setPage] = useState('loading');
+    const [currentPage, setCurrentPage] = useState(1);
     const [extSong, setExtSong] = useState(null);
     const { favSongs } = useContext(stateContext);
     let yPosition = parseInt(localStorage.getItem('songsYPosition')) || 0;
@@ -90,7 +91,7 @@ function Songs(){
                     <searchContext.Provider value={{ onSearchClick}}>
                         <SearchBar/>
                     </searchContext.Provider>
-                    <PaginationBar/>
+                    <PaginationBar currentPage={currentPage} setCurrentPage={setCurrentPage}/>
                     <div id="songsContainer" >
                         {
                             songs.map((song, index)=>{

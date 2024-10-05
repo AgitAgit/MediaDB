@@ -7,6 +7,9 @@ let leftMiddle = 2;
 let middle = 3;
 let rightMiddle = 4;
 
+//Improvements:
+//display numbered navigation buttons in accord with the width of the page, up to a certain maximum.
+
 
 //I want the button with the current page to be marked.
 //There are two methods to choose the page. The arrows and clicking.
@@ -16,12 +19,12 @@ let rightMiddle = 4;
 //So I'll get a ref to the pagination bar, create a list of all it's child nodes who are buttons. Remove the marked class from all and add
 //it to the one with the fitting numerical value.
 
-function PaginationBar(){
-    const [currentPage, setCurrentPage] = useState(1);
+function PaginationBar(props){
+    const {currentPage, setCurrentPage} = props;
     const pBar = useRef(null);
     const leftSpanRef = useRef(null);
     const rightSpanRef = useRef(null);
-    console.log('current page:', currentPage);
+
     // mark(currentPage);
     //When I click on the middle left or middle right buttons, it marks the button I clicked and not the one
     //with the correct value. Meaning it refers to the button that had the value at the time of clicking, and
@@ -53,7 +56,6 @@ function PaginationBar(){
             button.classList.remove('marked');
             if(parseInt(button.textContent) && parseInt(button.textContent) === page){
                 button.classList.add('marked');
-                console.log("page to be marked:",page);
             }
         })
     }
@@ -61,7 +63,6 @@ function PaginationBar(){
     function handleNavTo(page){
         if(page > TOTAL_PAGES || page < 1) return;
         setCurrentPage(page);
-        console.log('nav to ', page);
         if(TOTAL_PAGES >= 5)
         {
             if(page === 1 || page === 2){
@@ -102,7 +103,6 @@ function PaginationBar(){
         const page = parseInt(event.target.textContent);
         handleNavTo(page);
     }
-    console.log("left:",leftMiddle," middle:",middle," right:",rightMiddle);
     return(
         <div ref={pBar} className="SongsPaginationBar">
             <button onClick={() => handleNavTo(currentPage - 1)}>{'<'}</button>
