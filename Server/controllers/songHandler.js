@@ -8,7 +8,7 @@ getSongs = (req, res)=> {
         limit = req.body.limit;
         offset = req.body.offset || 0;
     }
-    find("songsFull",filter,limit)
+    find("songsFull",filter,limit, offset)
     .then(data => {
         console.log('data:',data);
         res.json(data);

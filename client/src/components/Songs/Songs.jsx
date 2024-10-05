@@ -14,6 +14,10 @@ import {getSongs, getSongsById, searchSongs, getUserLiked} from './../../dataCen
 import { stateContext } from '../Menu/Menu.jsx';
 export const searchContext = createContext();
 
+const _TOTAL_NO_ITEMS = 2500;
+const _ITEMS_PER_PAGE = 36;
+const _TOTAL_PAGES = Math.ceil(_TOTAL_NO_ITEMS/_ITEMS_PER_PAGE);
+
 function Songs(){
     const [songs, setSongs] = useState(null);
     const [page, setPage] = useState('loading');
@@ -21,15 +25,24 @@ function Songs(){
     const [extSong, setExtSong] = useState(null);
     const { favSongs } = useContext(stateContext);
     let yPosition = parseInt(localStorage.getItem('songsYPosition')) || 0;
+    const offset = currentPage * _ITEMS_PER_PAGE - _ITEMS_PER_PAGE;
 
     useEffect(() => {
         async function fetchData(){
-            let data = await searchSongs('artists.0.name','Bob Dylan',36);
+            let data = await searchSongs('artists.0.name','Bob Dylan',36,offset);
             setSongs(data);
             setPage('songs');
         }
         fetchData();
-    },[]);
+    },[/*currentPage*/]);
+
+    useEffect(() => {
+        async function fetchData(){
+            await onSearchClick('','Track');
+            setPage('songs');
+        }
+        fetchData();
+    },[currentPage]);
 
     useEffect(() => {
         if(page === 'songs'){
@@ -57,17 +70,17 @@ function Songs(){
             data = await getSongsById(ids);
         }
         else{
-            if(str === ''){
-                data = await searchSongs('artists.0.name','Bob Dylan',36);
-            }
-            else if(parameter === 'Track'){
-                data = await searchSongs('name', str,36);
+            // if(str === ''){
+            //     data = await searchSongs('artists.0.name','Bob Dylan',36, offset);
+            // }
+            /*else*/ if(parameter === 'Track'){
+                data = await searchSongs('name', str,36, offset);
             }
             else if(parameter === 'Album'){
-                data = await searchSongs('album.name', str,36);
+                data = await searchSongs('album.name', str,36, offset);
             }
             else if(parameter === 'Artist'){
-                data = await searchSongs('artists.0.name', str,36);
+                data = await searchSongs('artists.0.name', str,36, offset);
             }
         }
         // console.log(`search string:'${str}' parameter:${parameter}`);
@@ -91,7 +104,7 @@ function Songs(){
                     <searchContext.Provider value={{ onSearchClick}}>
                         <SearchBar/>
                     </searchContext.Provider>
-                    <PaginationBar currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+                    <PaginationBar currentPage={currentPage} setCurrentPage={setCurrentPage} data={{_TOTAL_NO_ITEMS,_ITEMS_PER_PAGE,_TOTAL_PAGES}}/>
                     <div id="songsContainer" >
                         {
                             songs.map((song, index)=>{

@@ -98,10 +98,11 @@ function getBookRecommendation(bookId) {
     .catch(err => console.log("Client fetching error:",err));
 }
 
-function getSongs(filter = {}, limit = 2){
+function getSongs(filter = {}, limit, offset){
     return axios.post(`${_CURRENT_ADDRESS}/api/data/song/get`,{
         filter,
-        limit
+        limit,
+        offset
     })
     .then(songs => {
         return songs.data.map(song => {
@@ -112,11 +113,11 @@ function getSongs(filter = {}, limit = 2){
     });
 }
 
-function searchSongs(field = 'artists.0.name',query = 'Led', limit = 10){
+function searchSongs(field = 'artists.0.name',query = 'Led', limit = 10, offset = 0){
     const filter = {
         [field]:{ $regex: query, $options:"i"}
     }
-    return getSongs(filter,limit);
+    return getSongs(filter,limit, offset);
 }
 
 function getSongsById(ids,limit = 1000){

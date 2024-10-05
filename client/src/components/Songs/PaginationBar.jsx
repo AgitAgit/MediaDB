@@ -1,8 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 
-const TOTAL_NO_ITEMS = 2500;
-const ITEMS_PER_PAGE = 36;
-const TOTAL_PAGES = Math.ceil(TOTAL_NO_ITEMS/ITEMS_PER_PAGE);
+
 let leftMiddle = 2;
 let middle = 3;
 let rightMiddle = 4;
@@ -21,6 +19,7 @@ let rightMiddle = 4;
 
 function PaginationBar(props){
     const {currentPage, setCurrentPage} = props;
+    const {_TOTAL_NO_ITEMS,_ITEMS_PER_PAGE,_TOTAL_PAGES} = props.data;
     const pBar = useRef(null);
     const leftSpanRef = useRef(null);
     const rightSpanRef = useRef(null);
@@ -35,7 +34,7 @@ function PaginationBar(props){
     // },[currentPage, leftMiddle, middle, rightMiddle]);
     
     useEffect(() => {
-        if(currentPage + 1 < TOTAL_PAGES - 1){
+        if(currentPage + 1 < _TOTAL_PAGES - 1){
             rightSpanRef.current.textContent = '...';
         }
         else {
@@ -61,17 +60,17 @@ function PaginationBar(props){
     }
 
     function handleNavTo(page){
-        if(page > TOTAL_PAGES || page < 1) return;
+        if(page > _TOTAL_PAGES || page < 1) return;
         setCurrentPage(page);
-        if(TOTAL_PAGES >= 5)
+        if(_TOTAL_PAGES >= 5)
         {
             if(page === 1 || page === 2){
                 leftMiddle = 2;
                 middle = 3;
                 rightMiddle = 4;
             }
-            else if(page === TOTAL_PAGES -1 || page === TOTAL_PAGES){
-                rightMiddle = TOTAL_PAGES - 1;
+            else if(page === _TOTAL_PAGES -1 || page === _TOTAL_PAGES){
+                rightMiddle = _TOTAL_PAGES - 1;
                 middle = rightMiddle - 1;
                 leftMiddle = rightMiddle - 2;
             }
@@ -112,7 +111,7 @@ function PaginationBar(props){
             <button onClick={handleNavToText}>{middle}</button>
             <button onClick={handleNavToText}>{rightMiddle}</button>
             <span ref={rightSpanRef}></span>
-            <button onClick={handleNavToText}>{TOTAL_PAGES}</button>
+            <button onClick={handleNavToText}>{_TOTAL_PAGES}</button>
             <button onClick={() => handleNavTo(currentPage + 1)}>{'>'}</button>
         </div>
     );
