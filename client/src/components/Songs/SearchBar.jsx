@@ -103,7 +103,7 @@ function SearchBar(){
             </div>
             <div ref={artistSelectDivRef} className="artistSelectDiv hidden">
                 <span>Artists in db:</span>
-                <select ref={artistSelectRef} class="artistSelect" defaultValue='Artist' onChange={() => onSearchClick(artistSelectRef.current.value, document.getElementById('searchSelect').value)}>
+                <select ref={artistSelectRef} className="artistSelect" defaultValue='Artist' onChange={() => onSearchClick(artistSelectRef.current.value, document.getElementById('searchSelect').value)}>
                 </select>
             </div>
             <div className="favoritesDiv">

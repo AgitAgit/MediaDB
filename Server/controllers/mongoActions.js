@@ -33,14 +33,15 @@ let url = `${base_url}/action/findOne`;
     });
 }
 
-function find(collection, filter, limit = 40) {
+function find(collection, filter, limit = 40, offset=0) {
     let url = `${base_url}/action/find`;
         const requestBody = {
             dataSource: 'MediaDB',
             database: 'media',
             collection,
             filter,
-            limit
+            limit,
+            skip:offset
         };
         
         return axios.post(url, requestBody, {

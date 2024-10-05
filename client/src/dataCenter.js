@@ -7,7 +7,7 @@ const _SERVER_PORT = 8080;
 const _SERVER_ADDRESS = 'https://mediadb-91464205485.us-central1.run.app';
 const _LOCAL_SERVER_ADDRESS = `http://localhost:${_SERVER_PORT}`;
 
-const _CURRENT_ADDRESS = _SERVER_ADDRESS;
+const _CURRENT_ADDRESS = _LOCAL_SERVER_ADDRESS;
 
 function addLiked(username,mediaType, elementId) {
     return axios.post(`${_CURRENT_ADDRESS}/api/data/users/liked/add`,
@@ -98,10 +98,11 @@ function getBookRecommendation(book_id) {
     .catch(err => console.log("Client fetching error:",err));
 }
 
-function getSongs(filter = {}, limit = 2){
+function getSongs(filter = {}, limit, offset){
     return axios.post(`${_CURRENT_ADDRESS}/api/data/song/get`,{
         filter,
-        limit
+        limit,
+        offset
     })
     .then(songs => {
         return songs.data.map(song => {
@@ -112,11 +113,11 @@ function getSongs(filter = {}, limit = 2){
     });
 }
 
-function searchSongs(field = 'artists.0.name',query = 'Led', limit = 10){
+function searchSongs(field = 'artists.0.name',query = 'Led', limit = 10, offset = 0){
     const filter = {
         [field]:{ $regex: query, $options:"i"}
     }
-    return getSongs(filter,limit);
+    return getSongs(filter,limit, offset);
 }
 
 function getSongsById(ids,limit = 1000){
