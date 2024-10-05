@@ -18,6 +18,8 @@ const _TOTAL_NO_ITEMS = 2500;
 const _ITEMS_PER_PAGE = 36;
 const _TOTAL_PAGES = Math.ceil(_TOTAL_NO_ITEMS/_ITEMS_PER_PAGE);
 
+//need to add pagination for the favorites mode.
+//probably need to add offset to the getById in the data center
 function Songs(){
     const [songs, setSongs] = useState(null);
     const [page, setPage] = useState('loading');
