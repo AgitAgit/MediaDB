@@ -9,9 +9,11 @@ function Card(props){
     return (
         <div className={"card" + (carousel ? " carousel-card" : "")} onClick={onClick}>
             <img className="card-img" src={img} alt="profile picture"></img>
-            <h3 className='card-title'>{title}</h3>
-            <p className='card-lang'>{language}</p>
-            <p className="card-date">{publishedDate}</p>
+            <div className="space-between">
+                <h3 className='card-title'>{title}</h3>
+                <p className='card-lang'>{language}</p>
+                <p className="card-date">{publishedDate}</p>
+            </div>
             <LikeButton _id={_id}/>
         </div>
     );

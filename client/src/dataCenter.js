@@ -81,10 +81,10 @@ function getBooks(searchText, method, limit=100, favorites, favBooks, { signal})
     })
     .catch(err => console.log("Client fetching error:",err));
 }
-function getBookRecommendation(book_id) {
+function getBookRecommendation(book_id, { signal }) {
     return axios.post(`${_CURRENT_ADDRESS}/api/data/book/getrecommendation`, {
         book_id
-    })
+    } ,{ signal })
     .then(books => {
         const data = books.data;
         if(data && data.length > 0) data.forEach(element => {

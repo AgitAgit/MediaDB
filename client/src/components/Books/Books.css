@@ -216,6 +216,12 @@ a:hover {
     transform: scale(1.05);
     cursor: pointer;
 }
+.card .space-between {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100px;
+}
 /* Heart */
 .heart-button {
     position: absolute;
@@ -231,9 +237,6 @@ a:hover {
 }
 .heart-button:hover {
     transform: scale(1.15);
-}
-.heart-button.liked {
-    color: red;
 }
 .big-card-like {
     top: 20px;
@@ -321,6 +324,9 @@ a:hover {
 /* Big Card- Carrousel */
 #loading-carousel-container {
     padding: 25px;
+}
+#loading-carousel-container .loadingDiv {
+    min-height: 0;
 }
 #loading-carousel-container h2 {
     margin-block: 20px;
