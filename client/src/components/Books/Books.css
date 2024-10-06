@@ -300,6 +300,7 @@ a:hover {
     img {
         height: 250px;
         margin-inline: auto;
+        margin-block: auto;
     }
     p {
         font-size: 1.5rem;
@@ -319,6 +320,15 @@ a:hover {
         max-height: 200px;
         overflow-y: auto;
         border-left: 10px solid var(--link-color);
+    }
+    .book-description::-webkit-scrollbar {
+        width: 10px;
+        background-color: transparent;
+    }
+    
+    .book-description::-webkit-scrollbar-thumb {
+        background-color: var(--link-color);
+        border-radius: 5px;
     }
 }
 /* Big Card- Carrousel */
@@ -578,7 +588,6 @@ a:hover {
     .footer-content h2 {
         text-align: left;
     }
-
 }
 
 @media (max-width: 500px) {

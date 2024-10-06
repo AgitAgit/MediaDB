@@ -22,7 +22,7 @@ function Header(props){
                 </div>
                 <div className="theme-container">
                     <div id="color-mode" onClick={toggleTheme}>
-                        {theme === 'light' ? '☀️Light Mode' : '🌙Dark Mode'}</div>
+                    {theme === 'light' ? '☀️Light Mode' : '🌙Dark Mode'}</div>
                 </div>
             </div>
         </header>

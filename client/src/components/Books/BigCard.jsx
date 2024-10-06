@@ -75,7 +75,7 @@ function BigCard(){
         <BackButton />
         <LikeButton _id={selectedBook._id} bigCard="true"/>
         <div id="data">
-            <img src={selectedBook.img} alt="book image"/>
+            <img src={selectedBook.img} alt="book cover"/>
             <div className="book-details" alt="Book Cover">
                 <p><span>Title: </span>{selectedBook.title}</p>
                 <p><span>Authors: </span>{selectedBook.authors.join(", ")} </p>

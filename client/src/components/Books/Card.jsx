@@ -7,7 +7,7 @@ function Card(props){
     
     return (
         <div className={"card" + (carousel ? " carousel-card" : "")} onClick={onClick}>
-            <img className="card-img" src={img} alt="book image"></img>
+            <img className="card-img" src={img} alt="book cover"></img>
             <div className="space-between">
                 <h3 className='card-title'>{title}</h3>
                 <p className='card-lang'>{language}</p>
