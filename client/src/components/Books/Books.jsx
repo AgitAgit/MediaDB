@@ -32,21 +32,32 @@ function Books(){
     const [isLoginPopupVisible, setIsLoginPopupVisible] = useState(false);
     let totalPages;
 
-    
     useEffect(() => {
         setData(null);
+        const controller = new AbortController();
+        const { signal } = controller;
+    
         const fetchData = debounce(async () => {
-            let response = await getBooks(searchText, method, 1000, favorites, favBooks);
-            setData(response);
-            // console.log(response);
-            
-        }, 100); // ms delay for requests
+            try {
+                let response = await getBooks(searchText, method, 1000, favorites, favBooks, { signal });
+                if (!signal.aborted) {
+                    setData(response); // Update state only if the request wasn't canceled
+                }
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    console.error("Fetch failed:", error);
+                }
+            }
+        }, 200); // 200 ms delay for requests
+    
         fetchData();
         setCurrPage(1);
-        // cancel pending request from before
-        return () => { fetchData.cancel(); };
+        // Cleanup function to cancel the previous request and debounce
+        return () => {
+            fetchData.cancel();      // Cancel the debounce
+            controller.abort();      // Abort the ongoing request
+        };
     }, [searchText, method, triggerSearch, favorites]);
-
 
     useEffect(() => {
         if(!selectedBook) 
@@ -95,8 +106,8 @@ function Books(){
                     </div>
                 </div>
             </div>)}
-        <Header/>
-        <div id="main-content">
+            <Header title={"Let's Find Your\u00A0Book?"} />
+            <div id="main-content">
             { !selectedBook ?
             // ALL BOOKS
             <div id='books-search-page'>
@@ -121,11 +132,9 @@ function Books(){
                 <Pagination currPage={currPage} totalPages={totalPages} handlePageChange={handlePageChange}/>
             </div>
             : // SELECTED BOOK DISPLAY
-            
                 <div id='book-selected-page'>
                     <BigCard />
                 </div>
-            
             }
         </div>
         </currBook.Provider>

@@ -1,4 +1,3 @@
-import { faV } from '@fortawesome/free-solid-svg-icons';
 import defaultImg from './assets/book_img_not_available.png';
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
@@ -7,7 +6,7 @@ const _SERVER_PORT = 8080;
 const _SERVER_ADDRESS = 'https://mediadb-91464205485.us-central1.run.app';
 const _LOCAL_SERVER_ADDRESS = `http://localhost:${_SERVER_PORT}`;
 
-const _CURRENT_ADDRESS = _LOCAL_SERVER_ADDRESS;
+const _CURRENT_ADDRESS = _SERVER_ADDRESS;
 
 function addLiked(username,mediaType, elementId) {
     return axios.post(`${_CURRENT_ADDRESS}/api/data/users/liked/add`,
@@ -62,7 +61,7 @@ function createUser(username,password) {
     .catch(err => console.log("Client fetching error:",err)); 
 }
 
-function getBooks(searchText, method, limit=100, favorites, favBooks){    
+function getBooks(searchText, method, limit=100, favorites, favBooks, { signal}){    
     const filter = {};
     filter[method] = { $regex: searchText, $options: "i"};
     if(favorites)
@@ -70,7 +69,7 @@ function getBooks(searchText, method, limit=100, favorites, favBooks){
     return axios.put(`${_CURRENT_ADDRESS}/api/data/book/get`, {
         filter,
         limit
-    })
+    }, { signal })
     .then(books => {
         const data = books.data;
         if(data && data.length > 0) data.forEach(element => {
