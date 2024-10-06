@@ -16,7 +16,7 @@ const LikeButton = (props) => {
         } else {
             setLiked(false);
         }
-    }, [_id]);
+    }, [_id, favBooks]);
     
     const toggleLike = (event) => {
         event.stopPropagation();

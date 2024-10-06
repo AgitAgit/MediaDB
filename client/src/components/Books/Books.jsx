@@ -19,7 +19,7 @@ export const currBook = createContext();
 // RENDER RUNS COMPONENTS 2 TIMES INITIALLY DON'T BE WORRIED ABOUT LOTS OF LOGS
 
 function Books(){
-    const { theme, setTheme, favBooks, setState, userLogged, setUserLogged } = useContext(stateContext);
+    const { favBooks, setState, userLogged, setUserLogged } = useContext(stateContext);
     const [data, setData] = useState(null);
     const [method, setMethod] = useState("title");
     const [searchText, setSearchText] = useState("");

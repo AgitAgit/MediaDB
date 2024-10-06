@@ -1,14 +1,13 @@
 import LikeButton from "./LikeButton";
 
 function Card(props){
-    let { _id, title, authors, language, publishedDate, description, img, link } = props.data;
+    let { _id, title, language, publishedDate, img } = props.data;
     const { onClick, carousel } = props;
-    let isLiked = false;
     if(title.length > 30) title = title.slice(0,30) + '...';
     
     return (
         <div className={"card" + (carousel ? " carousel-card" : "")} onClick={onClick}>
-            <img className="card-img" src={img} alt="profile picture"></img>
+            <img className="card-img" src={img} alt="book image"></img>
             <div className="space-between">
                 <h3 className='card-title'>{title}</h3>
                 <p className='card-lang'>{language}</p>
