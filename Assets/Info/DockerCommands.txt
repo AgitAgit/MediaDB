@@ -1,0 +1,8 @@
+
+
+docker build -t client-image .
+
+docker tag client-image gcr.io/angelic-incline-434414-m7/client-image:latest
+
+on SDK:
+docker push gcr.io/angelic-incline-434414-m7/client-image:latest
