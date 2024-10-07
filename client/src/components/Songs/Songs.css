@@ -8,10 +8,10 @@
     display:grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     /* justify-content: center; */
-    gap: 10px;
+    gap: 30px;
     background-color: var(--background);
     color: var(--text);
-    padding:0 5rem 0 5rem;
+    /* padding:0 5rem 0 5rem; */
     margin:0 auto 0 auto;
     max-width: 1400px;
     min-height: 50vh;
@@ -47,7 +47,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     background-color: var(--background);
-    margin: 2rem 0rem 1rem 0rem;
+    margin: 2rem 0.5rem 1rem 0.5rem;
     row-gap: 0.5rem;
     column-gap: 0.5rem;
 }
@@ -87,15 +87,17 @@
     padding-right: 0.5rem;
 }
 .favoritesBtn:hover{
-    scale:1.05;
-    transition: 0.3s ease;
+    /* scale:1.05;
+    transition: 0.3s ease; */
+    border:2px solid;
+    border-color: var(--color);
 }
-.clickedDarkFavoritesBtn{
-    
-}
-
+/*refers specifically to the favorites button*/
 .btnClicked{
-    box-shadow:inset 0 0 8px rgba(41, 43, 46, .2); 
+    box-shadow:inset 0 0 8px rgba(41, 43, 46, .2);
+    border:2px solid;
+    border-color: var(--color);
+    scale:0.95; 
 }
 .btnClicked:hover{
     scale:1.00;

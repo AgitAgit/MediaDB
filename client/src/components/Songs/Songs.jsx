@@ -38,9 +38,7 @@ const _TOTAL_PAGES = Math.ceil(_TOTAL_NO_ITEMS/_ITEMS_PER_PAGE);
 
 //Refresh favorites when the like is clicked DONE.
 
-//Favorites button should be marked more clearly when in favorites mode.
-
-//Add some margin to the searchBar
+//Favorites button should be marked more clearly when in favorites mode. DONE.
 
 //Add a bit more minimal space between the cards in songs
 
