@@ -14,9 +14,6 @@ import {getSongs, getSongsById, searchSongs, getUserLiked} from './../../dataCen
 import { stateContext } from '../Menu/Menu.jsx';
 export const searchContext = createContext();
 
-const _TOTAL_NO_ITEMS = 2500;
-const _ITEMS_PER_PAGE = 36;
-const _TOTAL_PAGES = Math.ceil(_TOTAL_NO_ITEMS/_ITEMS_PER_PAGE);
 
 //need to add pagination for the favorites mode.  DONE
 //probably need to add offset to the getById in the data center
@@ -46,8 +43,15 @@ const _TOTAL_PAGES = Math.ceil(_TOTAL_NO_ITEMS/_ITEMS_PER_PAGE);
 
 //Improve small size responsiveness for the large card DONE.
 
+//Change the pagination bar so It shows the number of pages with accordance to the number of available
+//results.
+
 
 function Songs(){
+    const itemsInCollection = 2500;
+    const [totalNoItems, setTotalNoItems] = useState(itemsInCollection);//number of docs in collection
+    const _ITEMS_PER_PAGE = 36;
+    const _TOTAL_PAGES = Math.ceil(totalNoItems/_ITEMS_PER_PAGE);
     const [songs, setSongs] = useState(null);
     const [page, setPage] = useState('loading');
     const [currentPage, setCurrentPage] = useState(1);
@@ -84,6 +88,12 @@ function Songs(){
     
     useEffect(()=>{
         setCurrentPage(1);
+        if(favBtnOn){
+            setTotalNoItems(favSongs.length);
+        }
+        else{
+            setTotalNoItems(itemsInCollection);
+        }
     },[favBtnOn]);
 
     //refresh the favorite songs view when a favorite is removed
@@ -142,7 +152,7 @@ function Songs(){
                     <searchContext.Provider value={{ onSearchClick, favBtnOn, setFavBtnOn, setCurrentPage}}>
                         <SearchBar/>
                     </searchContext.Provider>
-                    <PaginationBar currentPage={currentPage} setCurrentPage={setCurrentPage} data={{_TOTAL_NO_ITEMS,_ITEMS_PER_PAGE,_TOTAL_PAGES}}/>
+                    <PaginationBar currentPage={currentPage} setCurrentPage={setCurrentPage} data={{_TOTAL_NO_ITEMS: totalNoItems,_ITEMS_PER_PAGE,_TOTAL_PAGES}}/>
                     <div id="songsContainer" >
                         {
                             songs.map((song, index)=>{

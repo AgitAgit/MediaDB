@@ -23,7 +23,10 @@ function PaginationBar(props){
     const pBar = useRef(null);
     const leftSpanRef = useRef(null);
     const rightSpanRef = useRef(null);
-
+    let buttons = [];
+    for(let i = 0; i < _TOTAL_PAGES; i++){
+        buttons.push('.');
+    }
     // mark(currentPage);
     //When I click on the middle left or middle right buttons, it marks the button I clicked and not the one
     //with the correct value. Meaning it refers to the button that had the value at the time of clicking, and
@@ -32,7 +35,7 @@ function PaginationBar(props){
 
     // useEffect(() => {
     // },[currentPage, leftMiddle, middle, rightMiddle]);
-    
+
     useEffect(() => {
         if(currentPage + 1 < _TOTAL_PAGES - 1){
             rightSpanRef.current.textContent = '...';
@@ -93,6 +96,8 @@ function PaginationBar(props){
     return(
         <div ref={pBar} className="SongsPaginationBar">
             <button onClick={() => handleNavTo(currentPage - 1)}>{'<'}</button>
+            {_TOTAL_PAGES >= 5 &&(
+                <>
             <button onClick={handleNavToText}>{'1'}</button>
             <span ref={leftSpanRef}></span>
             <button onClick={handleNavToText}>{leftMiddle}</button>
@@ -100,6 +105,19 @@ function PaginationBar(props){
             <button onClick={handleNavToText}>{rightMiddle}</button>
             <span ref={rightSpanRef}></span>
             <button onClick={handleNavToText}>{_TOTAL_PAGES}</button>
+            </>
+            )}
+            {_TOTAL_PAGES < 5 &&(
+            <>
+            {  
+                Array.from({ length: _TOTAL_PAGES }, (_, i) => (
+                    <button key={i} onClick={handleNavToText}>
+                      {i + 1}
+                    </button>
+                  ))
+            }
+            </>
+            )}
             <button onClick={() => handleNavTo(currentPage + 1)}>{'>'}</button>
         </div>
     );
