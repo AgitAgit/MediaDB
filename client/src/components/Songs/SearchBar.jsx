@@ -3,7 +3,7 @@ import {searchContext} from './Songs';
 import searchIcon from './../../assets/search1.svg';
 // import { stateContext } from '../Menu/Menu';
 function SearchBar(){
-    const { onSearchClick, favBtnOn, setFavBtnOn } = useContext(searchContext);
+    const { onSearchClick, favBtnOn, setFavBtnOn, setCurrentPage } = useContext(searchContext);
     const artists = [
         "Artist",
         "AC/DC",
@@ -69,6 +69,8 @@ function SearchBar(){
     }
 
     function handleSelectChange(event){
+        setCurrentPage(1);
+
         if(event.target.value === 'Artist'){
             artistSelectDivRef.current.classList.remove('hidden');
         }
@@ -96,7 +98,10 @@ function SearchBar(){
         <div className="searchBar">
             <div className="searchField">
                 <img id="searchIcon" src={searchIcon} alt='search icon'></img>
-                <input id="searchInput" onChange={() => onSearchClick(document.getElementById('searchInput').value, document.getElementById('searchSelect').value)}>
+                <input id="searchInput" onChange={() => {
+                    setCurrentPage(1);
+                    onSearchClick(document.getElementById('searchInput').value, document.getElementById('searchSelect').value)
+                    }}>
                 </input>
             </div>
             <div ref={artistSelectDivRef} className="artistSelectDiv hidden">

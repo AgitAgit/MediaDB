@@ -18,12 +18,25 @@ const _TOTAL_NO_ITEMS = 2500;
 const _ITEMS_PER_PAGE = 36;
 const _TOTAL_PAGES = Math.ceil(_TOTAL_NO_ITEMS/_ITEMS_PER_PAGE);
 
-//need to add pagination for the favorites mode.
+//need to add pagination for the favorites mode.  DONE
 //probably need to add offset to the getById in the data center
+
 //I need to lift the state of favBtn from searchBar to songs, and modify the handleFavoritesClick
-//function accordingly.
+//function accordingly. DONE
 
 //I need to add a function that runs when the client closes to get the y position back to 0.
+//I can add it as a useEffect for songs that runs only once. DONE
+
+//What about searching by artist instead of track, or when searching for a different text, 
+//and the page remains the same? Where do I turn the page back to 1 to change this behaviour?
+//onChange of the search value and the search option value. also when favorites value changes. DONE
+
+//When setCurrentPage(1) is called from outside the pagination bar, and the current page is larger than 3,
+//the middle buttons display doesn't update. FIXED.
+
+//Add search functionality within favorites...
+
+//I need to check Yaniv's tips
 function Songs(){
     const [songs, setSongs] = useState(null);
     const [page, setPage] = useState('loading');
@@ -41,7 +54,9 @@ function Songs(){
             setPage('songs');
         }
         fetchData();
-    },[/*currentPage*/]);
+        localStorage.setItem('songsYPosition','0');
+        yPosition = 0;
+    },[]);//leave the dependency array empty here.
 
     useEffect(() => {
         async function fetchData(){
@@ -57,6 +72,10 @@ function Songs(){
         }
     },[page])
     
+    useEffect(()=>{
+        setCurrentPage(1);
+    },[favBtnOn]);
+
     function handleSongClick(props){
         // console.log('a song was clicked!');
         localStorage.setItem('songsYPosition',`${window.scrollY}`);
@@ -105,7 +124,7 @@ function Songs(){
             {page === 'songs' && (
                 <div id="songsApp">
                     <Header/>
-                    <searchContext.Provider value={{ onSearchClick, favBtnOn, setFavBtnOn}}>
+                    <searchContext.Provider value={{ onSearchClick, favBtnOn, setFavBtnOn, setCurrentPage}}>
                         <SearchBar/>
                     </searchContext.Provider>
                     <PaginationBar currentPage={currentPage} setCurrentPage={setCurrentPage} data={{_TOTAL_NO_ITEMS,_ITEMS_PER_PAGE,_TOTAL_PAGES}}/>

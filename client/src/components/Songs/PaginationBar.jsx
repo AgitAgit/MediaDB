@@ -47,6 +47,7 @@ function PaginationBar(props){
             leftSpanRef.current.textContent = '';
         }
         mark();
+        handleNavTo(currentPage);//This is being tested... It does seem to solve the problem.
     },[currentPage, leftMiddle, middle, rightMiddle]);
 
     function mark(page = currentPage){
@@ -83,19 +84,6 @@ function PaginationBar(props){
         else{
 
         }
-
-        // if(currentPage + 1 < TOTAL_PAGES - 1){
-        //     rightSpanRef.current.textContent = '...';
-        // }
-        // else {
-        //     rightSpanRef.current.textContent = '';
-        // }
-        // if(currentPage - 1 > 2){
-        //     leftSpanRef.current.textContent = '...';
-        // }
-        // else {
-        //     leftSpanRef.current.textContent = '';
-        // }
     }
 
     function handleNavToText(event){
