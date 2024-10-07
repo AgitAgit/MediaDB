@@ -37,17 +37,20 @@ function PaginationBar(props){
     // },[currentPage, leftMiddle, middle, rightMiddle]);
 
     useEffect(() => {
-        if(currentPage + 1 < _TOTAL_PAGES - 1){
-            rightSpanRef.current.textContent = '...';
-        }
-        else {
-            rightSpanRef.current.textContent = '';
-        }
-        if(currentPage - 1 > 2){
-            leftSpanRef.current.textContent = '...';
-        }
-        else {
-            leftSpanRef.current.textContent = '';
+        if(_TOTAL_PAGES >= 5){
+
+            if(currentPage + 1 < _TOTAL_PAGES - 1){
+                rightSpanRef.current.textContent = '...';
+            }
+            else {
+                rightSpanRef.current.textContent = '';
+            }
+            if(currentPage - 1 > 2){
+                leftSpanRef.current.textContent = '...';
+            }
+            else {
+                leftSpanRef.current.textContent = '';
+            }
         }
         mark();
         handleNavTo(currentPage);//This is being tested... It does seem to solve the problem.
