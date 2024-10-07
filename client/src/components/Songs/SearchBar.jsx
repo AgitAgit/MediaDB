@@ -3,8 +3,7 @@ import {searchContext} from './Songs';
 import searchIcon from './../../assets/search1.svg';
 // import { stateContext } from '../Menu/Menu';
 function SearchBar(){
-    const { onSearchClick } = useContext(searchContext);
-    const [favBtnOn, setFavBtnOn] = useState(false);
+    const { onSearchClick, favBtnOn, setFavBtnOn } = useContext(searchContext);
     const artists = [
         "Artist",
         "AC/DC",
@@ -63,11 +62,10 @@ function SearchBar(){
     const artistSelectDivRef = useRef(null);
 
     function handleFavoritesClick(event){
-        const fav = !favBtnOn;
+        // const fav = !favBtnOn;
         event.target.classList.toggle('btnClicked');
         setFavBtnOn(value => !value);
-        onSearchClick(document.getElementById('searchInput').value, document.getElementById('searchSelect').value, fav);
-        
+        // onSearchClick(document.getElementById('searchInput').value, document.getElementById('searchSelect').value, fav);
     }
 
     function handleSelectChange(event){

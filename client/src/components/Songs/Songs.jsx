@@ -20,11 +20,16 @@ const _TOTAL_PAGES = Math.ceil(_TOTAL_NO_ITEMS/_ITEMS_PER_PAGE);
 
 //need to add pagination for the favorites mode.
 //probably need to add offset to the getById in the data center
+//I need to lift the state of favBtn from searchBar to songs, and modify the handleFavoritesClick
+//function accordingly.
+
+//I need to add a function that runs when the client closes to get the y position back to 0.
 function Songs(){
     const [songs, setSongs] = useState(null);
     const [page, setPage] = useState('loading');
     const [currentPage, setCurrentPage] = useState(1);
     const [extSong, setExtSong] = useState(null);
+    const [favBtnOn, setFavBtnOn] = useState(false);
     const { favSongs } = useContext(stateContext);
     let yPosition = parseInt(localStorage.getItem('songsYPosition')) || 0;
     const offset = currentPage * _ITEMS_PER_PAGE - _ITEMS_PER_PAGE;
@@ -44,7 +49,7 @@ function Songs(){
             setPage('songs');
         }
         fetchData();
-    },[currentPage]);
+    },[currentPage, favBtnOn]);
 
     useEffect(() => {
         if(page === 'songs'){
@@ -60,7 +65,7 @@ function Songs(){
         // console.log(props);
     }
     
-    async function onSearchClick(str, parameter, favBtnOn=false){
+    async function onSearchClick(str, parameter){
         let data;
         if(favBtnOn && favSongs){
             // data = await data.filter(song =>{
@@ -69,13 +74,10 @@ function Songs(){
             const ids = await favSongs.map(id => {
                 return {"$oid":id};
             });
-            data = await getSongsById(ids);
+            data = await getSongsById(ids,36,offset);
         }
         else{
-            // if(str === ''){
-            //     data = await searchSongs('artists.0.name','Bob Dylan',36, offset);
-            // }
-            /*else*/ if(parameter === 'Track'){
+            if(parameter === 'Track'){
                 data = await searchSongs('name', str,36, offset);
             }
             else if(parameter === 'Album'){
@@ -103,7 +105,7 @@ function Songs(){
             {page === 'songs' && (
                 <div id="songsApp">
                     <Header/>
-                    <searchContext.Provider value={{ onSearchClick}}>
+                    <searchContext.Provider value={{ onSearchClick, favBtnOn, setFavBtnOn}}>
                         <SearchBar/>
                     </searchContext.Provider>
                     <PaginationBar currentPage={currentPage} setCurrentPage={setCurrentPage} data={{_TOTAL_NO_ITEMS,_ITEMS_PER_PAGE,_TOTAL_PAGES}}/>

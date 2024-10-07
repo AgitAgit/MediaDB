@@ -119,12 +119,12 @@ function searchSongs(field = 'artists.0.name',query = 'Led', limit = 10, offset 
     return getSongs(filter,limit, offset);
 }
 
-function getSongsById(ids,limit = 1000){
+function getSongsById(ids, limit = 1000, offset=0){
     console.log("getById called with ids:", ids);
     const filter = {
         _id: {$in:ids}
     }
-    return getSongs(filter,limit);
+    return getSongs(filter,limit,offset);
 }
 
 
