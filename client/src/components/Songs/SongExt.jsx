@@ -25,12 +25,12 @@ function SongExt(props){
                 </div>
                 
                 <div className="infoDiv">
-                    <h3>Track:{track}</h3>
-                    <p>Album:{album}</p>
+                    <h3>Track: {track}</h3>
+                    <p>Album: {album}</p>
                     <br/>
-                    <p>Release date:{albumReleaseDate}</p>
+                    <p>Release date: {albumReleaseDate}</p>
                     <br/>
-                    <p>Artist:{artist}</p>
+                    <p>Artist: {artist}</p>
                     <br/>
                     <p>External links:</p>
                     <br/>

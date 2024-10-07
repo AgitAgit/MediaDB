@@ -8,11 +8,12 @@
     display:grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     /* justify-content: center; */
-    gap: 30px;
+    row-gap: 2rem;
+    column-gap: 2rem;
     background-color: var(--background);
     color: var(--text);
-    /* padding:0 5rem 0 5rem; */
-    margin:0 auto 0 auto;
+    padding:0 0.5rem 0 0.5rem;
+    margin:1rem auto 0 auto;
     max-width: 1400px;
     min-height: 50vh;
 }
@@ -177,7 +178,7 @@
     height:300px;
     width: 250px;
     z-index: 1;
-    margin-top: 15px;
+    /* margin-top: 15px; */
     text-align: center;
     transition: 0.3s ease;
     overflow:hidden;
@@ -222,8 +223,8 @@
 .SongExt{
     position:relative;
     z-index:11;
-    width:70%;
-    margin-left:2rem;
+    width:90%;
+    margin:auto;
     display:flex;
     flex-direction: column;
 }
@@ -233,6 +234,7 @@
     margin-bottom: 1rem;
 }
 .backArrowBackground{
+    position: absolute;
     z-index: 11;
     width:5rem;
     height:3rem;
@@ -242,9 +244,10 @@
 .backArrowImg{
     position:absolute;
     top:1.5rem;
+    left:0.5rem;
     width:4rem;
     z-index: 12;
-    transform: translateY(-2.5rem);
+    transform: translateY(-2rem);
 }
 .innerSongExt{
     display:grid;
@@ -256,6 +259,7 @@
 }
 .SongExt .imgDiv{
     /* width:40%; */
+    align-self: center;
     position:relative;
     z-index: 10;
     .artistImg{
@@ -285,7 +289,35 @@
     background-color: var(--background);
 }
 
-@media(max-width:400px){
+@media(max-width:1030px){
+    .SongExt{
+        margin:auto;
+        width:90%;
+    }
+}
+
+@media(max-width:800px){
+    .SongExt{
+        margin:auto;
+    }
+    .innerSongExt{
+        display:flex;
+        flex-direction: column;
+    }
+    .innerSongExt .imgDiv{
+        align-self: center;
+        max-width: 350px;
+        overflow: hidden;
+        border-bottom-left-radius: 5%;
+        border-bottom-right-radius: 5%;
+    }
+    .backArrowDiv{
+        position: absolute;
+        top:0rem;
+    }
+    
+}
+@media(max-width:430px){
     #songsContainer{
         margin:0;
         padding:0;
@@ -295,6 +327,13 @@
     }
     #songsApp .searchField{
         width:80%;
+    }
+    .SongExt{
+        width:100%;
+        text-align: center;
+    }
+    .SongExt .imgDiv{
+        max-width: 200px;
     }
     /* #songsApp .searchBar{
         grid-template-columns: ;

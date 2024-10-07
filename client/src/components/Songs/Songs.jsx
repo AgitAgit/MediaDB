@@ -40,11 +40,11 @@ const _TOTAL_PAGES = Math.ceil(_TOTAL_NO_ITEMS/_ITEMS_PER_PAGE);
 
 //Favorites button should be marked more clearly when in favorites mode. DONE.
 
-//Add a bit more minimal space between the cards in songs
+//Add a bit more minimal space between the cards in songs DONE.
 
-//Large card dark mode backarrow is misaligned.
+//Large card dark mode backarrow is misaligned. FIXED.
 
-//Improve small size responsiveness for the large card
+//Improve small size responsiveness for the large card DONE.
 
 
 function Songs(){
