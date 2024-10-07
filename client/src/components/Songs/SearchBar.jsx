@@ -1,8 +1,11 @@
 import { useContext, useState, useEffect, useRef } from 'react';
 import {searchContext} from './Songs';
+// import { stateContext } from '../Menu/Menu';
 import searchIcon from './../../assets/search1.svg';
 // import { stateContext } from '../Menu/Menu';
+
 function SearchBar(){
+    // const { favSongs } = useContext(stateContext);
     const { onSearchClick, favBtnOn, setFavBtnOn, setCurrentPage } = useContext(searchContext);
     const artists = [
         "Artist",

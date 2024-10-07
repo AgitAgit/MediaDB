@@ -34,9 +34,21 @@ const _TOTAL_PAGES = Math.ceil(_TOTAL_NO_ITEMS/_ITEMS_PER_PAGE);
 //When setCurrentPage(1) is called from outside the pagination bar, and the current page is larger than 3,
 //the middle buttons display doesn't update. FIXED.
 
-//Add search functionality within favorites...
+//Add search functionality within favorites DONE.
 
-//I need to check Yaniv's tips
+//Refresh favorites when the like is clicked DONE.
+
+//Favorites button should be marked more clearly when in favorites mode.
+
+//Add some margin to the searchBar
+
+//Add a bit more minimal space between the cards in songs
+
+//Large card dark mode backarrow is misaligned.
+
+//Improve small size responsiveness for the large card
+
+
 function Songs(){
     const [songs, setSongs] = useState(null);
     const [page, setPage] = useState('loading');
@@ -76,6 +88,17 @@ function Songs(){
         setCurrentPage(1);
     },[favBtnOn]);
 
+    //refresh the favorite songs view when a favorite is removed
+    useEffect(() => {
+        handleFavoritesChange();
+    },[favSongs]);
+
+    function handleFavoritesChange(){
+        if(favBtnOn){
+            onSearchClick(document.getElementById('searchInput').value, document.getElementById('searchSelect').value);
+        }
+    }
+
     function handleSongClick(props){
         // console.log('a song was clicked!');
         localStorage.setItem('songsYPosition',`${window.scrollY}`);
@@ -86,25 +109,19 @@ function Songs(){
     
     async function onSearchClick(str, parameter){
         let data;
+        let field;
+        if(parameter === 'Track') field = 'name';
+        else if(parameter === 'Album') field = 'album.name';
+        else if(parameter === 'Artist') field = 'artists.0.name';
+
         if(favBtnOn && favSongs){
-            // data = await data.filter(song =>{
-            //     return favSongs.includes(song._id);
-            // });
             const ids = await favSongs.map(id => {
                 return {"$oid":id};
             });
-            data = await getSongsById(ids,36,offset);
+            data = await getSongsById(ids, 36, offset, field, str);
         }
         else{
-            if(parameter === 'Track'){
-                data = await searchSongs('name', str,36, offset);
-            }
-            else if(parameter === 'Album'){
-                data = await searchSongs('album.name', str,36, offset);
-            }
-            else if(parameter === 'Artist'){
-                data = await searchSongs('artists.0.name', str,36, offset);
-            }
+            data = await searchSongs(field, str,36, offset);
         }
         // console.log(`search string:'${str}' parameter:${parameter}`);
         console.log("favBtnOn",favBtnOn);
