@@ -46,7 +46,7 @@ export const searchContext = createContext();
 //Change the pagination bar so It shows the number of pages with accordance to the number of available
 //results.
 
-
+//When clicking from favorites back to normal mode, the ... symbol disappears
 function Songs(){
     const itemsInCollection = 2500;
     const [totalNoItems, setTotalNoItems] = useState(itemsInCollection);//number of docs in collection
