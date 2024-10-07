@@ -5,7 +5,7 @@ import { currBook } from './Books';
 
 
 const LikeButton = (props) => {
-    const { favBooks, setFavBooks, userLogged, setUserLogged, setState } = useContext(stateContext);
+    const { favBooks, setFavBooks, userLogged } = useContext(stateContext);
     const { favorites, setIsLoginPopupVisible, setTriggerSearch } = useContext(currBook);
     const { _id, bigCard } = props
     const [liked, setLiked] = useState(false);
@@ -16,7 +16,7 @@ const LikeButton = (props) => {
         } else {
             setLiked(false);
         }
-    }, [_id]);
+    }, [_id, favBooks]);
     
     const toggleLike = (event) => {
         event.stopPropagation();

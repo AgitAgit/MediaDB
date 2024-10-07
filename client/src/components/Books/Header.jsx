@@ -4,7 +4,8 @@ import { stateContext } from "../Menu/Menu";
 
 function Header(props){
     const { setState, theme, setTheme } = useContext(stateContext);
-    
+    const { title } = props;
+
     function toggleTheme(){
         setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
     }
@@ -16,12 +17,12 @@ function Header(props){
         <header className="book-header">
             <div id="header-container">
                 <div className="brand">
-                    <img id="logo-img" onClick={handleLogoClick} src={logoSmall} width='40px' />
-                    <h1 id="brand-name">Let's Find Your&nbsp;Book?</h1>
+                    <img id="logo-img" onClick={handleLogoClick} src={logoSmall} width='40px' alt="logo" />
+                    <h1 id="brand-name">{title}</h1>
                 </div>
                 <div className="theme-container">
                     <div id="color-mode" onClick={toggleTheme}>
-                        {theme === 'light' ? '☀️Light Mode' : '🌙Dark Mode'}</div>
+                    {theme === 'light' ? '☀️Light Mode' : '🌙Dark Mode'}</div>
                 </div>
             </div>
         </header>

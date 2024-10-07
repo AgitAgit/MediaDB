@@ -61,7 +61,7 @@ function createUser(username,password) {
     .catch(err => console.log("Client fetching error:",err)); 
 }
 
-function getBooks(searchText, method, limit=100, favorites, favBooks){    
+function getBooks(searchText, method, limit=100, favorites, favBooks, { signal}){    
     const filter = {};
     filter[method] = { $regex: searchText, $options: "i"};
     if(favorites)
@@ -69,7 +69,7 @@ function getBooks(searchText, method, limit=100, favorites, favBooks){
     return axios.put(`${_CURRENT_ADDRESS}/api/data/book/get`, {
         filter,
         limit
-    })
+    }, { signal })
     .then(books => {
         const data = books.data;
         if(data && data.length > 0) data.forEach(element => {

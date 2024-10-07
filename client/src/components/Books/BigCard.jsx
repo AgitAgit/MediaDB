@@ -47,8 +47,8 @@ function BigCard(){
         ],
         };
     useEffect(() => {
-        const controller = new AbortController(); // Create an instance of AbortController
-        const signal = controller.signal;
+        const controller = new AbortController();
+        const { signal } = controller;
         
         const recommendation = () => {
             getBookRecommendation(selectedBook._id, { signal })
@@ -75,7 +75,7 @@ function BigCard(){
         <BackButton />
         <LikeButton _id={selectedBook._id} bigCard="true"/>
         <div id="data">
-            <img src={selectedBook.img} />
+            <img src={selectedBook.img} alt="book cover"/>
             <div className="book-details" alt="Book Cover">
                 <p><span>Title: </span>{selectedBook.title}</p>
                 <p><span>Authors: </span>{selectedBook.authors.join(", ")} </p>

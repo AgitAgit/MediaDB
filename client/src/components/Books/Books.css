@@ -300,6 +300,7 @@ a:hover {
     img {
         height: 250px;
         margin-inline: auto;
+        margin-block: auto;
     }
     p {
         font-size: 1.5rem;
@@ -319,6 +320,15 @@ a:hover {
         max-height: 200px;
         overflow-y: auto;
         border-left: 10px solid var(--link-color);
+    }
+    .book-description::-webkit-scrollbar {
+        width: 10px;
+        background-color: transparent;
+    }
+    
+    .book-description::-webkit-scrollbar-thumb {
+        background-color: var(--link-color);
+        border-radius: 5px;
     }
 }
 /* Big Card- Carrousel */
@@ -360,13 +370,6 @@ a:hover {
     border-radius: 50%;
     z-index: 9999;
 }
-.slick-slider .slick-prev {
-    
-}
-.slick-slider .slick-next {
-    
-}
-
 /* Change the color on hover */
 .slick-slider .slick-prev:hover,
 .slick-slider .slick-next:hover,
@@ -374,7 +377,6 @@ a:hover {
 .slick-slider .slick-next:focus {
     background-color: var(--link-hover); 
 }
-
 /* Arrow styles */
 .slick-slider .slick-prev:before,
 .slick-slider .slick-next:before {
@@ -384,7 +386,6 @@ a:hover {
     font-size: 18px;
     top: 45%;
 }
-
 .slick-slider .slick-prev:before {
     content: '◀';
     left: 45%;
@@ -393,7 +394,6 @@ a:hover {
     content: '▶';
     left: 55%;
 }
-
 /* Back To Top */
 #back-to-top {
     position: fixed;
@@ -530,7 +530,6 @@ a:hover {
     transition: 0.3s ease;
     cursor: pointer;
 }
-
 /* MEDIA QUERIES */
 @media (max-width: 1000px) {
     #search-row {
@@ -589,7 +588,6 @@ a:hover {
     .footer-content h2 {
         text-align: left;
     }
-
 }
 
 @media (max-width: 500px) {
