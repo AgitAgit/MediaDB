@@ -55,10 +55,14 @@ export const searchContext = createContext();
 
 //when there is more than one favorites pages, and I click on it from a page higher than 2 in the
 //normal mode, the second page get a wrong number
+//FIXED.
+
+//should jump back up when a page is changed.
+//DONE.
 
 //Need to add jump back to top button
 
-//the artists in db feature's behavior isn't well integrated with the search/pagination/favorites mode
+//the artists in db feature's behavior isn't well integrated with the search/pagination/favorites mode.
 
 //when removing liked songs from the favorites mode, the number of pages is not refreshed when the number
 //of liked songs becomes small enough to leave empty pages.
@@ -88,6 +92,14 @@ function Songs(){
     },[]);//leave the dependency array empty here.
 
     useEffect(() => {
+        // localStorage.setItem('songsYPosition')
+        const scroller = setInterval(() => {
+            window.scrollTo(0, window.scrollY - 50);
+            if(window.scrollY === 0){
+                clearInterval(scroller);
+            }
+        }, 10);
+        
         async function fetchData(){
             await onSearchClick('','Track');
             setPage('songs');
