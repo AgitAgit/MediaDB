@@ -53,6 +53,8 @@ export const searchContext = createContext();
 //a mark class is added to an element but it is recreated without it when rendering?
 //FIXED.
 
+//Need to add jump back to top button
+
 //the artists in db feature's behavior isn't well integrated with the search/pagination/favorites mode
 
 //when removing liked songs from the favorites mode, the number of pages is not refreshed when the number
