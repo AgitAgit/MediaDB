@@ -85,12 +85,12 @@ function PaginationBar(props){
         console.log('page:', page, 'total pages:',_TOTAL_PAGES)
         if(page > _TOTAL_PAGES || page < 1) return;
         setCurrentPage(page);
+        decideEllipsis(page);
         if(_TOTAL_PAGES >= 5)
         {   
             document.querySelectorAll('.pBtn').forEach(button => {
                 button.classList.remove('hidden');
             })
-            decidePageNumbers(page);
             decidePageNumbers(page);
         }
         else{
