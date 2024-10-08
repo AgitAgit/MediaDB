@@ -13,7 +13,7 @@
     background-color: var(--background);
     color: var(--text);
     padding:0 0.5rem 0 0.5rem;
-    margin:1rem auto 0 auto;
+    margin:1rem auto 1rem auto;
     max-width: 1400px;
     min-height: 50vh;
 }
@@ -135,6 +135,8 @@
     width:80px;
 }
 .SongsPaginationBar{
+    position: relative;
+    z-index: 11;
     display:flex;
     justify-content: center;
     background-color: var(--input);
