@@ -93,13 +93,7 @@ function Songs(){
 
     useEffect(() => {
         // localStorage.setItem('songsYPosition')
-        const scroller = setInterval(() => {
-            window.scrollTo(0, window.scrollY - 50);
-            if(window.scrollY === 0){
-                clearInterval(scroller);
-            }
-        }, 10);
-        
+        scrollToTop();    
         async function fetchData(){
             await onSearchClick('','Track');
             setPage('songs');
@@ -127,6 +121,15 @@ function Songs(){
     useEffect(() => {
         handleFavoritesChange();
     },[favSongs]);
+
+    function scrollToTop(){
+        const scroller = setInterval(() => {
+            window.scrollTo(0, window.scrollY - 50);
+            if(window.scrollY === 0){
+                clearInterval(scroller);
+            }
+        }, 10);
+    }
 
     function handleFavoritesChange(){
         if(favBtnOn){
