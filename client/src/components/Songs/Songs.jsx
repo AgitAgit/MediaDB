@@ -53,6 +53,11 @@ export const searchContext = createContext();
 //a mark class is added to an element but it is recreated without it when rendering?
 //FIXED.
 
+//when there is more than one favorites pages, and I click on it from a page higher than 2 in the
+//normal mode, the second page get a wrong number
+
+//Need to add jump back to top button
+
 //the artists in db feature's behavior isn't well integrated with the search/pagination/favorites mode
 
 //when removing liked songs from the favorites mode, the number of pages is not refreshed when the number
