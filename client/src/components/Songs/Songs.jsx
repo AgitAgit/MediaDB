@@ -170,6 +170,7 @@ function Songs(){
                             })
                         }
                     </div>
+                    <PaginationBar currentPage={currentPage} setCurrentPage={setCurrentPage} data={{_TOTAL_NO_ITEMS: totalNoItems,_ITEMS_PER_PAGE,_TOTAL_PAGES, favBtnOn}}/>
                     <Footer/>
                 </div>
             )}
