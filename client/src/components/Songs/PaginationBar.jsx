@@ -23,7 +23,6 @@ function PaginationBar(props){
     const pBar = useRef(null);
     const leftSpanRef = useRef(null);
     const rightSpanRef = useRef(null);
-    // let buttons = [];
     let numOfDigitButtons = 5;
 
     useEffect(() => {
@@ -36,13 +35,11 @@ function PaginationBar(props){
     },[favBtnOn]);
 
     function mark(page = currentPage){
-        // console.log("mark run!")
         const buttons = pBar.current.querySelectorAll('button');
         buttons.forEach(button => {
             button.classList.remove('marked');
             if(parseInt(button.textContent) && parseInt(button.textContent) === page){
                 button.classList.add('marked');
-                // console.log(`button ${page} has been marked!`)
             }
         })
     }
@@ -114,32 +111,6 @@ function PaginationBar(props){
         handleNavTo(page);
     }
     return(
-        // <div ref={pBar} className="SongsPaginationBar">
-        //     <button onClick={() => handleNavTo(currentPage - 1)}>{'<'}</button>
-        //     {_TOTAL_PAGES >= 5 &&(
-        //         <>
-        //     <button onClick={handleNavToText}>{'1'}</button>
-        //     <span ref={leftSpanRef}></span>
-        //     <button onClick={handleNavToText}>{leftMiddle}</button>
-        //     <button onClick={handleNavToText}>{middle}</button>
-        //     <button onClick={handleNavToText}>{rightMiddle}</button>
-        //     <span ref={rightSpanRef}></span>
-        //     <button onClick={handleNavToText}>{_TOTAL_PAGES}</button>
-        //     </>
-        //     )}
-        //     {_TOTAL_PAGES < 5 &&(
-        //     <>
-        //     {  
-        //         Array.from({ length: _TOTAL_PAGES }, (_, i) => (
-        //             <button key={i} onClick={handleNavToText}>
-        //               {i + 1}
-        //             </button>
-        //           ))
-        //     }
-        //     </>
-        //     )}
-        //     <button onClick={() => handleNavTo(currentPage + 1)}>{'>'}</button>
-        // </div>
         <div ref={pBar} className="SongsPaginationBar">
             <button onClick={() => handleNavTo(currentPage - 1)}>{'<'}</button>
             <button className="pBtn pBtn1" onClick={handleNavToText}>{'1'}</button>
