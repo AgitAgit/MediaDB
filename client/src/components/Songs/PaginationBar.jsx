@@ -17,8 +17,6 @@ let rightMiddle = 4;
 //So I'll get a ref to the pagination bar, create a list of all it's child nodes who are buttons. Remove the marked class from all and add
 //it to the one with the fitting numerical value.
 
-//I'm stuck. The problem is
-
 function PaginationBar(props){
     const {currentPage, setCurrentPage} = props;
     const {_TOTAL_NO_ITEMS,_ITEMS_PER_PAGE,_TOTAL_PAGES, favBtnOn} = props.data;
@@ -30,8 +28,8 @@ function PaginationBar(props){
 
     useEffect(() => {
         handleNavTo(currentPage);
-        // mark();
-    },[currentPage, leftMiddle, middle, rightMiddle, favBtnOn, _TOTAL_PAGES]);
+        mark();
+    },[currentPage, favBtnOn, _TOTAL_PAGES]);
     
     useEffect(() =>{
 
@@ -66,7 +64,7 @@ function PaginationBar(props){
         }
     }
 
-    function decideEllipsis(page){
+    function decideEllipsis(){
         if(currentPage + 1 < _TOTAL_PAGES - 1){
             rightSpanRef.current.textContent = '...';
         }
@@ -85,7 +83,7 @@ function PaginationBar(props){
         console.log('page:', page, 'total pages:',_TOTAL_PAGES)
         if(page > _TOTAL_PAGES || page < 1) return;
         setCurrentPage(page);
-        decideEllipsis(page);
+        decideEllipsis();
         if(_TOTAL_PAGES >= 5)
         {   
             document.querySelectorAll('.pBtn').forEach(button => {

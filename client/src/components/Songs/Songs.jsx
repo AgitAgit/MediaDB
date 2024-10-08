@@ -51,7 +51,12 @@ export const searchContext = createContext();
 //normal mode.
 //Partially true. It might be also related to the conditional rendering in the pagination.
 //a mark class is added to an element but it is recreated without it when rendering?
+//FIXED.
 
+//the artists in db feature's behavior isn't well integrated with the search/pagination/favorites mode
+
+//when removing liked songs from the favorites mode, the number of pages is not refreshed when the number
+//of liked songs becomes small enough to leave empty pages.
 function Songs(){
     const itemsInCollection = 2500;
     const [totalNoItems, setTotalNoItems] = useState(itemsInCollection);//number of docs in collection
