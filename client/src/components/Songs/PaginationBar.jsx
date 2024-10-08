@@ -25,12 +25,13 @@ function PaginationBar(props){
     const pBar = useRef(null);
     const leftSpanRef = useRef(null);
     const rightSpanRef = useRef(null);
-    let buttons = [];
+    // let buttons = [];
     let numOfDigitButtons = 5;
 
     useEffect(() => {
         handleNavTo(currentPage);
-    },[currentPage, leftMiddle, middle, rightMiddle, favBtnOn]);
+        // mark();
+    },[currentPage, leftMiddle, middle, rightMiddle, favBtnOn, _TOTAL_PAGES]);
     
     useEffect(() =>{
 
@@ -84,9 +85,11 @@ function PaginationBar(props){
         console.log('page:', page, 'total pages:',_TOTAL_PAGES)
         if(page > _TOTAL_PAGES || page < 1) return;
         setCurrentPage(page);
-        mark();
         if(_TOTAL_PAGES >= 5)
         {   
+            document.querySelectorAll('.pBtn').forEach(button => {
+                button.classList.remove('hidden');
+            })
             decidePageNumbers(page);
             decidePageNumbers(page);
         }
@@ -95,11 +98,13 @@ function PaginationBar(props){
         }
     }
     function hideButtons() {
-        buttons = document.querySelectorAll('pBtn');
-        console.log('@ss');
+        const buttons = document.querySelectorAll('.pBtn');
+        console.log("hide buttons length",buttons.length)
+        console.log("hide buttons total pages",_TOTAL_PAGES)
         buttons.forEach(button => {
+            console.log('@ss');
             for (let i = _TOTAL_PAGES + 1; i <= numOfDigitButtons; i++) { //from the page that shouldn't show to the number of current buttons
-                if (button.classList.includes(`pBtn${i}`)) { //if the button is larger than the number of pages
+                if (button.classList.contains(`pBtn${i}`)) { //if the button is larger than the number of pages
                     button.classList.add('hidden');
                 }
             }
