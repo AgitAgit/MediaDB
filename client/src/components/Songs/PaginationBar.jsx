@@ -19,42 +19,20 @@ let rightMiddle = 4;
 
 function PaginationBar(props){
     const {currentPage, setCurrentPage} = props;
-    const {_TOTAL_NO_ITEMS,_ITEMS_PER_PAGE,_TOTAL_PAGES} = props.data;
+    const {_TOTAL_NO_ITEMS,_ITEMS_PER_PAGE,_TOTAL_PAGES, favBtnOn} = props.data;
     const pBar = useRef(null);
     const leftSpanRef = useRef(null);
     const rightSpanRef = useRef(null);
-    let buttons = [];
-    for(let i = 0; i < _TOTAL_PAGES; i++){
-        buttons.push('.');
-    }
-    // mark(currentPage);
-    //When I click on the middle left or middle right buttons, it marks the button I clicked and not the one
-    //with the correct value. Meaning it refers to the button that had the value at the time of clicking, and
-    //not the one the turns out to have the value after the re-render. So I need somehow to trigger "mark()" 
-    //after the page has been re-rendered. maybe trigger it on the onchange of pBar and have it use the current page as value.
-
-    // useEffect(() => {
-    // },[currentPage, leftMiddle, middle, rightMiddle]);
+    let numOfDigitButtons = 5;
 
     useEffect(() => {
-        if(_TOTAL_PAGES >= 5){
-
-            if(currentPage + 1 < _TOTAL_PAGES - 1){
-                rightSpanRef.current.textContent = '...';
-            }
-            else {
-                rightSpanRef.current.textContent = '';
-            }
-            if(currentPage - 1 > 2){
-                leftSpanRef.current.textContent = '...';
-            }
-            else {
-                leftSpanRef.current.textContent = '';
-            }
-        }
+        handleNavTo(currentPage);
         mark();
-        handleNavTo(currentPage);//This is being tested... It does seem to solve the problem.
-    },[currentPage, leftMiddle, middle, rightMiddle]);
+    },[currentPage, favBtnOn, _TOTAL_PAGES]);
+    
+    useEffect(() =>{
+
+    },[favBtnOn]);
 
     function mark(page = currentPage){
         const buttons = pBar.current.querySelectorAll('button');
@@ -65,31 +43,67 @@ function PaginationBar(props){
             }
         })
     }
+    function decidePageNumbers(page){
+        if(page === 1 || page === 2){
+            leftMiddle = 2;
+            middle = 3;
+            rightMiddle = 4;
+        }
+        else if(page === _TOTAL_PAGES -1 || page === _TOTAL_PAGES){
+            rightMiddle = _TOTAL_PAGES - 1;
+            middle = rightMiddle - 1;
+            leftMiddle = rightMiddle - 2;
+        }
+        else {
+            middle = page;
+            leftMiddle = page - 1;
+            rightMiddle = page + 1;
+        }
+    }
+
+    function decideEllipsis(){
+        if(currentPage + 1 < _TOTAL_PAGES - 1){
+            rightSpanRef.current.textContent = '...';
+        }
+        else {
+            rightSpanRef.current.textContent = '';
+        }
+        if(currentPage - 1 > 2){
+            leftSpanRef.current.textContent = '...';
+        }
+        else {
+            leftSpanRef.current.textContent = '';
+        }
+    }
 
     function handleNavTo(page){
+        console.log('page:', page, 'total pages:',_TOTAL_PAGES)
         if(page > _TOTAL_PAGES || page < 1) return;
         setCurrentPage(page);
+        decideEllipsis();
         if(_TOTAL_PAGES >= 5)
-        {
-            if(page === 1 || page === 2){
-                leftMiddle = 2;
-                middle = 3;
-                rightMiddle = 4;
-            }
-            else if(page === _TOTAL_PAGES -1 || page === _TOTAL_PAGES){
-                rightMiddle = _TOTAL_PAGES - 1;
-                middle = rightMiddle - 1;
-                leftMiddle = rightMiddle - 2;
-            }
-            else {
-                middle = page;
-                leftMiddle = page - 1;
-                rightMiddle = page + 1;
-            }
+        {   
+            document.querySelectorAll('.pBtn').forEach(button => {
+                button.classList.remove('hidden');
+            })
+            decidePageNumbers(page);
         }
         else{
-
+            hideButtons();
         }
+    }
+    function hideButtons() {
+        const buttons = document.querySelectorAll('.pBtn');
+        console.log("hide buttons length",buttons.length)
+        console.log("hide buttons total pages",_TOTAL_PAGES)
+        buttons.forEach(button => {
+            console.log('@ss');
+            for (let i = _TOTAL_PAGES + 1; i <= numOfDigitButtons; i++) { //from the page that shouldn't show to the number of current buttons
+                if (button.classList.contains(`pBtn${i}`)) { //if the button is larger than the number of pages
+                    button.classList.add('hidden');
+                }
+            }
+        });
     }
 
     function handleNavToText(event){
@@ -99,31 +113,17 @@ function PaginationBar(props){
     return(
         <div ref={pBar} className="SongsPaginationBar">
             <button onClick={() => handleNavTo(currentPage - 1)}>{'<'}</button>
-            {_TOTAL_PAGES >= 5 &&(
-                <>
-            <button onClick={handleNavToText}>{'1'}</button>
+            <button className="pBtn pBtn1" onClick={handleNavToText}>{'1'}</button>
             <span ref={leftSpanRef}></span>
-            <button onClick={handleNavToText}>{leftMiddle}</button>
-            <button onClick={handleNavToText}>{middle}</button>
-            <button onClick={handleNavToText}>{rightMiddle}</button>
+            <button className="pBtn pBtn2" onClick={handleNavToText}>{leftMiddle}</button>
+            <button className="pBtn pBtn3" onClick={handleNavToText}>{middle}</button>
+            <button className="pBtn pBtn4" onClick={handleNavToText}>{rightMiddle}</button>
             <span ref={rightSpanRef}></span>
-            <button onClick={handleNavToText}>{_TOTAL_PAGES}</button>
-            </>
-            )}
-            {_TOTAL_PAGES < 5 &&(
-            <>
-            {  
-                Array.from({ length: _TOTAL_PAGES }, (_, i) => (
-                    <button key={i} onClick={handleNavToText}>
-                      {i + 1}
-                    </button>
-                  ))
-            }
-            </>
-            )}
+            <button className="pBtn pBtn5" onClick={handleNavToText}>{_TOTAL_PAGES}</button>
             <button onClick={() => handleNavTo(currentPage + 1)}>{'>'}</button>
         </div>
     );
 }
 
 export default PaginationBar;
+
