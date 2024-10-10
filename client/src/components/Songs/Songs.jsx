@@ -13,7 +13,7 @@ import Loading from './Loading.jsx';
 import {getSongs, getSongsById, searchSongs, getUserLiked} from './../../dataCenter.js';
 import { stateContext } from '../Menu/Menu.jsx';
 export const searchContext = createContext();
-
+const title = "Let's find your favorite\u00A0songs"
 
 //need to add pagination for the favorites mode.  DONE
 //probably need to add offset to the getById in the data center
@@ -93,13 +93,7 @@ function Songs(){
 
     useEffect(() => {
         // localStorage.setItem('songsYPosition')
-        const scroller = setInterval(() => {
-            window.scrollTo(0, window.scrollY - 50);
-            if(window.scrollY === 0){
-                clearInterval(scroller);
-            }
-        }, 10);
-        
+        scrollToTop();    
         async function fetchData(){
             await onSearchClick('','Track');
             setPage('songs');
@@ -127,6 +121,15 @@ function Songs(){
     useEffect(() => {
         handleFavoritesChange();
     },[favSongs]);
+
+    function scrollToTop(){
+        const scroller = setInterval(() => {
+            window.scrollTo(0, window.scrollY - 50);
+            if(window.scrollY === 0){
+                clearInterval(scroller);
+            }
+        }, 10);
+    }
 
     function handleFavoritesChange(){
         if(favBtnOn){
@@ -168,14 +171,14 @@ function Songs(){
         <div>
             {page === 'loading' && (
                 <div id="songsApp">
-                    <Header/>
+                    <Header title={ title }/>
                     <Loading/>
                     <Footer/>
                 </div>
             )}
             {page === 'songs' && (
                 <div id="songsApp">
-                    <Header/>
+                    <Header title={title}/>
                     <searchContext.Provider value={{ onSearchClick, favBtnOn, setFavBtnOn, setCurrentPage}}>
                         <SearchBar/>
                     </searchContext.Provider>
@@ -193,7 +196,7 @@ function Songs(){
             )}
             {page === 'song' && (
                 <div id="songsApp">
-                <Header/>
+                <Header title={title}/>
                     <SongExt data={extSong} setPage={setPage} yPosition={window.scrollY.valueOf}></SongExt>
                 <Footer/>
             </div>
