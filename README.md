@@ -13,7 +13,7 @@ A full-stack project, made to practice integration between a client, a server an
 ## Challenges:
 
 ## Gallery:
-[<img alt="menu">]()
+[<img alt="menu" src="./Assets/Images/menu.png">]
 
 ## Lessons and ideas for similar future projects:
 
