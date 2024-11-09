@@ -19,6 +19,17 @@ A full-stack project, made to practice integration between a client, a server an
 <img alt="app-preview" src="./Assets/Images/favorite_songs.png" width="400px">
 <img alt="app-preview" src="./Assets/Images/songs_responsive.png" width="400px">
 
+<table style="width:100%; border-collapse:collapse;">
+  <tr>
+    <td style="text-align:center;"><img src="./Assets/Images/Screenshot (37).png" alt="Image 1" style="width:50%;"></td>
+    <td style="text-align:center;"><img src="./Assets/Images/Screenshot (37).png" alt="Image 2" style="width:50%;"></td>
+  </tr>
+  <tr>
+    <td style="text-align:center;"><img src="./Assets/Images/Screenshot (37).png" alt="Image 1" style="width:50%;"></td>
+    <td style="text-align:center;"><img src="./Assets/Images/Screenshot (37).png" alt="Image 2" style="width:50%;"></td>
+  </tr>
+</table>
+
 ## Lessons and ideas for similar future projects:
 
 ## Stack:
