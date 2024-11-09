@@ -13,6 +13,7 @@ A full-stack project, made to practice integration between a client, a server an
 ## Challenges:
 
 ## Gallery:
+[<img alt="menu">]()
 
 ## Lessons and ideas for similar future projects:
 
