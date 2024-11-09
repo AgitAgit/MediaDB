@@ -11,6 +11,11 @@ A full-stack project, made to practice integration between a client, a server an
 -Machine learning driven book recommendations.
 
 ## Challenges:
+We both have different paces of development. As this is a practice project, letting Yaniv go ahead and finish everything himself would be counterproductive, and so we have taken two measures to avoid it.
+
+1. Working together via discord screen sharing. At all times one of us would actually program and the other   would think and suggest different ideas. We switched often to make sure both of us were involved in most things.
+
+2. Duplicating features. This allowed each of us to practice independently the same concepts.
 
 ## Gallery:
 
@@ -41,7 +46,10 @@ A full-stack project, made to practice integration between a client, a server an
   </tr>
 </table>
 
-## Lessons and ideas for similar future projects:
+## Key Takeaways and Future Improvements:
+Without defined standards for component structure and interface, our front-end development process was less efficient. Yaniv and Amit worked independently on the books and songs sections, respectively, resulting in duplicated components that could have been shared.
+
+To streamline future projects, we should prioritize creating a unified component library with clear guidelines for their design and behavior.
 
 ## Stack:
 Front-end:
