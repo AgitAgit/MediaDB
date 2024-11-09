@@ -14,6 +14,10 @@ A full-stack project, made to practice integration between a client, a server an
 
 ## Gallery:
 <img alt="menu" src="./Assets/Images/menu.png">
+<img alt="app-preview" src="./Assets/Images/books_search.png" width="200px">
+<img alt="app-preview" src="./Assets/Images/books_single.png" width="200px">
+<img alt="app-preview" src="./Assets/Images/favorite_songs.png" width="200px">
+<img alt="app-preview" src="./Assets/Images/songs_responsive.png" width="200px">
 
 ## Lessons and ideas for similar future projects:
 
