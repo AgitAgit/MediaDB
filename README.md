@@ -11,6 +11,8 @@ A full-stack project, made to practice integration between a client, a server an
 -Machine learning driven book recommendations.
 
 ## Challenges:
+We were both inexperienced on git branching and merging. This project gave us an opportunity to practice working in a pair and solving merge conflicts and separate branch based work.
+
 We both have different paces of development. As this is a practice project, letting Yaniv go ahead and finish everything himself would be counterproductive, and so we have taken two measures to avoid it.
 
 1. Working together via discord screen sharing. At all times one of us would actually program and the other   would think and suggest different ideas. We switched often to make sure both of us were involved in most things.
