@@ -13,20 +13,31 @@ A full-stack project, made to practice integration between a client, a server an
 ## Challenges:
 
 ## Gallery:
-<img alt="menu" src="./Assets/Images/menu.png" width="400px">
-<img alt="app-preview" src="./Assets/Images/books_search.png" width="400px">
-<img alt="app-preview" src="./Assets/Images/books_single.png" width="400px">
-<img alt="app-preview" src="./Assets/Images/favorite_songs.png" width="400px">
-<img alt="app-preview" src="./Assets/Images/songs_responsive.png" width="400px">
 
 <table style="width:100%; border-collapse:collapse;">
   <tr>
-    <td style="text-align:center;"><img src="./Assets/Images/Screenshot (37).png" alt="Image 1" style=""></td>
-    <td style="text-align:center;"><img src="./Assets/Images/Screenshot (37).png" alt="Image 2" style=""></td>
+    <td style="text-align:center;">
+        <img alt="menu" src="./Assets/Images/menu.png">
+    </td>
+    <td style="text-align:center;">
+        <img alt="app-preview" src="./Assets/Images/favorite_songs.png">
+    </td>
   </tr>
-  <tr>
-    <td style="text-align:center;"><img src="./Assets/Images/Screenshot (37).png" alt="Image 1" style=""></td>
-    <td style="text-align:center;"><img src="./Assets/Images/Screenshot (37).png" alt="Image 2" style=""></td>
+    <tr>
+    <td style="text-align:center;">
+        <img alt="app-preview" src="./Assets/Images/books_search.png">
+    </td>
+    <td style="text-align:center;">
+        <img alt="app-preview" src="./Assets/Images/books_single.png">
+    </td>
+  </tr>
+    <tr>
+    <td style="text-align:center;">
+        <img alt="app-preview" src="./Assets/Images/songs_responsive.png">
+    </td>
+    <td style="text-align:center;">
+        <img alt="app-preview" src="./Assets/Images/books_suggestions.png">
+    </td>
   </tr>
 </table>
 
