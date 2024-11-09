@@ -21,12 +21,12 @@ A full-stack project, made to practice integration between a client, a server an
 
 <table style="width:100%; border-collapse:collapse;">
   <tr>
-    <td style="text-align:center;"><img src="./Assets/Images/Screenshot (37).png" alt="Image 1" style="width:50%;"></td>
-    <td style="text-align:center;"><img src="./Assets/Images/Screenshot (37).png" alt="Image 2" style="width:50%;"></td>
+    <td style="text-align:center;"><img src="./Assets/Images/Screenshot (37).png" alt="Image 1" style=""></td>
+    <td style="text-align:center;"><img src="./Assets/Images/Screenshot (37).png" alt="Image 2" style=""></td>
   </tr>
   <tr>
-    <td style="text-align:center;"><img src="./Assets/Images/Screenshot (37).png" alt="Image 1" style="width:50%;"></td>
-    <td style="text-align:center;"><img src="./Assets/Images/Screenshot (37).png" alt="Image 2" style="width:50%;"></td>
+    <td style="text-align:center;"><img src="./Assets/Images/Screenshot (37).png" alt="Image 1" style=""></td>
+    <td style="text-align:center;"><img src="./Assets/Images/Screenshot (37).png" alt="Image 2" style=""></td>
   </tr>
 </table>
 
