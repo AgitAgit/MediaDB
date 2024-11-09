@@ -52,18 +52,11 @@ Without defined standards for component structure and interface, our front-end d
 To streamline future projects, we should prioritize creating a unified component library with clear guidelines for their design and behavior.
 
 ## Stack:
-Front-end:
-React
-Java Script
-CSS
+Front-end: React - Java Script - CSS
 
-Back-end:
-Node.js
-MongoDB Atlas
+Back-end: Node.js - MongoDB Atlas
 
-Deployment:
-Docker
-Google Cloud Platform (GCP)
+Deployment: Docker - Google Cloud Platform (GCP)
 
 ## Contributors
 - [Yaniv Ridel](https://github.com/Yanivridel)
