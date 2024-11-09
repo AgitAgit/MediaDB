@@ -47,7 +47,7 @@ We both have different paces of development. As this is a practice project, lett
 </table>
 
 ## Key Takeaways and Future Improvements:
-Without defined standards for component structure and interface, our front-end development process was less efficient. Yaniv and Amit worked independently on the books and songs sections, respectively, resulting in duplicated components that could have been shared.
+Without defined standards for component structure and interface, our front-end development process was less efficient. We independently on the books and songs sections, respectively, resulting in duplicated components that could have been shared.
 
 To streamline future projects, we should prioritize creating a unified component library with clear guidelines for their design and behavior.
 
